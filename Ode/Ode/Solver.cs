@@ -34,12 +34,9 @@ namespace OdeLibrary
 
         public virtual void Dispose()
         {
-            lock (this)
-            {
-                if (_swigCPtr.Handle != IntPtr.Zero)
-                {
-                    if (SwigCMemOwn)
-                    {
+            lock (this) {
+                if (_swigCPtr.Handle != IntPtr.Zero) {
+                    if (SwigCMemOwn) {
                         SwigCMemOwn = false;
                         CorePinvoke.delete_Solver(_swigCPtr);
                     }
@@ -49,10 +46,22 @@ namespace OdeLibrary
             }
         }
 
+        public int Solve(Ode ode, IntegrateFunction integrateFunction, Stepper stepper)
+        {
+            var ret = CorePinvoke.Solver_Solve__SWIG_0(_swigCPtr, Ode.GetCPtr(ode), (int)integrateFunction,
+                                                       (int)stepper);
+            return ret;
+        }
+
+        public int Solve(Ode ode, IntegrateFunction integrateFunction)
+        {
+            var ret = CorePinvoke.Solver_Solve__SWIG_1(_swigCPtr, Ode.GetCPtr(ode), (int)integrateFunction);
+            return ret;
+        }
+
         public int Solve(Ode ode)
         {
-            ode.DisownMemory();
-            var ret = CorePinvoke.Solver_Solve(_swigCPtr, Ode.getCPtr(ode));
+            var ret = CorePinvoke.Solver_Solve__SWIG_2(_swigCPtr, Ode.GetCPtr(ode));
             return ret;
         }
 

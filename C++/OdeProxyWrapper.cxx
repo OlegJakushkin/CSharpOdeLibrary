@@ -1146,7 +1146,41 @@ SWIGEXPORT void SWIGSTDCALL CSharp_Ode_director_connect(void *objarg, SwigDirect
 }
 
 
-SWIGEXPORT int SWIGSTDCALL CSharp_Solver_Solve(void * jarg1, void * jarg2) {
+SWIGEXPORT int SWIGSTDCALL CSharp_Solver_Solve__SWIG_0(void * jarg1, void * jarg2, int jarg3, int jarg4) {
+  int jresult ;
+  OdeProxy::Solver *arg1 = (OdeProxy::Solver *) 0 ;
+  OdeProxy::Ode *arg2 = (OdeProxy::Ode *) 0 ;
+  OdeProxy::IntegrateFunction arg3 ;
+  OdeProxy::Stepper arg4 ;
+  int result;
+  
+  arg1 = (OdeProxy::Solver *)jarg1; 
+  arg2 = (OdeProxy::Ode *)jarg2; 
+  arg3 = (OdeProxy::IntegrateFunction)jarg3; 
+  arg4 = (OdeProxy::Stepper)jarg4; 
+  result = (int)(arg1)->Solve(arg2,arg3,arg4);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_Solver_Solve__SWIG_1(void * jarg1, void * jarg2, int jarg3) {
+  int jresult ;
+  OdeProxy::Solver *arg1 = (OdeProxy::Solver *) 0 ;
+  OdeProxy::Ode *arg2 = (OdeProxy::Ode *) 0 ;
+  OdeProxy::IntegrateFunction arg3 ;
+  int result;
+  
+  arg1 = (OdeProxy::Solver *)jarg1; 
+  arg2 = (OdeProxy::Ode *)jarg2; 
+  arg3 = (OdeProxy::IntegrateFunction)jarg3; 
+  result = (int)(arg1)->Solve(arg2,arg3);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_Solver_Solve__SWIG_2(void * jarg1, void * jarg2) {
   int jresult ;
   OdeProxy::Solver *arg1 = (OdeProxy::Solver *) 0 ;
   OdeProxy::Ode *arg2 = (OdeProxy::Ode *) 0 ;

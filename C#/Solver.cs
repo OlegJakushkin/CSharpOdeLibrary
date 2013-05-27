@@ -41,8 +41,18 @@ public class Solver : IDisposable {
     }
   }
 
+  public int Solve(Ode ode, IntegrateFunction integrateFunction, Stepper stepper) {
+    int ret = CorePINVOKE.Solver_Solve__SWIG_0(swigCPtr, Ode.getCPtr(ode), (int)integrateFunction, (int)stepper);
+    return ret;
+  }
+
+  public int Solve(Ode ode, IntegrateFunction integrateFunction) {
+    int ret = CorePINVOKE.Solver_Solve__SWIG_1(swigCPtr, Ode.getCPtr(ode), (int)integrateFunction);
+    return ret;
+  }
+
   public int Solve(Ode ode) {
-    int ret = CorePINVOKE.Solver_Solve(swigCPtr, Ode.getCPtr(ode));
+    int ret = CorePINVOKE.Solver_Solve__SWIG_2(swigCPtr, Ode.getCPtr(ode));
     return ret;
   }
 

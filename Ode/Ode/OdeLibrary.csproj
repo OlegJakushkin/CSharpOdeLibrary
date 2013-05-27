@@ -42,11 +42,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CorePINVOKE.cs" />
+    <Compile Include="IntegrateFunction.cs" />
     <Compile Include="LambdaOde.cs" />
     <Compile Include="Ode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Solver.cs" />
     <Compile Include="StateType.cs" />
+    <Compile Include="Stepper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

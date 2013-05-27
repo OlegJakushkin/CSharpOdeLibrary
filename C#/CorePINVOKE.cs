@@ -312,8 +312,14 @@ class CorePINVOKE {
   [DllImport("Core", EntryPoint="CSharp_Ode_director_connect")]
   public static extern void Ode_director_connect(HandleRef jarg1, Ode.SwigDelegateOde_0 delegate0, Ode.SwigDelegateOde_1 delegate1);
 
-  [DllImport("Core", EntryPoint="CSharp_Solver_Solve")]
-  public static extern int Solver_Solve(HandleRef jarg1, HandleRef jarg2);
+  [DllImport("Core", EntryPoint="CSharp_Solver_Solve__SWIG_0")]
+  public static extern int Solver_Solve__SWIG_0(HandleRef jarg1, HandleRef jarg2, int jarg3, int jarg4);
+
+  [DllImport("Core", EntryPoint="CSharp_Solver_Solve__SWIG_1")]
+  public static extern int Solver_Solve__SWIG_1(HandleRef jarg1, HandleRef jarg2, int jarg3);
+
+  [DllImport("Core", EntryPoint="CSharp_Solver_Solve__SWIG_2")]
+  public static extern int Solver_Solve__SWIG_2(HandleRef jarg1, HandleRef jarg2);
 
   [DllImport("Core", EntryPoint="CSharp_new_Solver")]
   public static extern IntPtr new_Solver();

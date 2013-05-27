@@ -1,8 +1,7 @@
 CSharpOdeLibrary
 ================
 
-Simple C# ODE Solver Library (Wrapper around Boost.OdeInt)
-
+Simple C# ODE Solver Library (Wrapper around Boost.OdeInt). 
 
 Say you want to define ODE system like that:
 ```CSharp
@@ -63,7 +62,6 @@ We use Boost.OdeInt as C++ code base. Provide simple C++ wrapper around it. Use 
 
 Motivation Exaple (Console sample):
 ```CSharp
-
 using System;
 using OdeLibrary;
 
@@ -105,16 +103,25 @@ namespace OdeTest
                     dxdt[1] = r * x[0] - x[1] - x[0] * x[2];
                     dxdt[2] = -b * x[2] + x[0] * x[1];
                 }
+
             };
 
             // And all we need to solve it:
             solver.Solve(lorenz);
+
+            // We can select how our IntegrateFunction will work: 
+            solver.Solve(lorenz, IntegrateFunction.Adaptive);
+
+            // We can even choose our Stepper method:
+            solver.Solve(lorenz, IntegrateFunction.Adaptive, Stepper.RungeKuttaDopri5);
+
+            Console.ReadLine();
         }
     }
 }
 ```
 
-We also provide Windows Forms application:
+Or Forms application example:
 ![Windows Forms using ZedGraph   ODE solver Demo application](/WinFormsODEGraphDemo.PNG)
 
 ```CSharp
@@ -198,3 +205,35 @@ How to use OdeLibrary
  - Add Project refrence to OdeLibrary.dll
  - Copy Core.dll into folder with your application
 
+
+This is Utilety library because we do not support new Numeric Steppers or Integrate Functions Creation.
+
+What parts of Boost.OdeInt we do provide:
+-----------------------------------------
+
+Steppers (description of all Steppers in C++ OdeInt)[http://www.boost.org/doc/libs/1_53_0/libs/numeric/odeint/doc/html/boost_numeric_odeint/odeint_in_detail/steppers.html]:
+```CSharp
+ - Default,
+ - Euler, // Works only with IntegrateFunction.NSteps
+ - ModifiedMidpoint,
+ - RungeKutta4,
+ - RungeKuttaCashKarp54,
+ - RungeKuttaDopri5,
+ - RungeKuttaFehlberg78,
+ - ControlledRungeKutta,
+ - BulirschStoer,
+ - BulirschStoerDenseOut,
+```
+
+And Integrate Functions (description of all Integrate Functions in C++ OdeInt)[http://www.boost.org/doc/libs/1_53_0/libs/numeric/odeint/doc/html/boost_numeric_odeint/odeint_in_detail/integrate_functions.html]:
+ - Default,
+ - Const,
+ - NSteps,
+ - Adaptive
+```
+
+*Demonstration Windows Forms Solution (OdeTestWS project, build can be found at \Ode\DemonstrationApplicationBuild\DemonstrationApplicationBuild.zip ):*
+
+
+![Windows Forms using ZedGraph   ODE solver Demo application](/WinFormsODEGraphDemoDefaultNSteps.PNG)
+![Windows Forms using ZedGraph   ODE solver Demo application](/WinFormsODEGraphDemoDefaultSolver.PNG)

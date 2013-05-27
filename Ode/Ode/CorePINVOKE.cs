@@ -4,8 +4,6 @@
  *
  * Do not make changes to this file unless you know what you are doing--modify
  * the SWIG interface file instead.
- * 
- * Beautified via ReSharper
  * ----------------------------------------------------------------------------- */
 
 using System;
@@ -116,7 +114,8 @@ namespace OdeLibrary
 
             private static void SetPendingArgumentException(string message, string paramName)
             {
-                SwigPendingException.Set(new ArgumentException(message, paramName, SwigPendingException.Retrieve()));
+                SwigPendingException.Set(new ArgumentException(message, paramName,
+                                                                      SwigPendingException.Retrieve()));
             }
 
             private static void SetPendingArgumentNullException(string message, string paramName)
@@ -155,7 +154,9 @@ namespace OdeLibrary
             }
         }
 
+        // ReSharper disable InconsistentNaming
         protected static SwigExceptionHelper swigExceptionHelper = new SwigExceptionHelper();
+        // ReSharper restore InconsistentNaming
 
         public class SwigPendingException
         {
@@ -224,7 +225,9 @@ namespace OdeLibrary
             }
         }
 
+        // ReSharper disable InconsistentNaming
         protected static SwigStringHelper swigStringHelper = new SwigStringHelper();
+        // ReSharper restore InconsistentNaming
 
 
         static CorePinvoke()
@@ -357,8 +360,14 @@ namespace OdeLibrary
         public static extern void Ode_director_connect(HandleRef jarg1, Ode.SwigDelegateOde0 delegate0,
                                                        Ode.SwigDelegateOde1 delegate1);
 
-        [DllImport("Core", EntryPoint = "CSharp_Solver_Solve")]
-        public static extern int Solver_Solve(HandleRef jarg1, HandleRef jarg2);
+        [DllImport("Core", EntryPoint = "CSharp_Solver_Solve__SWIG_0")]
+        public static extern int Solver_Solve__SWIG_0(HandleRef jarg1, HandleRef jarg2, int jarg3, int jarg4);
+
+        [DllImport("Core", EntryPoint = "CSharp_Solver_Solve__SWIG_1")]
+        public static extern int Solver_Solve__SWIG_1(HandleRef jarg1, HandleRef jarg2, int jarg3);
+
+        [DllImport("Core", EntryPoint = "CSharp_Solver_Solve__SWIG_2")]
+        public static extern int Solver_Solve__SWIG_2(HandleRef jarg1, HandleRef jarg2);
 
         [DllImport("Core", EntryPoint = "CSharp_new_Solver")]
         public static extern IntPtr new_Solver();

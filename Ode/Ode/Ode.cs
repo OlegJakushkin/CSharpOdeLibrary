@@ -4,8 +4,6 @@
  *
  * Do not make changes to this file unless you know what you are doing--modify
  * the SWIG interface file instead.
- * 
- * Beautified via ReSharper
  * ----------------------------------------------------------------------------- */
 
 using System;
@@ -15,18 +13,18 @@ namespace OdeLibrary
 {
     public class Ode : IDisposable
     {
-        private HandleRef swigCPtr;
-        protected bool swigCMemOwn;
+        private HandleRef _swigCPtr;
+        protected bool SwigCMemOwn;
 
         internal Ode(IntPtr cPtr, bool cMemoryOwn)
         {
-            swigCMemOwn = cMemoryOwn;
-            swigCPtr = new HandleRef(this, cPtr);
+            SwigCMemOwn = cMemoryOwn;
+            _swigCPtr = new HandleRef(this, cPtr);
         }
 
-        internal static HandleRef getCPtr(Ode obj)
+        internal static HandleRef GetCPtr(Ode obj)
         {
-            return (obj == null) ? new HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
+            return (obj == null) ? new HandleRef(null, IntPtr.Zero) : obj._swigCPtr;
         }
 
         ~Ode()
@@ -37,12 +35,12 @@ namespace OdeLibrary
         public virtual void Dispose()
         {
             lock (this) {
-                if (swigCPtr.Handle != IntPtr.Zero) {
-                    if (swigCMemOwn) {
-                        swigCMemOwn = false;
-                        CorePinvoke.delete_Ode(swigCPtr);
+                if (_swigCPtr.Handle != IntPtr.Zero) {
+                    if (SwigCMemOwn) {
+                        SwigCMemOwn = false;
+                        CorePinvoke.delete_Ode(_swigCPtr);
                     }
-                    swigCPtr = new HandleRef(null, IntPtr.Zero);
+                    _swigCPtr = new HandleRef(null, IntPtr.Zero);
                 }
                 GC.SuppressFinalize(this);
             }
@@ -50,35 +48,30 @@ namespace OdeLibrary
 
         // ReSharper disable InconsistentNaming
         protected virtual void system(StateType x, StateType dxdt, double t)
-        // ReSharper restore InconsistentNaming
         {
+            // ReSharper restore InconsistentNaming
             if (SwigDerivedClassHasMethod("system", SwigMethodTypes0))
-                CorePinvoke.Ode_systemSwigExplicitOde(swigCPtr, StateType.GetCPtr(x), StateType.GetCPtr(dxdt), t);
-            else CorePinvoke.Ode_system(swigCPtr, StateType.GetCPtr(x), StateType.GetCPtr(dxdt), t);
+                CorePinvoke.Ode_systemSwigExplicitOde(_swigCPtr, StateType.GetCPtr(x), StateType.GetCPtr(dxdt), t);
+            else CorePinvoke.Ode_system(_swigCPtr, StateType.GetCPtr(x), StateType.GetCPtr(dxdt), t);
             if (CorePinvoke.SwigPendingException.Pending) throw CorePinvoke.SwigPendingException.Retrieve();
-        }
-
-        internal void DisownMemory()
-        {
-            swigCMemOwn = false;
         }
 
         // ReSharper disable InconsistentNaming
         protected virtual void observer(StateType x, double t)
-        // ReSharper restore InconsistentNaming
         {
+            // ReSharper restore InconsistentNaming
             if (SwigDerivedClassHasMethod("observer", SwigMethodTypes1))
-                CorePinvoke.Ode_observerSwigExplicitOde(swigCPtr, StateType.GetCPtr(x), t);
-            else CorePinvoke.Ode_observer(swigCPtr, StateType.GetCPtr(x), t);
+                CorePinvoke.Ode_observerSwigExplicitOde(_swigCPtr, StateType.GetCPtr(x), t);
+            else CorePinvoke.Ode_observer(_swigCPtr, StateType.GetCPtr(x), t);
             if (CorePinvoke.SwigPendingException.Pending) throw CorePinvoke.SwigPendingException.Retrieve();
         }
 
         public StateType InitialConditions
         {
-            set { CorePinvoke.Ode_initialConditions_set(swigCPtr, StateType.GetCPtr(value)); }
+            set { CorePinvoke.Ode_initialConditions_set(_swigCPtr, StateType.GetCPtr(value)); }
             get
             {
-                var cPtr = CorePinvoke.Ode_initialConditions_get(swigCPtr);
+                var cPtr = CorePinvoke.Ode_initialConditions_get(_swigCPtr);
                 var ret = (cPtr == IntPtr.Zero) ? null : new StateType(cPtr, false);
                 return ret;
             }
@@ -86,30 +79,30 @@ namespace OdeLibrary
 
         public double From
         {
-            set { CorePinvoke.Ode_from_set(swigCPtr, value); }
+            set { CorePinvoke.Ode_from_set(_swigCPtr, value); }
             get
             {
-                var ret = CorePinvoke.Ode_from_get(swigCPtr);
+                var ret = CorePinvoke.Ode_from_get(_swigCPtr);
                 return ret;
             }
         }
 
         public double To
         {
-            set { CorePinvoke.Ode_to_set(swigCPtr, value); }
+            set { CorePinvoke.Ode_to_set(_swigCPtr, value); }
             get
             {
-                var ret = CorePinvoke.Ode_to_get(swigCPtr);
+                var ret = CorePinvoke.Ode_to_get(_swigCPtr);
                 return ret;
             }
         }
 
         public double Step
         {
-            set { CorePinvoke.Ode_step_set(swigCPtr, value); }
+            set { CorePinvoke.Ode_step_set(_swigCPtr, value); }
             get
             {
-                var ret = CorePinvoke.Ode_step_get(swigCPtr);
+                var ret = CorePinvoke.Ode_step_get(_swigCPtr);
                 return ret;
             }
         }
@@ -126,18 +119,17 @@ namespace OdeLibrary
                 _swigDelegate0 = SwigDirectorsystem;
             if (SwigDerivedClassHasMethod("observer", SwigMethodTypes1))
                 _swigDelegate1 = SwigDirectorobserver;
-            CorePinvoke.Ode_director_connect(swigCPtr, _swigDelegate0, _swigDelegate1);
+            CorePinvoke.Ode_director_connect(_swigCPtr, _swigDelegate0, _swigDelegate1);
         }
 
         private bool SwigDerivedClassHasMethod(string methodName, Type[] methodTypes)
         {
             var methodInfo = GetType()
-                .GetMethod(methodName,
-                           global::System.Reflection.BindingFlags.Public |
-                           global::System.Reflection.BindingFlags.NonPublic |
-                           global::System.Reflection.BindingFlags.Instance, null, methodTypes, null);
-            var hasDerivedMethod = methodInfo.DeclaringType != null &&
-                                   methodInfo.DeclaringType.IsSubclassOf(typeof(Ode));
+                                 .GetMethod(methodName,
+                                            System.Reflection.BindingFlags.Public |
+                                            System.Reflection.BindingFlags.NonPublic |
+                                            System.Reflection.BindingFlags.Instance, null, methodTypes, null);
+            var hasDerivedMethod = methodInfo.DeclaringType != null && methodInfo.DeclaringType.IsSubclassOf(typeof(Ode));
             return hasDerivedMethod;
         }
 

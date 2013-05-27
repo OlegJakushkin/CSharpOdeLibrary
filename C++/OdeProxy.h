@@ -6,6 +6,39 @@
 
 namespace OdeProxy {
 
+
+	enum IntegrateFunction {
+		IntegrateFunction_Default,
+		Const,
+		N_Steps,
+		Adaptive,
+		//Times,
+	};
+
+	enum Stepper {
+		Stepper_Default,
+		Euler,
+		Modified_Midpoint,
+		Runge_Kutta4,
+		Runge_Kutta_Cash_Karp54,
+		Runge_Kutta_Dopri5,
+		Runge_Kutta_Fehlberg78,
+		//Adams_Bashforth,
+		//Adams_Moulton,
+		//Adams_Bashforth_Moulton,
+		Controlled_Runge_Kutta,
+		//Dense_Output_Runge_Kutta,
+		Bulirsch_Stoer,
+		Bulirsch_Stoer_Dense_Out,
+		//Implicit_Euler,
+		//Rosenbrock4,
+		//Rosenbrock4_Controller,
+		//Rosenbrock4_Dense_Output,
+		//Symplectic_Euler,
+		//Symplectic_rkn_sb3a_Mclachlan,
+		//Symplectic_rkn_sb3a_m4_Mclachlan
+	};
+
     typedef std::vector< double > state_type;
 
     class Ode {
@@ -21,7 +54,7 @@ namespace OdeProxy {
 
     class Solver {
     public:
-        int Solve(Ode * ode);
+        int Solve(Ode * ode, IntegrateFunction integrateFunction = IntegrateFunction::IntegrateFunction_Default, Stepper stepper = Stepper::Stepper_Default);
     };
 }
 

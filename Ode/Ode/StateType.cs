@@ -4,8 +4,6 @@
  *
  * Do not make changes to this file unless you know what you are doing--modify
  * the SWIG interface file instead.
- * 
- * Beautified via ReSharper
  * ----------------------------------------------------------------------------- */
 
 using System;
@@ -15,7 +13,7 @@ namespace OdeLibrary
 {
     public class StateType : IDisposable
 #if !SWIG_DOTNET_1
-                             , System.Collections.Generic.IList<double>
+, System.Collections.Generic.IList<double>
 #endif
     {
         private HandleRef _swigCPtr;
@@ -39,12 +37,9 @@ namespace OdeLibrary
 
         public virtual void Dispose()
         {
-            lock (this)
-            {
-                if (_swigCPtr.Handle != IntPtr.Zero)
-                {
-                    if (SwigCMemOwn)
-                    {
+            lock (this) {
+                if (_swigCPtr.Handle != IntPtr.Zero) {
+                    if (SwigCMemOwn) {
                         SwigCMemOwn = false;
                         CorePinvoke.delete_state_type(_swigCPtr);
                     }
@@ -59,8 +54,7 @@ namespace OdeLibrary
         {
             if (c == null)
                 throw new ArgumentNullException("c");
-            foreach (double element in c)
-            {
+            foreach (double element in c) {
                 Add(element);
             }
         }
@@ -83,18 +77,20 @@ namespace OdeLibrary
 
         public int Capacity
         {
-            get { return (int) capacity(); }
+            get { return (int)capacity(); }
             set
             {
                 if (value < Size())
+                    // ReSharper disable NotResolvedInText
                     throw new ArgumentOutOfRangeException("Capacity");
-                Reserve((uint) value);
+                // ReSharper restore NotResolvedInText
+                Reserve((uint)value);
             }
         }
 
         public int Count
         {
-            get { return (int) Size(); }
+            get { return (int)Size(); }
         }
 
         public bool IsSynchronized
@@ -103,7 +99,7 @@ namespace OdeLibrary
         }
 
 #if SWIG_DOTNET_1
-  public void CopyTo(system.Array array)
+  public void CopyTo(System.Array array)
 #else
         public void CopyTo(double[] array)
 #endif
@@ -112,7 +108,7 @@ namespace OdeLibrary
         }
 
 #if SWIG_DOTNET_1
-  public void CopyTo(system.Array array, int arrayIndex)
+  public void CopyTo(System.Array array, int arrayIndex)
 #else
         public void CopyTo(double[] array, int arrayIndex)
 #endif
@@ -121,7 +117,7 @@ namespace OdeLibrary
         }
 
 #if SWIG_DOTNET_1
-  public void CopyTo(int index, system.Array array, int arrayIndex, int count)
+  public void CopyTo(int index, System.Array array, int arrayIndex, int count)
 #else
         public void CopyTo(int index, double[] array, int arrayIndex, int count)
 #endif
@@ -166,7 +162,7 @@ namespace OdeLibrary
         /// tricky to detect unmanaged code that modifies the collection under our feet.
         public sealed class StateTypeEnumerator :
 #if !SWIG_DOTNET_1
-            System.Collections.Generic.IEnumerator<double>
+ System.Collections.Generic.IEnumerator<double>
 #endif
         {
             private readonly StateType _collectionRef;
@@ -193,7 +189,7 @@ namespace OdeLibrary
                         throw new InvalidOperationException("Enumeration finished.");
                     if (_currentObject == null)
                         throw new InvalidOperationException("Collection modified.");
-                    return (double) _currentObject;
+                    return (double)_currentObject;
                 }
             }
 
@@ -207,13 +203,10 @@ namespace OdeLibrary
             {
                 var size = _collectionRef.Count;
                 var moveOkay = (_currentIndex + 1 < size) && (size == _currentSize);
-                if (moveOkay)
-                {
+                if (moveOkay) {
                     _currentIndex++;
                     _currentObject = _collectionRef[_currentIndex];
-                }
-                else
-                {
+                } else {
                     _currentObject = null;
                 }
                 return moveOkay;
@@ -223,8 +216,7 @@ namespace OdeLibrary
             {
                 _currentIndex = -1;
                 _currentObject = null;
-                if (_collectionRef.Count != _currentSize)
-                {
+                if (_collectionRef.Count != _currentSize) {
                     throw new InvalidOperationException("Collection modified.");
                 }
             }
@@ -254,7 +246,9 @@ namespace OdeLibrary
             return ret;
         }
 
+        // ReSharper disable InconsistentNaming
         private uint capacity()
+        // ReSharper restore InconsistentNaming
         {
             var ret = CorePinvoke.state_type_capacity(_swigCPtr);
             return ret;

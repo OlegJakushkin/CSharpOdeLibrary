@@ -44,6 +44,14 @@ namespace OdeTest
 
             // And all we need to solve it:
             solver.Solve(lorenz);
+
+            // We can select how our IntegrateFunction will work: 
+            solver.Solve(lorenz, IntegrateFunction.Adaptive);
+
+            // We can even choose our Stepper method:
+            solver.Solve(lorenz, IntegrateFunction.Adaptive, Stepper.RungeKuttaDopri5);
+
+            Console.ReadLine();
         }
     }
 }
