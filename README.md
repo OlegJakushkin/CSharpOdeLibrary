@@ -1,5 +1,6 @@
-CSharpOdeLibrary
+CSharp Ode Library
 ================
+CSharpOdeLibrary
 
 Simple C# ODE Solver Library (Wrapper around Boost.OdeInt). 
 
@@ -74,24 +75,22 @@ namespace OdeTest
             //library uses one solver type (more will come if there will be demand): dense output stepper based on runge_kutta_dopri5 with standard error bounds 10^(-6) for the steps.
             var solver = new Solver();
 
+            const double @from = 0.0;
+            const double to = 25.0;
+            const double step = 0.1;
             //Say we have a class describing our system:
             var myLorenz = new LorenzOde
                 {
-                    From = 0,
-                    To = 25,
-                    Step = 0.1,
                     InitialConditions = new StateType(new[] { 10, 1.0, 1.0 })
                 };
 
             // All we need to solve it:
-            solver.Solve(myLorenz);
+            solver.ConvenienceSolve(myLorenz, from, to, step);
+
 
             //library class provides a simple to use Lambda API for ODE system defenition (example of lorenz, 50 steps)
             var lorenz = new LambdaOde
             {
-                From = 0,
-                To = 25,
-                Step = 0.1,
                 InitialConditions = new StateType(new[] { 10, 1.0, 1.0 }),
                 OdeObserver = (x, t) => Console.WriteLine("{0} : {1} : {2}", x[0], x[1], x[2]),
                 OdeSystem =
@@ -107,13 +106,19 @@ namespace OdeTest
             };
 
             // And all we need to solve it:
-            solver.Solve(lorenz);
+            solver.ConvenienceSolve(lorenz, from, to, step);
+
+            // We can select stepper that our stepper would use
+            solver.StepperCode = StepperTypeCode.RungeKutta4;
 
             // We can select how our IntegrateFunction will work: 
-            solver.Solve(lorenz, IntegrateFunction.Adaptive);
+            solver.Solve(lorenz, from, step, to, IntegrateFunctionTypeCode.Adaptive);
 
-            // We can even choose our Stepper method:
-            solver.Solve(lorenz, IntegrateFunction.Adaptive, Stepper.RungeKuttaDopri5);
+            // We can integrate for first N steps
+            solver.Solve(lorenz, from, step, 5 );
+
+            // Or at given time periods
+            solver.Solve(lorenz, new StateType(new[] { 0, 10.0, 100.0, 1000.0 }), step);
 
             Console.ReadLine();
         }
@@ -121,7 +126,7 @@ namespace OdeTest
 }
 ```
 
-Or Forms application example:
+Or Windows Forms application example:
 ![Windows Forms using ZedGraph   ODE solver Demo application](/WinFormsODEGraphDemo.PNG)
 
 ```CSharp
@@ -173,7 +178,7 @@ namespace OdeTestWF
             };
 
             // And all we need to solve it:
-            solver.Solve(lorenz);
+            solver.ConvenienceSolve(lorenz);
 
             //Draw ZedGraph
             var graph = zg1;
@@ -206,15 +211,13 @@ How to use OdeLibrary
  - Copy Core.dll into folder with your application
 
 
-This is Utilety library because we do not support new Numeric Steppers or Integrate Functions Creation.
+This is Utilety library because we do not support new Numeric Steppers or Integrate Functions Creation or any other type of OdeInt library extension.
 
 What parts of Boost.OdeInt we do provide:
 -----------------------------------------
 
 Steppers (description of all Steppers in C++ OdeInt)[http://www.boost.org/doc/libs/1_53_0/libs/numeric/odeint/doc/html/boost_numeric_odeint/odeint_in_detail/steppers.html]:
-```CSharp
- - Default,
- - Euler, // Works only with IntegrateFunction.NSteps
+ - Euler,
  - ModifiedMidpoint,
  - RungeKutta4,
  - RungeKuttaCashKarp54,
@@ -223,18 +226,22 @@ Steppers (description of all Steppers in C++ OdeInt)[http://www.boost.org/doc/li
  - ControlledRungeKutta,
  - BulirschStoer,
  - BulirschStoerDenseOut,
-```
 
 And Integrate Functions (description of all Integrate Functions in C++ OdeInt)[http://www.boost.org/doc/libs/1_53_0/libs/numeric/odeint/doc/html/boost_numeric_odeint/odeint_in_detail/integrate_functions.html]:
-```CSharp
- - Default,
  - Const,
- - NSteps,
  - Adaptive
+
+We also support N first steps integration:
+```CSharp
+    solver.Solve(ode, from, step, constStepsAmmount );
 ```
 
-*Demonstration Windows Forms Solution (OdeTestWS project, build can be found at \Ode\DemonstrationApplicationBuild\DemonstrationApplicationBuild.zip ):*
+As wall as integration at given time points:
+```CSharp
+    solver.Solve(ode, new StateType(new[] { 0, 10.0, 100.0, 1000.0 }), step);
+```
 
+*Demonstration Windows Forms Solution (OdeTestWS project, build can be found at /DemonstrationApplication.zip ):*
 
 ![Windows Forms using ZedGraph   ODE solver Demo application](/WinFormsODEGraphDemoDefaultNSteps.PNG)
 ![Windows Forms using ZedGraph   ODE solver Demo application](/WinFormsODEGraphDemoDefaultSolver.PNG)

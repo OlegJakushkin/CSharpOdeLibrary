@@ -11,7 +11,7 @@ namespace OdeLibrary {
 using System;
 using System.Runtime.InteropServices;
 
-public class state_type : IDisposable, System.Collections.IEnumerable
+public class StateType : IDisposable, System.Collections.IEnumerable
 #if !SWIG_DOTNET_1
     , System.Collections.Generic.IList<double>
 #endif
@@ -19,16 +19,16 @@ public class state_type : IDisposable, System.Collections.IEnumerable
   private HandleRef swigCPtr;
   protected bool swigCMemOwn;
 
-  internal state_type(IntPtr cPtr, bool cMemoryOwn) {
+  internal StateType(IntPtr cPtr, bool cMemoryOwn) {
     swigCMemOwn = cMemoryOwn;
     swigCPtr = new HandleRef(this, cPtr);
   }
 
-  internal static HandleRef getCPtr(state_type obj) {
+  internal static HandleRef getCPtr(StateType obj) {
     return (obj == null) ? new HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
   }
 
-  ~state_type() {
+  ~StateType() {
     Dispose();
   }
 
@@ -37,7 +37,7 @@ public class state_type : IDisposable, System.Collections.IEnumerable
       if (swigCPtr.Handle != IntPtr.Zero) {
         if (swigCMemOwn) {
           swigCMemOwn = false;
-          CorePINVOKE.delete_state_type(swigCPtr);
+          CorePINVOKE.delete_StateType(swigCPtr);
         }
         swigCPtr = new HandleRef(null, IntPtr.Zero);
       }
@@ -45,7 +45,7 @@ public class state_type : IDisposable, System.Collections.IEnumerable
     }
   }
 
-  public state_type(System.Collections.ICollection c) : this() {
+  public StateType(System.Collections.ICollection c) : this() {
     if (c == null)
       throw new ArgumentNullException("c");
     foreach (double element in c) {
@@ -139,16 +139,16 @@ public class state_type : IDisposable, System.Collections.IEnumerable
 
 #if !SWIG_DOTNET_1
   System.Collections.Generic.IEnumerator<double> System.Collections.Generic.IEnumerable<double>.GetEnumerator() {
-    return new state_typeEnumerator(this);
+    return new StateTypeEnumerator(this);
   }
 #endif
 
   System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() {
-    return new state_typeEnumerator(this);
+    return new StateTypeEnumerator(this);
   }
 
-  public state_typeEnumerator GetEnumerator() {
-    return new state_typeEnumerator(this);
+  public StateTypeEnumerator GetEnumerator() {
+    return new StateTypeEnumerator(this);
   }
 
   // Type-safe enumerator
@@ -156,17 +156,17 @@ public class state_type : IDisposable, System.Collections.IEnumerable
   /// whenever the collection is modified. This has been done for changes in the size of the
   /// collection but not when one of the elements of the collection is modified as it is a bit
   /// tricky to detect unmanaged code that modifies the collection under our feet.
-  public sealed class state_typeEnumerator : System.Collections.IEnumerator
+  public sealed class StateTypeEnumerator : System.Collections.IEnumerator
 #if !SWIG_DOTNET_1
     , System.Collections.Generic.IEnumerator<double>
 #endif
   {
-    private state_type collectionRef;
+    private StateType collectionRef;
     private int currentIndex;
     private object currentObject;
     private int currentSize;
 
-    public state_typeEnumerator(state_type collection) {
+    public StateTypeEnumerator(StateType collection) {
       collectionRef = collection;
       currentIndex = -1;
       currentObject = null;
@@ -222,125 +222,125 @@ public class state_type : IDisposable, System.Collections.IEnumerable
   }
 
   public void Clear() {
-    CorePINVOKE.state_type_Clear(swigCPtr);
+    CorePINVOKE.StateType_Clear(swigCPtr);
   }
 
   public void Add(double x) {
-    CorePINVOKE.state_type_Add(swigCPtr, x);
+    CorePINVOKE.StateType_Add(swigCPtr, x);
   }
 
   private uint size() {
-    uint ret = CorePINVOKE.state_type_size(swigCPtr);
+    uint ret = CorePINVOKE.StateType_size(swigCPtr);
     return ret;
   }
 
   private uint capacity() {
-    uint ret = CorePINVOKE.state_type_capacity(swigCPtr);
+    uint ret = CorePINVOKE.StateType_capacity(swigCPtr);
     return ret;
   }
 
   private void reserve(uint n) {
-    CorePINVOKE.state_type_reserve(swigCPtr, n);
+    CorePINVOKE.StateType_reserve(swigCPtr, n);
   }
 
-  public state_type() : this(CorePINVOKE.new_state_type__SWIG_0(), true) {
+  public StateType() : this(CorePINVOKE.new_StateType__SWIG_0(), true) {
   }
 
-  public state_type(state_type other) : this(CorePINVOKE.new_state_type__SWIG_1(state_type.getCPtr(other)), true) {
+  public StateType(StateType other) : this(CorePINVOKE.new_StateType__SWIG_1(StateType.getCPtr(other)), true) {
     if (CorePINVOKE.SWIGPendingException.Pending) throw CorePINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public state_type(int capacity) : this(CorePINVOKE.new_state_type__SWIG_2(capacity), true) {
+  public StateType(int capacity) : this(CorePINVOKE.new_StateType__SWIG_2(capacity), true) {
     if (CorePINVOKE.SWIGPendingException.Pending) throw CorePINVOKE.SWIGPendingException.Retrieve();
   }
 
   private double getitemcopy(int index) {
-    double ret = CorePINVOKE.state_type_getitemcopy(swigCPtr, index);
+    double ret = CorePINVOKE.StateType_getitemcopy(swigCPtr, index);
     if (CorePINVOKE.SWIGPendingException.Pending) throw CorePINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   private double getitem(int index) {
-    double ret = CorePINVOKE.state_type_getitem(swigCPtr, index);
+    double ret = CorePINVOKE.StateType_getitem(swigCPtr, index);
     if (CorePINVOKE.SWIGPendingException.Pending) throw CorePINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   private void setitem(int index, double val) {
-    CorePINVOKE.state_type_setitem(swigCPtr, index, val);
+    CorePINVOKE.StateType_setitem(swigCPtr, index, val);
     if (CorePINVOKE.SWIGPendingException.Pending) throw CorePINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public void AddRange(state_type values) {
-    CorePINVOKE.state_type_AddRange(swigCPtr, state_type.getCPtr(values));
+  public void AddRange(StateType values) {
+    CorePINVOKE.StateType_AddRange(swigCPtr, StateType.getCPtr(values));
     if (CorePINVOKE.SWIGPendingException.Pending) throw CorePINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public state_type GetRange(int index, int count) {
-    IntPtr cPtr = CorePINVOKE.state_type_GetRange(swigCPtr, index, count);
-    state_type ret = (cPtr == IntPtr.Zero) ? null : new state_type(cPtr, true);
+  public StateType GetRange(int index, int count) {
+    IntPtr cPtr = CorePINVOKE.StateType_GetRange(swigCPtr, index, count);
+    StateType ret = (cPtr == IntPtr.Zero) ? null : new StateType(cPtr, true);
     if (CorePINVOKE.SWIGPendingException.Pending) throw CorePINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public void Insert(int index, double x) {
-    CorePINVOKE.state_type_Insert(swigCPtr, index, x);
+    CorePINVOKE.StateType_Insert(swigCPtr, index, x);
     if (CorePINVOKE.SWIGPendingException.Pending) throw CorePINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public void InsertRange(int index, state_type values) {
-    CorePINVOKE.state_type_InsertRange(swigCPtr, index, state_type.getCPtr(values));
+  public void InsertRange(int index, StateType values) {
+    CorePINVOKE.StateType_InsertRange(swigCPtr, index, StateType.getCPtr(values));
     if (CorePINVOKE.SWIGPendingException.Pending) throw CorePINVOKE.SWIGPendingException.Retrieve();
   }
 
   public void RemoveAt(int index) {
-    CorePINVOKE.state_type_RemoveAt(swigCPtr, index);
+    CorePINVOKE.StateType_RemoveAt(swigCPtr, index);
     if (CorePINVOKE.SWIGPendingException.Pending) throw CorePINVOKE.SWIGPendingException.Retrieve();
   }
 
   public void RemoveRange(int index, int count) {
-    CorePINVOKE.state_type_RemoveRange(swigCPtr, index, count);
+    CorePINVOKE.StateType_RemoveRange(swigCPtr, index, count);
     if (CorePINVOKE.SWIGPendingException.Pending) throw CorePINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public static state_type Repeat(double value, int count) {
-    IntPtr cPtr = CorePINVOKE.state_type_Repeat(value, count);
-    state_type ret = (cPtr == IntPtr.Zero) ? null : new state_type(cPtr, true);
+  public static StateType Repeat(double value, int count) {
+    IntPtr cPtr = CorePINVOKE.StateType_Repeat(value, count);
+    StateType ret = (cPtr == IntPtr.Zero) ? null : new StateType(cPtr, true);
     if (CorePINVOKE.SWIGPendingException.Pending) throw CorePINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 
   public void Reverse() {
-    CorePINVOKE.state_type_Reverse__SWIG_0(swigCPtr);
+    CorePINVOKE.StateType_Reverse__SWIG_0(swigCPtr);
   }
 
   public void Reverse(int index, int count) {
-    CorePINVOKE.state_type_Reverse__SWIG_1(swigCPtr, index, count);
+    CorePINVOKE.StateType_Reverse__SWIG_1(swigCPtr, index, count);
     if (CorePINVOKE.SWIGPendingException.Pending) throw CorePINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public void SetRange(int index, state_type values) {
-    CorePINVOKE.state_type_SetRange(swigCPtr, index, state_type.getCPtr(values));
+  public void SetRange(int index, StateType values) {
+    CorePINVOKE.StateType_SetRange(swigCPtr, index, StateType.getCPtr(values));
     if (CorePINVOKE.SWIGPendingException.Pending) throw CorePINVOKE.SWIGPendingException.Retrieve();
   }
 
   public bool Contains(double value) {
-    bool ret = CorePINVOKE.state_type_Contains(swigCPtr, value);
+    bool ret = CorePINVOKE.StateType_Contains(swigCPtr, value);
     return ret;
   }
 
   public int IndexOf(double value) {
-    int ret = CorePINVOKE.state_type_IndexOf(swigCPtr, value);
+    int ret = CorePINVOKE.StateType_IndexOf(swigCPtr, value);
     return ret;
   }
 
   public int LastIndexOf(double value) {
-    int ret = CorePINVOKE.state_type_LastIndexOf(swigCPtr, value);
+    int ret = CorePINVOKE.StateType_LastIndexOf(swigCPtr, value);
     return ret;
   }
 
   public bool Remove(double value) {
-    bool ret = CorePINVOKE.state_type_Remove(swigCPtr, value);
+    bool ret = CorePINVOKE.StateType_Remove(swigCPtr, value);
     return ret;
   }
 

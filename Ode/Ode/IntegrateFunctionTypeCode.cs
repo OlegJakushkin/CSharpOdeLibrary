@@ -8,19 +8,9 @@
 
 namespace OdeLibrary
 {
-
-    public enum Stepper
+    public enum IntegrateFunctionTypeCode
     {
-        Default,
-        Euler, // Works only with IntegrateFunction.NSteps
-        ModifiedMidpoint,
-        RungeKutta4,
-        RungeKuttaCashKarp54,
-        RungeKuttaDopri5,
-        RungeKuttaFehlberg78,
-        ControlledRungeKutta,
-        BulirschStoer,
-        BulirschStoerDenseOut,
+        Adaptive,
+        Const
     }
-
 }

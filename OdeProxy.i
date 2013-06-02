@@ -1,5 +1,5 @@
 /* command 
-swig.exe swig -c++ -csharp -namespace OdeLibrary -outdir ./C#/ -o ./C++/OdeProxyWrapper.cxx OdeProxy.i
+swig.exe -c++ -csharp -namespace OdeLibrary -outdir ./C#/ -o ./C++/OdeProxyWrapper.cxx OdeProxy.i
 */
 
 %module(directors="1") Core
@@ -8,10 +8,9 @@ swig.exe swig -c++ -csharp -namespace OdeLibrary -outdir ./C#/ -o ./C++/OdeProxy
 #include "C++/OdeProxy.h"
 %}
 
-%include "std_string.i"
 %include "std_vector.i"
 
-%template(state_type) std::vector<double>;
+%template(StateType) std::vector<double>;
 
 %feature("director") OdeProxy::Ode;
 

@@ -26,5 +26,8 @@
     <ClInclude Include="..\..\C++\OdeProxy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\C++\OdeProxyWrapper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

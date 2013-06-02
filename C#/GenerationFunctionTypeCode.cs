@@ -8,21 +8,10 @@
 
 namespace OdeLibrary {
 
-public enum Stepper {
-  Stepper_Default,
-  Euler,
-  Modified_Midpoint,
-  Runge_Kutta4,
-  Runge_Kutta_Cash_Karp54,
-  Runge_Kutta_Dopri5,
-  Runge_Kutta_Fehlberg78,
-  Controlled_Runge_Kutta,
-  Bulirsch_Stoer,
-  Bulirsch_Stoer_Dense_Out,
-  Implicit_Euler,
-  Rosenbrock4,
-  Symplectic_Euler,
-  Symplectic_rkn_sb3a_Mclachlan
+public enum GenerationFunctionTypeCode {
+  None,
+  Dense,
+  Controlled
 }
 
 }

@@ -1,8 +1,4 @@
-#region
-
 using System;
-
-#endregion
 
 namespace OdeLibrary
 {
@@ -14,16 +10,14 @@ namespace OdeLibrary
 
         protected override void system(StateType x, StateType dxdt, double t)
         {
-            if (OdeSystem != null)
-            {
+            if (OdeSystem != null) {
                 OdeSystem(x, dxdt, t);
             }
         }
 
         protected override void observer(StateType x, double t)
         {
-            if (OdeObserver != null)
-            {
+            if (OdeObserver != null) {
                 OdeObserver(x, t);
             }
         }

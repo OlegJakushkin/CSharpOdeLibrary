@@ -12,7 +12,6 @@ namespace OdeTestWF
 
         private readonly List<double> _columns = new List<double>();
         private readonly List<double> _rows = new List<double>();
-        private readonly Solver _solver = new Solver();
 
         public Form1()
         {
@@ -28,9 +27,9 @@ namespace OdeTestWF
             graphPane.XAxis.Title.Text = "x2";
             graphPane.YAxis.Title.Text = "x0";
             graph.IsShowPointValues = true;
-            StepperBox.DataSource = Enum.GetNames(typeof (Stepper));
+            StepperBox.DataSource = Enum.GetNames(typeof (StepperTypeCode));
             StepperBox.DropDownStyle = ComboBoxStyle.DropDownList;
-            IntegrateFunctionBox.DataSource = Enum.GetNames(typeof (IntegrateFunction));
+            IntegrateFunctionBox.DataSource = Enum.GetNames(typeof (IntegrateFunctionTypeCode));
             IntegrateFunctionBox.DropDownStyle = ComboBoxStyle.DropDownList;
 
             //library class provides a simple to use Lambda API for ODE system defenition (example of lorenz, 50 steps)
@@ -65,16 +64,17 @@ namespace OdeTestWF
                 _columns.Clear();
                 _rows.Clear();
 
-                var stepper = (Stepper) Enum.Parse(typeof (Stepper), StepperBox.Text);
+                var stepper = (StepperTypeCode) Enum.Parse(typeof (StepperTypeCode), StepperBox.Text);
                 var integrateFunction =
-                    (IntegrateFunction) Enum.Parse(typeof (IntegrateFunction), IntegrateFunctionBox.Text);
+                    (IntegrateFunctionTypeCode) Enum.Parse(typeof (IntegrateFunctionTypeCode), IntegrateFunctionBox.Text);
 
-                _lorenz.From = (double)FromGUI.Value;
-                _lorenz.To = (double)ToGUI.Value;
-                _lorenz.Step = (double)StepGUI.Value;
+                var @from = (double)FromGUI.Value;
+                var to = (double)ToGUI.Value;
+                var step = (double)StepGUI.Value;
 
-                // And all we need to solve it:
-                _solver.Solve(_lorenz, integrateFunction, stepper);
+                var solver = new Solver {StepperCode = stepper};
+
+                solver.Solve(_lorenz, @from,step, to, integrateFunction);
             }
             catch (Exception ex)
             {

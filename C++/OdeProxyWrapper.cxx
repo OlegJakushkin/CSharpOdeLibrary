@@ -331,9 +331,6 @@ namespace Swig {
 #include "OdeProxy.h"
 
 
-#include <string>
-
-
 #include <stdexcept>
 
 
@@ -469,7 +466,7 @@ SwigDirector_Ode::SwigDirector_Ode() : OdeProxy::Ode(), Swig::Director() {
   swig_init_callbacks();
 }
 
-void SwigDirector_Ode::system(OdeProxy::state_type const &x, OdeProxy::state_type &dxdt, double t) {
+void SwigDirector_Ode::system(OdeProxy::StateType const &x, OdeProxy::StateType &dxdt, double t) {
   void * jx = 0 ;
   void * jdxdt = 0 ;
   double jt  ;
@@ -478,14 +475,14 @@ void SwigDirector_Ode::system(OdeProxy::state_type const &x, OdeProxy::state_typ
     OdeProxy::Ode::system(x,dxdt,t);
     return;
   } else {
-    jx = (OdeProxy::state_type *) &x; 
-    jdxdt = (OdeProxy::state_type *) &dxdt; 
+    jx = (OdeProxy::StateType *) &x; 
+    jdxdt = (OdeProxy::StateType *) &dxdt; 
     jt = t;
     swig_callbacksystem(jx, jdxdt, jt);
   }
 }
 
-void SwigDirector_Ode::observer(OdeProxy::state_type const &x, double t) {
+void SwigDirector_Ode::observer(OdeProxy::StateType const &x, double t) {
   void * jx = 0 ;
   double jt  ;
   
@@ -493,7 +490,7 @@ void SwigDirector_Ode::observer(OdeProxy::state_type const &x, double t) {
     OdeProxy::Ode::observer(x,t);
     return;
   } else {
-    jx = (OdeProxy::state_type *) &x; 
+    jx = (OdeProxy::StateType *) &x; 
     jt = t;
     swig_callbackobserver(jx, jt);
   }
@@ -519,7 +516,7 @@ void SwigDirector_Ode::swig_init_callbacks() {
 extern "C" {
 #endif
 
-SWIGEXPORT void SWIGSTDCALL CSharp_state_type_Clear(void * jarg1) {
+SWIGEXPORT void SWIGSTDCALL CSharp_StateType_Clear(void * jarg1) {
   std::vector< double > *arg1 = (std::vector< double > *) 0 ;
   
   arg1 = (std::vector< double > *)jarg1; 
@@ -527,7 +524,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_state_type_Clear(void * jarg1) {
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_state_type_Add(void * jarg1, double jarg2) {
+SWIGEXPORT void SWIGSTDCALL CSharp_StateType_Add(void * jarg1, double jarg2) {
   std::vector< double > *arg1 = (std::vector< double > *) 0 ;
   double *arg2 = 0 ;
   double temp2 ;
@@ -539,7 +536,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_state_type_Add(void * jarg1, double jarg2) {
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_state_type_size(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_StateType_size(void * jarg1) {
   unsigned long jresult ;
   std::vector< double > *arg1 = (std::vector< double > *) 0 ;
   std::vector< double >::size_type result;
@@ -551,7 +548,7 @@ SWIGEXPORT unsigned long SWIGSTDCALL CSharp_state_type_size(void * jarg1) {
 }
 
 
-SWIGEXPORT unsigned long SWIGSTDCALL CSharp_state_type_capacity(void * jarg1) {
+SWIGEXPORT unsigned long SWIGSTDCALL CSharp_StateType_capacity(void * jarg1) {
   unsigned long jresult ;
   std::vector< double > *arg1 = (std::vector< double > *) 0 ;
   std::vector< double >::size_type result;
@@ -563,7 +560,7 @@ SWIGEXPORT unsigned long SWIGSTDCALL CSharp_state_type_capacity(void * jarg1) {
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_state_type_reserve(void * jarg1, unsigned long jarg2) {
+SWIGEXPORT void SWIGSTDCALL CSharp_StateType_reserve(void * jarg1, unsigned long jarg2) {
   std::vector< double > *arg1 = (std::vector< double > *) 0 ;
   std::vector< double >::size_type arg2 ;
   
@@ -573,7 +570,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_state_type_reserve(void * jarg1, unsigned lon
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_new_state_type__SWIG_0() {
+SWIGEXPORT void * SWIGSTDCALL CSharp_new_StateType__SWIG_0() {
   void * jresult ;
   std::vector< double > *result = 0 ;
   
@@ -583,7 +580,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_new_state_type__SWIG_0() {
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_new_state_type__SWIG_1(void * jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_new_StateType__SWIG_1(void * jarg1) {
   void * jresult ;
   std::vector< double > *arg1 = 0 ;
   std::vector< double > *result = 0 ;
@@ -599,7 +596,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_new_state_type__SWIG_1(void * jarg1) {
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_new_state_type__SWIG_2(int jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_new_StateType__SWIG_2(int jarg1) {
   void * jresult ;
   int arg1 ;
   std::vector< double > *result = 0 ;
@@ -618,7 +615,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_new_state_type__SWIG_2(int jarg1) {
 }
 
 
-SWIGEXPORT double SWIGSTDCALL CSharp_state_type_getitemcopy(void * jarg1, int jarg2) {
+SWIGEXPORT double SWIGSTDCALL CSharp_StateType_getitemcopy(void * jarg1, int jarg2) {
   double jresult ;
   std::vector< double > *arg1 = (std::vector< double > *) 0 ;
   int arg2 ;
@@ -639,7 +636,7 @@ SWIGEXPORT double SWIGSTDCALL CSharp_state_type_getitemcopy(void * jarg1, int ja
 }
 
 
-SWIGEXPORT double SWIGSTDCALL CSharp_state_type_getitem(void * jarg1, int jarg2) {
+SWIGEXPORT double SWIGSTDCALL CSharp_StateType_getitem(void * jarg1, int jarg2) {
   double jresult ;
   std::vector< double > *arg1 = (std::vector< double > *) 0 ;
   int arg2 ;
@@ -660,7 +657,7 @@ SWIGEXPORT double SWIGSTDCALL CSharp_state_type_getitem(void * jarg1, int jarg2)
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_state_type_setitem(void * jarg1, int jarg2, double jarg3) {
+SWIGEXPORT void SWIGSTDCALL CSharp_StateType_setitem(void * jarg1, int jarg2, double jarg3) {
   std::vector< double > *arg1 = (std::vector< double > *) 0 ;
   int arg2 ;
   double *arg3 = 0 ;
@@ -681,7 +678,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_state_type_setitem(void * jarg1, int jarg2, d
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_state_type_AddRange(void * jarg1, void * jarg2) {
+SWIGEXPORT void SWIGSTDCALL CSharp_StateType_AddRange(void * jarg1, void * jarg2) {
   std::vector< double > *arg1 = (std::vector< double > *) 0 ;
   std::vector< double > *arg2 = 0 ;
   
@@ -695,7 +692,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_state_type_AddRange(void * jarg1, void * jarg
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_state_type_GetRange(void * jarg1, int jarg2, int jarg3) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_StateType_GetRange(void * jarg1, int jarg2, int jarg3) {
   void * jresult ;
   std::vector< double > *arg1 = (std::vector< double > *) 0 ;
   int arg2 ;
@@ -722,7 +719,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_state_type_GetRange(void * jarg1, int jarg2
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_state_type_Insert(void * jarg1, int jarg2, double jarg3) {
+SWIGEXPORT void SWIGSTDCALL CSharp_StateType_Insert(void * jarg1, int jarg2, double jarg3) {
   std::vector< double > *arg1 = (std::vector< double > *) 0 ;
   int arg2 ;
   double *arg3 = 0 ;
@@ -743,7 +740,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_state_type_Insert(void * jarg1, int jarg2, do
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_state_type_InsertRange(void * jarg1, int jarg2, void * jarg3) {
+SWIGEXPORT void SWIGSTDCALL CSharp_StateType_InsertRange(void * jarg1, int jarg2, void * jarg3) {
   std::vector< double > *arg1 = (std::vector< double > *) 0 ;
   int arg2 ;
   std::vector< double > *arg3 = 0 ;
@@ -766,7 +763,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_state_type_InsertRange(void * jarg1, int jarg
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_state_type_RemoveAt(void * jarg1, int jarg2) {
+SWIGEXPORT void SWIGSTDCALL CSharp_StateType_RemoveAt(void * jarg1, int jarg2) {
   std::vector< double > *arg1 = (std::vector< double > *) 0 ;
   int arg2 ;
   
@@ -783,7 +780,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_state_type_RemoveAt(void * jarg1, int jarg2) 
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_state_type_RemoveRange(void * jarg1, int jarg2, int jarg3) {
+SWIGEXPORT void SWIGSTDCALL CSharp_StateType_RemoveRange(void * jarg1, int jarg2, int jarg3) {
   std::vector< double > *arg1 = (std::vector< double > *) 0 ;
   int arg2 ;
   int arg3 ;
@@ -806,7 +803,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_state_type_RemoveRange(void * jarg1, int jarg
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_state_type_Repeat(double jarg1, int jarg2) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_StateType_Repeat(double jarg1, int jarg2) {
   void * jresult ;
   double *arg1 = 0 ;
   int arg2 ;
@@ -829,7 +826,7 @@ SWIGEXPORT void * SWIGSTDCALL CSharp_state_type_Repeat(double jarg1, int jarg2) 
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_state_type_Reverse__SWIG_0(void * jarg1) {
+SWIGEXPORT void SWIGSTDCALL CSharp_StateType_Reverse__SWIG_0(void * jarg1) {
   std::vector< double > *arg1 = (std::vector< double > *) 0 ;
   
   arg1 = (std::vector< double > *)jarg1; 
@@ -837,7 +834,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_state_type_Reverse__SWIG_0(void * jarg1) {
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_state_type_Reverse__SWIG_1(void * jarg1, int jarg2, int jarg3) {
+SWIGEXPORT void SWIGSTDCALL CSharp_StateType_Reverse__SWIG_1(void * jarg1, int jarg2, int jarg3) {
   std::vector< double > *arg1 = (std::vector< double > *) 0 ;
   int arg2 ;
   int arg3 ;
@@ -860,7 +857,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_state_type_Reverse__SWIG_1(void * jarg1, int 
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_state_type_SetRange(void * jarg1, int jarg2, void * jarg3) {
+SWIGEXPORT void SWIGSTDCALL CSharp_StateType_SetRange(void * jarg1, int jarg2, void * jarg3) {
   std::vector< double > *arg1 = (std::vector< double > *) 0 ;
   int arg2 ;
   std::vector< double > *arg3 = 0 ;
@@ -883,7 +880,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_state_type_SetRange(void * jarg1, int jarg2, 
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_state_type_Contains(void * jarg1, double jarg2) {
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_StateType_Contains(void * jarg1, double jarg2) {
   unsigned int jresult ;
   std::vector< double > *arg1 = (std::vector< double > *) 0 ;
   double *arg2 = 0 ;
@@ -899,7 +896,7 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_state_type_Contains(void * jarg1, dou
 }
 
 
-SWIGEXPORT int SWIGSTDCALL CSharp_state_type_IndexOf(void * jarg1, double jarg2) {
+SWIGEXPORT int SWIGSTDCALL CSharp_StateType_IndexOf(void * jarg1, double jarg2) {
   int jresult ;
   std::vector< double > *arg1 = (std::vector< double > *) 0 ;
   double *arg2 = 0 ;
@@ -915,7 +912,7 @@ SWIGEXPORT int SWIGSTDCALL CSharp_state_type_IndexOf(void * jarg1, double jarg2)
 }
 
 
-SWIGEXPORT int SWIGSTDCALL CSharp_state_type_LastIndexOf(void * jarg1, double jarg2) {
+SWIGEXPORT int SWIGSTDCALL CSharp_StateType_LastIndexOf(void * jarg1, double jarg2) {
   int jresult ;
   std::vector< double > *arg1 = (std::vector< double > *) 0 ;
   double *arg2 = 0 ;
@@ -931,7 +928,7 @@ SWIGEXPORT int SWIGSTDCALL CSharp_state_type_LastIndexOf(void * jarg1, double ja
 }
 
 
-SWIGEXPORT unsigned int SWIGSTDCALL CSharp_state_type_Remove(void * jarg1, double jarg2) {
+SWIGEXPORT unsigned int SWIGSTDCALL CSharp_StateType_Remove(void * jarg1, double jarg2) {
   unsigned int jresult ;
   std::vector< double > *arg1 = (std::vector< double > *) 0 ;
   double *arg2 = 0 ;
@@ -947,7 +944,7 @@ SWIGEXPORT unsigned int SWIGSTDCALL CSharp_state_type_Remove(void * jarg1, doubl
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_delete_state_type(void * jarg1) {
+SWIGEXPORT void SWIGSTDCALL CSharp_delete_StateType(void * jarg1) {
   std::vector< double > *arg1 = (std::vector< double > *) 0 ;
   
   arg1 = (std::vector< double > *)jarg1; 
@@ -957,164 +954,98 @@ SWIGEXPORT void SWIGSTDCALL CSharp_delete_state_type(void * jarg1) {
 
 SWIGEXPORT void SWIGSTDCALL CSharp_Ode_system(void * jarg1, void * jarg2, void * jarg3, double jarg4) {
   OdeProxy::Ode *arg1 = (OdeProxy::Ode *) 0 ;
-  OdeProxy::state_type *arg2 = 0 ;
-  OdeProxy::state_type *arg3 = 0 ;
+  OdeProxy::StateType *arg2 = 0 ;
+  OdeProxy::StateType *arg3 = 0 ;
   double arg4 ;
   
   arg1 = (OdeProxy::Ode *)jarg1; 
-  arg2 = (OdeProxy::state_type *)jarg2;
+  arg2 = (OdeProxy::StateType *)jarg2;
   if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "OdeProxy::state_type const & type is null", 0);
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "OdeProxy::StateType const & type is null", 0);
     return ;
   } 
-  arg3 = (OdeProxy::state_type *)jarg3;
+  arg3 = (OdeProxy::StateType *)jarg3;
   if (!arg3) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "OdeProxy::state_type & type is null", 0);
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "OdeProxy::StateType & type is null", 0);
     return ;
   } 
   arg4 = (double)jarg4; 
-  (arg1)->system((OdeProxy::state_type const &)*arg2,*arg3,arg4);
+  (arg1)->system((OdeProxy::StateType const &)*arg2,*arg3,arg4);
 }
 
 
 SWIGEXPORT void SWIGSTDCALL CSharp_Ode_systemSwigExplicitOde(void * jarg1, void * jarg2, void * jarg3, double jarg4) {
   OdeProxy::Ode *arg1 = (OdeProxy::Ode *) 0 ;
-  OdeProxy::state_type *arg2 = 0 ;
-  OdeProxy::state_type *arg3 = 0 ;
+  OdeProxy::StateType *arg2 = 0 ;
+  OdeProxy::StateType *arg3 = 0 ;
   double arg4 ;
   
   arg1 = (OdeProxy::Ode *)jarg1; 
-  arg2 = (OdeProxy::state_type *)jarg2;
+  arg2 = (OdeProxy::StateType *)jarg2;
   if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "OdeProxy::state_type const & type is null", 0);
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "OdeProxy::StateType const & type is null", 0);
     return ;
   } 
-  arg3 = (OdeProxy::state_type *)jarg3;
+  arg3 = (OdeProxy::StateType *)jarg3;
   if (!arg3) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "OdeProxy::state_type & type is null", 0);
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "OdeProxy::StateType & type is null", 0);
     return ;
   } 
   arg4 = (double)jarg4; 
-  (arg1)->OdeProxy::Ode::system((OdeProxy::state_type const &)*arg2,*arg3,arg4);
+  (arg1)->OdeProxy::Ode::system((OdeProxy::StateType const &)*arg2,*arg3,arg4);
 }
 
 
 SWIGEXPORT void SWIGSTDCALL CSharp_Ode_observer(void * jarg1, void * jarg2, double jarg3) {
   OdeProxy::Ode *arg1 = (OdeProxy::Ode *) 0 ;
-  OdeProxy::state_type *arg2 = 0 ;
+  OdeProxy::StateType *arg2 = 0 ;
   double arg3 ;
   
   arg1 = (OdeProxy::Ode *)jarg1; 
-  arg2 = (OdeProxy::state_type *)jarg2;
+  arg2 = (OdeProxy::StateType *)jarg2;
   if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "OdeProxy::state_type const & type is null", 0);
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "OdeProxy::StateType const & type is null", 0);
     return ;
   } 
   arg3 = (double)jarg3; 
-  (arg1)->observer((OdeProxy::state_type const &)*arg2,arg3);
+  (arg1)->observer((OdeProxy::StateType const &)*arg2,arg3);
 }
 
 
 SWIGEXPORT void SWIGSTDCALL CSharp_Ode_observerSwigExplicitOde(void * jarg1, void * jarg2, double jarg3) {
   OdeProxy::Ode *arg1 = (OdeProxy::Ode *) 0 ;
-  OdeProxy::state_type *arg2 = 0 ;
+  OdeProxy::StateType *arg2 = 0 ;
   double arg3 ;
   
   arg1 = (OdeProxy::Ode *)jarg1; 
-  arg2 = (OdeProxy::state_type *)jarg2;
+  arg2 = (OdeProxy::StateType *)jarg2;
   if (!arg2) {
-    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "OdeProxy::state_type const & type is null", 0);
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "OdeProxy::StateType const & type is null", 0);
     return ;
   } 
   arg3 = (double)jarg3; 
-  (arg1)->OdeProxy::Ode::observer((OdeProxy::state_type const &)*arg2,arg3);
+  (arg1)->OdeProxy::Ode::observer((OdeProxy::StateType const &)*arg2,arg3);
 }
 
 
-SWIGEXPORT void SWIGSTDCALL CSharp_Ode_initialConditions_set(void * jarg1, void * jarg2) {
+SWIGEXPORT void SWIGSTDCALL CSharp_Ode_InitialConditions_set(void * jarg1, void * jarg2) {
   OdeProxy::Ode *arg1 = (OdeProxy::Ode *) 0 ;
-  OdeProxy::state_type *arg2 = (OdeProxy::state_type *) 0 ;
+  OdeProxy::StateType *arg2 = (OdeProxy::StateType *) 0 ;
   
   arg1 = (OdeProxy::Ode *)jarg1; 
-  arg2 = (OdeProxy::state_type *)jarg2; 
-  if (arg1) (arg1)->initialConditions = *arg2;
+  arg2 = (OdeProxy::StateType *)jarg2; 
+  if (arg1) (arg1)->InitialConditions = *arg2;
 }
 
 
-SWIGEXPORT void * SWIGSTDCALL CSharp_Ode_initialConditions_get(void * jarg1) {
+SWIGEXPORT void * SWIGSTDCALL CSharp_Ode_InitialConditions_get(void * jarg1) {
   void * jresult ;
   OdeProxy::Ode *arg1 = (OdeProxy::Ode *) 0 ;
-  OdeProxy::state_type *result = 0 ;
+  OdeProxy::StateType *result = 0 ;
   
   arg1 = (OdeProxy::Ode *)jarg1; 
-  result = (OdeProxy::state_type *)& ((arg1)->initialConditions);
+  result = (OdeProxy::StateType *)& ((arg1)->InitialConditions);
   jresult = (void *)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void SWIGSTDCALL CSharp_Ode_from_set(void * jarg1, double jarg2) {
-  OdeProxy::Ode *arg1 = (OdeProxy::Ode *) 0 ;
-  double arg2 ;
-  
-  arg1 = (OdeProxy::Ode *)jarg1; 
-  arg2 = (double)jarg2; 
-  if (arg1) (arg1)->from = arg2;
-}
-
-
-SWIGEXPORT double SWIGSTDCALL CSharp_Ode_from_get(void * jarg1) {
-  double jresult ;
-  OdeProxy::Ode *arg1 = (OdeProxy::Ode *) 0 ;
-  double result;
-  
-  arg1 = (OdeProxy::Ode *)jarg1; 
-  result = (double) ((arg1)->from);
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void SWIGSTDCALL CSharp_Ode_to_set(void * jarg1, double jarg2) {
-  OdeProxy::Ode *arg1 = (OdeProxy::Ode *) 0 ;
-  double arg2 ;
-  
-  arg1 = (OdeProxy::Ode *)jarg1; 
-  arg2 = (double)jarg2; 
-  if (arg1) (arg1)->to = arg2;
-}
-
-
-SWIGEXPORT double SWIGSTDCALL CSharp_Ode_to_get(void * jarg1) {
-  double jresult ;
-  OdeProxy::Ode *arg1 = (OdeProxy::Ode *) 0 ;
-  double result;
-  
-  arg1 = (OdeProxy::Ode *)jarg1; 
-  result = (double) ((arg1)->to);
-  jresult = result; 
-  return jresult;
-}
-
-
-SWIGEXPORT void SWIGSTDCALL CSharp_Ode_step_set(void * jarg1, double jarg2) {
-  OdeProxy::Ode *arg1 = (OdeProxy::Ode *) 0 ;
-  double arg2 ;
-  
-  arg1 = (OdeProxy::Ode *)jarg1; 
-  arg2 = (double)jarg2; 
-  if (arg1) (arg1)->step = arg2;
-}
-
-
-SWIGEXPORT double SWIGSTDCALL CSharp_Ode_step_get(void * jarg1) {
-  double jresult ;
-  OdeProxy::Ode *arg1 = (OdeProxy::Ode *) 0 ;
-  double result;
-  
-  arg1 = (OdeProxy::Ode *)jarg1; 
-  result = (double) ((arg1)->step);
-  jresult = result; 
   return jresult;
 }
 
@@ -1146,49 +1077,127 @@ SWIGEXPORT void SWIGSTDCALL CSharp_Ode_director_connect(void *objarg, SwigDirect
 }
 
 
-SWIGEXPORT int SWIGSTDCALL CSharp_Solver_Solve__SWIG_0(void * jarg1, void * jarg2, int jarg3, int jarg4) {
-  int jresult ;
+SWIGEXPORT void SWIGSTDCALL CSharp_Solver_StepperCode_set(void * jarg1, int jarg2) {
   OdeProxy::Solver *arg1 = (OdeProxy::Solver *) 0 ;
-  OdeProxy::Ode *arg2 = (OdeProxy::Ode *) 0 ;
-  OdeProxy::IntegrateFunction arg3 ;
-  OdeProxy::Stepper arg4 ;
-  int result;
+  OdeProxy::StepperTypeCode arg2 ;
   
   arg1 = (OdeProxy::Solver *)jarg1; 
-  arg2 = (OdeProxy::Ode *)jarg2; 
-  arg3 = (OdeProxy::IntegrateFunction)jarg3; 
-  arg4 = (OdeProxy::Stepper)jarg4; 
-  result = (int)(arg1)->Solve(arg2,arg3,arg4);
+  arg2 = (OdeProxy::StepperTypeCode)jarg2; 
+  if (arg1) (arg1)->StepperCode = arg2;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_Solver_StepperCode_get(void * jarg1) {
+  int jresult ;
+  OdeProxy::Solver *arg1 = (OdeProxy::Solver *) 0 ;
+  OdeProxy::StepperTypeCode result;
+  
+  arg1 = (OdeProxy::Solver *)jarg1; 
+  result = (OdeProxy::StepperTypeCode) ((arg1)->StepperCode);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT int SWIGSTDCALL CSharp_Solver_Solve__SWIG_1(void * jarg1, void * jarg2, int jarg3) {
+SWIGEXPORT int SWIGSTDCALL CSharp_Solver_ConvenienceSolve(void * jarg1, void * jarg2, double jarg3, double jarg4, double jarg5) {
   int jresult ;
   OdeProxy::Solver *arg1 = (OdeProxy::Solver *) 0 ;
   OdeProxy::Ode *arg2 = (OdeProxy::Ode *) 0 ;
-  OdeProxy::IntegrateFunction arg3 ;
+  double arg3 ;
+  double arg4 ;
+  double arg5 ;
   int result;
   
   arg1 = (OdeProxy::Solver *)jarg1; 
   arg2 = (OdeProxy::Ode *)jarg2; 
-  arg3 = (OdeProxy::IntegrateFunction)jarg3; 
-  result = (int)(arg1)->Solve(arg2,arg3);
+  arg3 = (double)jarg3; 
+  arg4 = (double)jarg4; 
+  arg5 = (double)jarg5; 
+  result = (int)(arg1)->ConvenienceSolve(arg2,arg3,arg4,arg5);
   jresult = result; 
   return jresult;
 }
 
 
-SWIGEXPORT int SWIGSTDCALL CSharp_Solver_Solve__SWIG_2(void * jarg1, void * jarg2) {
+SWIGEXPORT int SWIGSTDCALL CSharp_Solver_Solve__SWIG_0(void * jarg1, void * jarg2, double jarg3, double jarg4, double jarg5, int jarg6) {
   int jresult ;
   OdeProxy::Solver *arg1 = (OdeProxy::Solver *) 0 ;
   OdeProxy::Ode *arg2 = (OdeProxy::Ode *) 0 ;
+  double arg3 ;
+  double arg4 ;
+  double arg5 ;
+  OdeProxy::IntegrateFunctionTypeCode arg6 ;
   int result;
   
   arg1 = (OdeProxy::Solver *)jarg1; 
   arg2 = (OdeProxy::Ode *)jarg2; 
-  result = (int)(arg1)->Solve(arg2);
+  arg3 = (double)jarg3; 
+  arg4 = (double)jarg4; 
+  arg5 = (double)jarg5; 
+  arg6 = (OdeProxy::IntegrateFunctionTypeCode)jarg6; 
+  result = (int)(arg1)->Solve(arg2,arg3,arg4,arg5,arg6);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_Solver_Solve__SWIG_1(void * jarg1, void * jarg2, double jarg3, double jarg4, double jarg5) {
+  int jresult ;
+  OdeProxy::Solver *arg1 = (OdeProxy::Solver *) 0 ;
+  OdeProxy::Ode *arg2 = (OdeProxy::Ode *) 0 ;
+  double arg3 ;
+  double arg4 ;
+  double arg5 ;
+  int result;
+  
+  arg1 = (OdeProxy::Solver *)jarg1; 
+  arg2 = (OdeProxy::Ode *)jarg2; 
+  arg3 = (double)jarg3; 
+  arg4 = (double)jarg4; 
+  arg5 = (double)jarg5; 
+  result = (int)(arg1)->Solve(arg2,arg3,arg4,arg5);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_Solver_Solve__SWIG_2(void * jarg1, void * jarg2, double jarg3, double jarg4, int jarg5) {
+  int jresult ;
+  OdeProxy::Solver *arg1 = (OdeProxy::Solver *) 0 ;
+  OdeProxy::Ode *arg2 = (OdeProxy::Ode *) 0 ;
+  double arg3 ;
+  double arg4 ;
+  int arg5 ;
+  int result;
+  
+  arg1 = (OdeProxy::Solver *)jarg1; 
+  arg2 = (OdeProxy::Ode *)jarg2; 
+  arg3 = (double)jarg3; 
+  arg4 = (double)jarg4; 
+  arg5 = (int)jarg5; 
+  result = (int)(arg1)->Solve(arg2,arg3,arg4,arg5);
+  jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT int SWIGSTDCALL CSharp_Solver_Solve__SWIG_3(void * jarg1, void * jarg2, void * jarg3, double jarg4) {
+  int jresult ;
+  OdeProxy::Solver *arg1 = (OdeProxy::Solver *) 0 ;
+  OdeProxy::Ode *arg2 = (OdeProxy::Ode *) 0 ;
+  OdeProxy::StateType *arg3 = 0 ;
+  double arg4 ;
+  int result;
+  
+  arg1 = (OdeProxy::Solver *)jarg1; 
+  arg2 = (OdeProxy::Ode *)jarg2; 
+  arg3 = (OdeProxy::StateType *)jarg3;
+  if (!arg3) {
+    SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentNullException, "OdeProxy::StateType & type is null", 0);
+    return 0;
+  } 
+  arg4 = (double)jarg4; 
+  result = (int)(arg1)->Solve(arg2,*arg3,arg4);
   jresult = result; 
   return jresult;
 }

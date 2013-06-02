@@ -15,8 +15,8 @@ class SwigDirector_Ode : public OdeProxy::Ode, public Swig::Director {
 
 public:
     SwigDirector_Ode();
-    virtual void system(OdeProxy::state_type const &x, OdeProxy::state_type &dxdt, double t);
-    virtual void observer(OdeProxy::state_type const &x, double t);
+    virtual void system(OdeProxy::StateType const &x, OdeProxy::StateType &dxdt, double t);
+    virtual void observer(OdeProxy::StateType const &x, double t);
     virtual ~SwigDirector_Ode();
 
     typedef void (SWIGSTDCALL* SWIG_Callback0_t)(void *, void *, double);

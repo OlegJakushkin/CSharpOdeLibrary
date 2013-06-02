@@ -41,18 +41,39 @@ public class Solver : IDisposable {
     }
   }
 
-  public int Solve(Ode ode, IntegrateFunction integrateFunction, Stepper stepper) {
-    int ret = CorePINVOKE.Solver_Solve__SWIG_0(swigCPtr, Ode.getCPtr(ode), (int)integrateFunction, (int)stepper);
+  public StepperTypeCode StepperCode {
+    set {
+      CorePINVOKE.Solver_StepperCode_set(swigCPtr, (int)value);
+    } 
+    get {
+      StepperTypeCode ret = (StepperTypeCode)CorePINVOKE.Solver_StepperCode_get(swigCPtr);
+      return ret;
+    } 
+  }
+
+  public int ConvenienceSolve(Ode od, double from, double step, double to) {
+    int ret = CorePINVOKE.Solver_ConvenienceSolve(swigCPtr, Ode.getCPtr(od), from, step, to);
     return ret;
   }
 
-  public int Solve(Ode ode, IntegrateFunction integrateFunction) {
-    int ret = CorePINVOKE.Solver_Solve__SWIG_1(swigCPtr, Ode.getCPtr(ode), (int)integrateFunction);
+  public int Solve(Ode ode, double from, double step, double to, IntegrateFunctionTypeCode integrateFunctionTypeCode) {
+    int ret = CorePINVOKE.Solver_Solve__SWIG_0(swigCPtr, Ode.getCPtr(ode), from, step, to, (int)integrateFunctionTypeCode);
     return ret;
   }
 
-  public int Solve(Ode ode) {
-    int ret = CorePINVOKE.Solver_Solve__SWIG_2(swigCPtr, Ode.getCPtr(ode));
+  public int Solve(Ode ode, double from, double step, double to) {
+    int ret = CorePINVOKE.Solver_Solve__SWIG_1(swigCPtr, Ode.getCPtr(ode), from, step, to);
+    return ret;
+  }
+
+  public int Solve(Ode ode, double from, double step, int stepsCount) {
+    int ret = CorePINVOKE.Solver_Solve__SWIG_2(swigCPtr, Ode.getCPtr(ode), from, step, stepsCount);
+    return ret;
+  }
+
+  public int Solve(Ode ode, StateType timePoints, double step) {
+    int ret = CorePINVOKE.Solver_Solve__SWIG_3(swigCPtr, Ode.getCPtr(ode), StateType.getCPtr(timePoints), step);
+    if (CorePINVOKE.SWIGPendingException.Pending) throw CorePINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
 

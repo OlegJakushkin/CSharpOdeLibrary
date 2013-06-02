@@ -41,53 +41,23 @@ public class Ode : IDisposable {
     }
   }
 
-  public virtual void system(state_type x, state_type dxdt, double t) {
-    if (SwigDerivedClassHasMethod("system", swigMethodTypes0)) CorePINVOKE.Ode_systemSwigExplicitOde(swigCPtr, state_type.getCPtr(x), state_type.getCPtr(dxdt), t); else CorePINVOKE.Ode_system(swigCPtr, state_type.getCPtr(x), state_type.getCPtr(dxdt), t);
+  public virtual void system(StateType x, StateType dxdt, double t) {
+    if (SwigDerivedClassHasMethod("system", swigMethodTypes0)) CorePINVOKE.Ode_systemSwigExplicitOde(swigCPtr, StateType.getCPtr(x), StateType.getCPtr(dxdt), t); else CorePINVOKE.Ode_system(swigCPtr, StateType.getCPtr(x), StateType.getCPtr(dxdt), t);
     if (CorePINVOKE.SWIGPendingException.Pending) throw CorePINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public virtual void observer(state_type x, double t) {
-    if (SwigDerivedClassHasMethod("observer", swigMethodTypes1)) CorePINVOKE.Ode_observerSwigExplicitOde(swigCPtr, state_type.getCPtr(x), t); else CorePINVOKE.Ode_observer(swigCPtr, state_type.getCPtr(x), t);
+  public virtual void observer(StateType x, double t) {
+    if (SwigDerivedClassHasMethod("observer", swigMethodTypes1)) CorePINVOKE.Ode_observerSwigExplicitOde(swigCPtr, StateType.getCPtr(x), t); else CorePINVOKE.Ode_observer(swigCPtr, StateType.getCPtr(x), t);
     if (CorePINVOKE.SWIGPendingException.Pending) throw CorePINVOKE.SWIGPendingException.Retrieve();
   }
 
-  public state_type initialConditions {
+  public StateType InitialConditions {
     set {
-      CorePINVOKE.Ode_initialConditions_set(swigCPtr, state_type.getCPtr(value));
+      CorePINVOKE.Ode_InitialConditions_set(swigCPtr, StateType.getCPtr(value));
     } 
     get {
-      IntPtr cPtr = CorePINVOKE.Ode_initialConditions_get(swigCPtr);
-      state_type ret = (cPtr == IntPtr.Zero) ? null : new state_type(cPtr, false);
-      return ret;
-    } 
-  }
-
-  public double from {
-    set {
-      CorePINVOKE.Ode_from_set(swigCPtr, value);
-    } 
-    get {
-      double ret = CorePINVOKE.Ode_from_get(swigCPtr);
-      return ret;
-    } 
-  }
-
-  public double to {
-    set {
-      CorePINVOKE.Ode_to_set(swigCPtr, value);
-    } 
-    get {
-      double ret = CorePINVOKE.Ode_to_get(swigCPtr);
-      return ret;
-    } 
-  }
-
-  public double step {
-    set {
-      CorePINVOKE.Ode_step_set(swigCPtr, value);
-    } 
-    get {
-      double ret = CorePINVOKE.Ode_step_get(swigCPtr);
+      IntPtr cPtr = CorePINVOKE.Ode_InitialConditions_get(swigCPtr);
+      StateType ret = (cPtr == IntPtr.Zero) ? null : new StateType(cPtr, false);
       return ret;
     } 
   }
@@ -111,11 +81,11 @@ public class Ode : IDisposable {
   }
 
   private void SwigDirectorsystem(IntPtr x, IntPtr dxdt, double t) {
-    system(new state_type(x, false), new state_type(dxdt, false), t);
+    system(new StateType(x, false), new StateType(dxdt, false), t);
   }
 
   private void SwigDirectorobserver(IntPtr x, double t) {
-    observer(new state_type(x, false), t);
+    observer(new StateType(x, false), t);
   }
 
   public delegate void SwigDelegateOde_0(IntPtr x, IntPtr dxdt, double t);
@@ -124,8 +94,8 @@ public class Ode : IDisposable {
   private SwigDelegateOde_0 swigDelegate0;
   private SwigDelegateOde_1 swigDelegate1;
 
-  private static Type[] swigMethodTypes0 = new Type[] { typeof(state_type), typeof(state_type), typeof(double) };
-  private static Type[] swigMethodTypes1 = new Type[] { typeof(state_type), typeof(double) };
+  private static Type[] swigMethodTypes0 = new Type[] { typeof(StateType), typeof(StateType), typeof(double) };
+  private static Type[] swigMethodTypes1 = new Type[] { typeof(StateType), typeof(double) };
 }
 
 }

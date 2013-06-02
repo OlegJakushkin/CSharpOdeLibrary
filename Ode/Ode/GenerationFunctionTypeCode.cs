@@ -6,12 +6,12 @@
  * the SWIG interface file instead.
  * ----------------------------------------------------------------------------- */
 
-namespace OdeLibrary {
-
-using System;
-using System.Runtime.InteropServices;
-
-public class Core {
-}
-
+namespace OdeLibrary
+{
+    public enum GenerationFunctionTypeCode
+    {
+        None,
+        Dense,
+        Controlled
+    }
 }

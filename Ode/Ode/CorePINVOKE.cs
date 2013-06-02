@@ -6,18 +6,170 @@
  * the SWIG interface file instead.
  * ----------------------------------------------------------------------------- */
 
+#region
+
 using System;
 using System.Runtime.InteropServices;
+
+#endregion
 
 namespace OdeLibrary
 {
     internal class CorePinvoke
     {
-        protected class SwigExceptionHelper
-        {
-            public delegate void ExceptionDelegate(string message);
+        protected static SWIGExceptionHelper SwigExceptionHelper = new SWIGExceptionHelper();
 
+        protected static SWIGStringHelper SwigStringHelper = new SWIGStringHelper();
+
+
+        static CorePinvoke()
+        {
+        }
+
+
+        [DllImport("Core", EntryPoint = "CSharp_StateType_Clear")]
+        public static extern void StateType_Clear(HandleRef jarg1);
+
+        [DllImport("Core", EntryPoint = "CSharp_StateType_Add")]
+        public static extern void StateType_Add(HandleRef jarg1, double jarg2);
+
+        [DllImport("Core", EntryPoint = "CSharp_StateType_size")]
+        public static extern uint StateType_size(HandleRef jarg1);
+
+        [DllImport("Core", EntryPoint = "CSharp_StateType_capacity")]
+        public static extern uint StateType_capacity(HandleRef jarg1);
+
+        [DllImport("Core", EntryPoint = "CSharp_StateType_reserve")]
+        public static extern void StateType_reserve(HandleRef jarg1, uint jarg2);
+
+        [DllImport("Core", EntryPoint = "CSharp_new_StateType__SWIG_0")]
+        public static extern IntPtr new_StateType__SWIG_0();
+
+        [DllImport("Core", EntryPoint = "CSharp_new_StateType__SWIG_1")]
+        public static extern IntPtr new_StateType__SWIG_1(HandleRef jarg1);
+
+        [DllImport("Core", EntryPoint = "CSharp_new_StateType__SWIG_2")]
+        public static extern IntPtr new_StateType__SWIG_2(int jarg1);
+
+        [DllImport("Core", EntryPoint = "CSharp_StateType_getitemcopy")]
+        public static extern double StateType_getitemcopy(HandleRef jarg1, int jarg2);
+
+        [DllImport("Core", EntryPoint = "CSharp_StateType_getitem")]
+        public static extern double StateType_getitem(HandleRef jarg1, int jarg2);
+
+        [DllImport("Core", EntryPoint = "CSharp_StateType_setitem")]
+        public static extern void StateType_setitem(HandleRef jarg1, int jarg2, double jarg3);
+
+        [DllImport("Core", EntryPoint = "CSharp_StateType_AddRange")]
+        public static extern void StateType_AddRange(HandleRef jarg1, HandleRef jarg2);
+
+        [DllImport("Core", EntryPoint = "CSharp_StateType_GetRange")]
+        public static extern IntPtr StateType_GetRange(HandleRef jarg1, int jarg2, int jarg3);
+
+        [DllImport("Core", EntryPoint = "CSharp_StateType_Insert")]
+        public static extern void StateType_Insert(HandleRef jarg1, int jarg2, double jarg3);
+
+        [DllImport("Core", EntryPoint = "CSharp_StateType_InsertRange")]
+        public static extern void StateType_InsertRange(HandleRef jarg1, int jarg2, HandleRef jarg3);
+
+        [DllImport("Core", EntryPoint = "CSharp_StateType_RemoveAt")]
+        public static extern void StateType_RemoveAt(HandleRef jarg1, int jarg2);
+
+        [DllImport("Core", EntryPoint = "CSharp_StateType_RemoveRange")]
+        public static extern void StateType_RemoveRange(HandleRef jarg1, int jarg2, int jarg3);
+
+        [DllImport("Core", EntryPoint = "CSharp_StateType_Repeat")]
+        public static extern IntPtr StateType_Repeat(double jarg1, int jarg2);
+
+        [DllImport("Core", EntryPoint = "CSharp_StateType_Reverse__SWIG_0")]
+        public static extern void StateType_Reverse__SWIG_0(HandleRef jarg1);
+
+        [DllImport("Core", EntryPoint = "CSharp_StateType_Reverse__SWIG_1")]
+        public static extern void StateType_Reverse__SWIG_1(HandleRef jarg1, int jarg2, int jarg3);
+
+        [DllImport("Core", EntryPoint = "CSharp_StateType_SetRange")]
+        public static extern void StateType_SetRange(HandleRef jarg1, int jarg2, HandleRef jarg3);
+
+        [DllImport("Core", EntryPoint = "CSharp_StateType_Contains")]
+        public static extern bool StateType_Contains(HandleRef jarg1, double jarg2);
+
+        [DllImport("Core", EntryPoint = "CSharp_StateType_IndexOf")]
+        public static extern int StateType_IndexOf(HandleRef jarg1, double jarg2);
+
+        [DllImport("Core", EntryPoint = "CSharp_StateType_LastIndexOf")]
+        public static extern int StateType_LastIndexOf(HandleRef jarg1, double jarg2);
+
+        [DllImport("Core", EntryPoint = "CSharp_StateType_Remove")]
+        public static extern bool StateType_Remove(HandleRef jarg1, double jarg2);
+
+        [DllImport("Core", EntryPoint = "CSharp_delete_StateType")]
+        public static extern void delete_StateType(HandleRef jarg1);
+
+        [DllImport("Core", EntryPoint = "CSharp_Ode_system")]
+        public static extern void Ode_system(HandleRef jarg1, HandleRef jarg2, HandleRef jarg3, double jarg4);
+
+        [DllImport("Core", EntryPoint = "CSharp_Ode_systemSwigExplicitOde")]
+        public static extern void Ode_systemSwigExplicitOde(HandleRef jarg1, HandleRef jarg2, HandleRef jarg3,
+                                                            double jarg4);
+
+        [DllImport("Core", EntryPoint = "CSharp_Ode_observer")]
+        public static extern void Ode_observer(HandleRef jarg1, HandleRef jarg2, double jarg3);
+
+        [DllImport("Core", EntryPoint = "CSharp_Ode_observerSwigExplicitOde")]
+        public static extern void Ode_observerSwigExplicitOde(HandleRef jarg1, HandleRef jarg2, double jarg3);
+
+        [DllImport("Core", EntryPoint = "CSharp_Ode_InitialConditions_set")]
+        public static extern void Ode_InitialConditions_set(HandleRef jarg1, HandleRef jarg2);
+
+        [DllImport("Core", EntryPoint = "CSharp_Ode_InitialConditions_get")]
+        public static extern IntPtr Ode_InitialConditions_get(HandleRef jarg1);
+
+        [DllImport("Core", EntryPoint = "CSharp_delete_Ode")]
+        public static extern void delete_Ode(HandleRef jarg1);
+
+        [DllImport("Core", EntryPoint = "CSharp_new_Ode")]
+        public static extern IntPtr new_Ode();
+
+        [DllImport("Core", EntryPoint = "CSharp_Ode_director_connect")]
+        public static extern void Ode_director_connect(HandleRef jarg1, Ode.SwigDelegateOde0 delegate0,
+                                                       Ode.SwigDelegateOde1 delegate1);
+
+        [DllImport("Core", EntryPoint = "CSharp_Solver_StepperCode_set")]
+        public static extern void Solver_StepperCode_set(HandleRef jarg1, int jarg2);
+
+        [DllImport("Core", EntryPoint = "CSharp_Solver_StepperCode_get")]
+        public static extern int Solver_StepperCode_get(HandleRef jarg1);
+
+        [DllImport("Core", EntryPoint = "CSharp_Solver_ConvenienceSolve")]
+        public static extern int Solver_ConvenienceSolve(HandleRef jarg1, HandleRef jarg2, double jarg3, double jarg4,
+                                                         double jarg5);
+
+        [DllImport("Core", EntryPoint = "CSharp_Solver_Solve__SWIG_0")]
+        public static extern int Solver_Solve__SWIG_0(HandleRef jarg1, HandleRef jarg2, double jarg3, double jarg4,
+                                                      double jarg5, int jarg6);
+
+        [DllImport("Core", EntryPoint = "CSharp_Solver_Solve__SWIG_1")]
+        public static extern int Solver_Solve__SWIG_1(HandleRef jarg1, HandleRef jarg2, double jarg3, double jarg4,
+                                                      double jarg5);
+
+        [DllImport("Core", EntryPoint = "CSharp_Solver_Solve__SWIG_2")]
+        public static extern int Solver_Solve__SWIG_2(HandleRef jarg1, HandleRef jarg2, double jarg3, double jarg4,
+                                                      int jarg5);
+
+        [DllImport("Core", EntryPoint = "CSharp_Solver_Solve__SWIG_3")]
+        public static extern int Solver_Solve__SWIG_3(HandleRef jarg1, HandleRef jarg2, HandleRef jarg3, double jarg4);
+
+        [DllImport("Core", EntryPoint = "CSharp_new_Solver")]
+        public static extern IntPtr new_Solver();
+
+        [DllImport("Core", EntryPoint = "CSharp_delete_Solver")]
+        public static extern void delete_Solver(HandleRef jarg1);
+
+        protected class SWIGExceptionHelper
+        {
             public delegate void ExceptionArgumentDelegate(string message, string paramName);
+
+            public delegate void ExceptionDelegate(string message);
 
             private static readonly ExceptionDelegate ApplicationDelegate = SetPendingApplicationException;
             private static readonly ExceptionDelegate ArithmeticDelegate = SetPendingArithmeticException;
@@ -36,6 +188,27 @@ namespace OdeLibrary
 
             private static readonly ExceptionArgumentDelegate ArgumentOutOfRangeDelegate =
                 SetPendingArgumentOutOfRangeException;
+
+            static SWIGExceptionHelper()
+            {
+                SWIGRegisterExceptionCallbacks_Core(
+                    ApplicationDelegate,
+                    ArithmeticDelegate,
+                    DivideByZeroDelegate,
+                    IndexOutOfRangeDelegate,
+                    InvalidCastDelegate,
+                    InvalidOperationDelegate,
+                    IoDelegate,
+                    NullReferenceDelegate,
+                    OutOfMemoryDelegate,
+                    OverflowDelegate,
+                    SystemDelegate);
+
+                SWIGRegisterExceptionCallbacksArgument_Core(
+                    ArgumentDelegate,
+                    ArgumentNullDelegate,
+                    ArgumentOutOfRangeDelegate);
+            }
 
             [DllImport("Core", EntryPoint = "SWIGRegisterExceptionCallbacks_Core")]
             public static extern void SWIGRegisterExceptionCallbacks_Core(
@@ -59,109 +232,83 @@ namespace OdeLibrary
 
             private static void SetPendingApplicationException(string message)
             {
-                SwigPendingException.Set(new ApplicationException(message, SwigPendingException.Retrieve()));
+                SWIGPendingException.Set(new ApplicationException(message, SWIGPendingException.Retrieve()));
             }
 
             private static void SetPendingArithmeticException(string message)
             {
-                SwigPendingException.Set(new ArithmeticException(message, SwigPendingException.Retrieve()));
+                SWIGPendingException.Set(new ArithmeticException(message, SWIGPendingException.Retrieve()));
             }
 
             private static void SetPendingDivideByZeroException(string message)
             {
-                SwigPendingException.Set(new DivideByZeroException(message, SwigPendingException.Retrieve()));
+                SWIGPendingException.Set(new DivideByZeroException(message, SWIGPendingException.Retrieve()));
             }
 
             private static void SetPendingIndexOutOfRangeException(string message)
             {
-                SwigPendingException.Set(new IndexOutOfRangeException(message, SwigPendingException.Retrieve()));
+                SWIGPendingException.Set(new IndexOutOfRangeException(message, SWIGPendingException.Retrieve()));
             }
 
             private static void SetPendingInvalidCastException(string message)
             {
-                SwigPendingException.Set(new InvalidCastException(message, SwigPendingException.Retrieve()));
+                SWIGPendingException.Set(new InvalidCastException(message, SWIGPendingException.Retrieve()));
             }
 
             private static void SetPendingInvalidOperationException(string message)
             {
-                SwigPendingException.Set(new InvalidOperationException(message, SwigPendingException.Retrieve()));
+                SWIGPendingException.Set(new InvalidOperationException(message, SWIGPendingException.Retrieve()));
             }
 
             private static void SetPendingIoException(string message)
             {
-                SwigPendingException.Set(new System.IO.IOException(message, SwigPendingException.Retrieve()));
+                SWIGPendingException.Set(new System.IO.IOException(message, SWIGPendingException.Retrieve()));
             }
 
             private static void SetPendingNullReferenceException(string message)
             {
-                SwigPendingException.Set(new NullReferenceException(message, SwigPendingException.Retrieve()));
+                SWIGPendingException.Set(new NullReferenceException(message, SWIGPendingException.Retrieve()));
             }
 
             private static void SetPendingOutOfMemoryException(string message)
             {
-                SwigPendingException.Set(new OutOfMemoryException(message, SwigPendingException.Retrieve()));
+                SWIGPendingException.Set(new OutOfMemoryException(message, SWIGPendingException.Retrieve()));
             }
 
             private static void SetPendingOverflowException(string message)
             {
-                SwigPendingException.Set(new OverflowException(message, SwigPendingException.Retrieve()));
+                SWIGPendingException.Set(new OverflowException(message, SWIGPendingException.Retrieve()));
             }
 
             private static void SetPendingSystemException(string message)
             {
-                SwigPendingException.Set(new SystemException(message, SwigPendingException.Retrieve()));
+                SWIGPendingException.Set(new SystemException(message, SWIGPendingException.Retrieve()));
             }
 
             private static void SetPendingArgumentException(string message, string paramName)
             {
-                SwigPendingException.Set(new ArgumentException(message, paramName,
-                                                                      SwigPendingException.Retrieve()));
+                SWIGPendingException.Set(new ArgumentException(message, paramName,
+                                                                      SWIGPendingException.Retrieve()));
             }
 
             private static void SetPendingArgumentNullException(string message, string paramName)
             {
-                var e = SwigPendingException.Retrieve();
+                var e = SWIGPendingException.Retrieve();
                 if (e != null) message = message + " Inner Exception: " + e.Message;
-                SwigPendingException.Set(new ArgumentNullException(paramName, message));
+                SWIGPendingException.Set(new ArgumentNullException(paramName, message));
             }
 
             private static void SetPendingArgumentOutOfRangeException(string message, string paramName)
             {
-                var e = SwigPendingException.Retrieve();
+                var e = SWIGPendingException.Retrieve();
                 if (e != null) message = message + " Inner Exception: " + e.Message;
-                SwigPendingException.Set(new ArgumentOutOfRangeException(paramName, message));
-            }
-
-            static SwigExceptionHelper()
-            {
-                SWIGRegisterExceptionCallbacks_Core(
-                    ApplicationDelegate,
-                    ArithmeticDelegate,
-                    DivideByZeroDelegate,
-                    IndexOutOfRangeDelegate,
-                    InvalidCastDelegate,
-                    InvalidOperationDelegate,
-                    IoDelegate,
-                    NullReferenceDelegate,
-                    OutOfMemoryDelegate,
-                    OverflowDelegate,
-                    SystemDelegate);
-
-                SWIGRegisterExceptionCallbacksArgument_Core(
-                    ArgumentDelegate,
-                    ArgumentNullDelegate,
-                    ArgumentOutOfRangeDelegate);
+                SWIGPendingException.Set(new ArgumentOutOfRangeException(paramName, message));
             }
         }
 
-        // ReSharper disable InconsistentNaming
-        protected static SwigExceptionHelper swigExceptionHelper = new SwigExceptionHelper();
-        // ReSharper restore InconsistentNaming
-
-        public class SwigPendingException
+        public class SWIGPendingException
         {
-            [ThreadStatic]
-            private static Exception _pendingException;
+            [ThreadStatic] private static Exception _pendingException;
             private static int _numExceptionsPending;
 
             public static bool Pending
@@ -183,7 +330,8 @@ namespace OdeLibrary
                         "FATAL: An earlier pending exception from unmanaged code was missed and thus not thrown (" +
                         _pendingException + ")", e);
                 _pendingException = e;
-                lock (typeof(CorePinvoke)) {
+                lock (typeof (CorePinvoke))
+                {
                     _numExceptionsPending++;
                 }
             }
@@ -191,11 +339,14 @@ namespace OdeLibrary
             public static Exception Retrieve()
             {
                 Exception e = null;
-                if (_numExceptionsPending > 0) {
-                    if (_pendingException != null) {
+                if (_numExceptionsPending > 0)
+                {
+                    if (_pendingException != null)
+                    {
                         e = _pendingException;
                         _pendingException = null;
-                        lock (typeof(CorePinvoke)) {
+                        lock (typeof (CorePinvoke))
+                        {
                             _numExceptionsPending--;
                         }
                     }
@@ -205,174 +356,24 @@ namespace OdeLibrary
         }
 
 
-        protected class SwigStringHelper
+        protected class SWIGStringHelper
         {
-            public delegate string SwigStringDelegate(string message);
+            public delegate string SWIGStringDelegate(string message);
 
-            private static readonly SwigStringDelegate StringDelegate = CreateString;
+            private static readonly SWIGStringDelegate StringDelegate = CreateString;
+
+            static SWIGStringHelper()
+            {
+                SWIGRegisterStringCallback_Core(StringDelegate);
+            }
 
             [DllImport("Core", EntryPoint = "SWIGRegisterStringCallback_Core")]
-            public static extern void SWIGRegisterStringCallback_Core(SwigStringDelegate stringDelegate);
+            public static extern void SWIGRegisterStringCallback_Core(SWIGStringDelegate stringDelegate);
 
             private static string CreateString(string cString)
             {
                 return cString;
             }
-
-            static SwigStringHelper()
-            {
-                SWIGRegisterStringCallback_Core(StringDelegate);
-            }
         }
-
-        // ReSharper disable InconsistentNaming
-        protected static SwigStringHelper swigStringHelper = new SwigStringHelper();
-        // ReSharper restore InconsistentNaming
-
-
-        static CorePinvoke()
-        {
-        }
-
-
-        [DllImport("Core", EntryPoint = "CSharp_state_type_Clear")]
-        public static extern void state_type_Clear(HandleRef jarg1);
-
-        [DllImport("Core", EntryPoint = "CSharp_state_type_Add")]
-        public static extern void state_type_Add(HandleRef jarg1, double jarg2);
-
-        [DllImport("Core", EntryPoint = "CSharp_state_type_size")]
-        public static extern uint state_type_size(HandleRef jarg1);
-
-        [DllImport("Core", EntryPoint = "CSharp_state_type_capacity")]
-        public static extern uint state_type_capacity(HandleRef jarg1);
-
-        [DllImport("Core", EntryPoint = "CSharp_state_type_reserve")]
-        public static extern void state_type_reserve(HandleRef jarg1, uint jarg2);
-
-        [DllImport("Core", EntryPoint = "CSharp_new_state_type__SWIG_0")]
-        public static extern IntPtr new_state_type__SWIG_0();
-
-        [DllImport("Core", EntryPoint = "CSharp_new_state_type__SWIG_1")]
-        public static extern IntPtr new_state_type__SWIG_1(HandleRef jarg1);
-
-        [DllImport("Core", EntryPoint = "CSharp_new_state_type__SWIG_2")]
-        public static extern IntPtr new_state_type__SWIG_2(int jarg1);
-
-        [DllImport("Core", EntryPoint = "CSharp_state_type_getitemcopy")]
-        public static extern double state_type_getitemcopy(HandleRef jarg1, int jarg2);
-
-        [DllImport("Core", EntryPoint = "CSharp_state_type_getitem")]
-        public static extern double state_type_getitem(HandleRef jarg1, int jarg2);
-
-        [DllImport("Core", EntryPoint = "CSharp_state_type_setitem")]
-        public static extern void state_type_setitem(HandleRef jarg1, int jarg2, double jarg3);
-
-        [DllImport("Core", EntryPoint = "CSharp_state_type_AddRange")]
-        public static extern void state_type_AddRange(HandleRef jarg1, HandleRef jarg2);
-
-        [DllImport("Core", EntryPoint = "CSharp_state_type_GetRange")]
-        public static extern IntPtr state_type_GetRange(HandleRef jarg1, int jarg2, int jarg3);
-
-        [DllImport("Core", EntryPoint = "CSharp_state_type_Insert")]
-        public static extern void state_type_Insert(HandleRef jarg1, int jarg2, double jarg3);
-
-        [DllImport("Core", EntryPoint = "CSharp_state_type_InsertRange")]
-        public static extern void state_type_InsertRange(HandleRef jarg1, int jarg2, HandleRef jarg3);
-
-        [DllImport("Core", EntryPoint = "CSharp_state_type_RemoveAt")]
-        public static extern void state_type_RemoveAt(HandleRef jarg1, int jarg2);
-
-        [DllImport("Core", EntryPoint = "CSharp_state_type_RemoveRange")]
-        public static extern void state_type_RemoveRange(HandleRef jarg1, int jarg2, int jarg3);
-
-        [DllImport("Core", EntryPoint = "CSharp_state_type_Repeat")]
-        public static extern IntPtr state_type_Repeat(double jarg1, int jarg2);
-
-        [DllImport("Core", EntryPoint = "CSharp_state_type_Reverse__SWIG_0")]
-        public static extern void state_type_Reverse__SWIG_0(HandleRef jarg1);
-
-        [DllImport("Core", EntryPoint = "CSharp_state_type_Reverse__SWIG_1")]
-        public static extern void state_type_Reverse__SWIG_1(HandleRef jarg1, int jarg2, int jarg3);
-
-        [DllImport("Core", EntryPoint = "CSharp_state_type_SetRange")]
-        public static extern void state_type_SetRange(HandleRef jarg1, int jarg2, HandleRef jarg3);
-
-        [DllImport("Core", EntryPoint = "CSharp_state_type_Contains")]
-        public static extern bool state_type_Contains(HandleRef jarg1, double jarg2);
-
-        [DllImport("Core", EntryPoint = "CSharp_state_type_IndexOf")]
-        public static extern int state_type_IndexOf(HandleRef jarg1, double jarg2);
-
-        [DllImport("Core", EntryPoint = "CSharp_state_type_LastIndexOf")]
-        public static extern int state_type_LastIndexOf(HandleRef jarg1, double jarg2);
-
-        [DllImport("Core", EntryPoint = "CSharp_state_type_Remove")]
-        public static extern bool state_type_Remove(HandleRef jarg1, double jarg2);
-
-        [DllImport("Core", EntryPoint = "CSharp_delete_state_type")]
-        public static extern void delete_state_type(HandleRef jarg1);
-
-        [DllImport("Core", EntryPoint = "CSharp_Ode_system")]
-        public static extern void Ode_system(HandleRef jarg1, HandleRef jarg2, HandleRef jarg3, double jarg4);
-
-        [DllImport("Core", EntryPoint = "CSharp_Ode_systemSwigExplicitOde")]
-        public static extern void Ode_systemSwigExplicitOde(HandleRef jarg1, HandleRef jarg2, HandleRef jarg3,
-                                                            double jarg4);
-
-        [DllImport("Core", EntryPoint = "CSharp_Ode_observer")]
-        public static extern void Ode_observer(HandleRef jarg1, HandleRef jarg2, double jarg3);
-
-        [DllImport("Core", EntryPoint = "CSharp_Ode_observerSwigExplicitOde")]
-        public static extern void Ode_observerSwigExplicitOde(HandleRef jarg1, HandleRef jarg2, double jarg3);
-
-        [DllImport("Core", EntryPoint = "CSharp_Ode_initialConditions_set")]
-        public static extern void Ode_initialConditions_set(HandleRef jarg1, HandleRef jarg2);
-
-        [DllImport("Core", EntryPoint = "CSharp_Ode_initialConditions_get")]
-        public static extern IntPtr Ode_initialConditions_get(HandleRef jarg1);
-
-        [DllImport("Core", EntryPoint = "CSharp_Ode_from_set")]
-        public static extern void Ode_from_set(HandleRef jarg1, double jarg2);
-
-        [DllImport("Core", EntryPoint = "CSharp_Ode_from_get")]
-        public static extern double Ode_from_get(HandleRef jarg1);
-
-        [DllImport("Core", EntryPoint = "CSharp_Ode_to_set")]
-        public static extern void Ode_to_set(HandleRef jarg1, double jarg2);
-
-        [DllImport("Core", EntryPoint = "CSharp_Ode_to_get")]
-        public static extern double Ode_to_get(HandleRef jarg1);
-
-        [DllImport("Core", EntryPoint = "CSharp_Ode_step_set")]
-        public static extern void Ode_step_set(HandleRef jarg1, double jarg2);
-
-        [DllImport("Core", EntryPoint = "CSharp_Ode_step_get")]
-        public static extern double Ode_step_get(HandleRef jarg1);
-
-        [DllImport("Core", EntryPoint = "CSharp_delete_Ode")]
-        public static extern void delete_Ode(HandleRef jarg1);
-
-        [DllImport("Core", EntryPoint = "CSharp_new_Ode")]
-        public static extern IntPtr new_Ode();
-
-        [DllImport("Core", EntryPoint = "CSharp_Ode_director_connect")]
-        public static extern void Ode_director_connect(HandleRef jarg1, Ode.SwigDelegateOde0 delegate0,
-                                                       Ode.SwigDelegateOde1 delegate1);
-
-        [DllImport("Core", EntryPoint = "CSharp_Solver_Solve__SWIG_0")]
-        public static extern int Solver_Solve__SWIG_0(HandleRef jarg1, HandleRef jarg2, int jarg3, int jarg4);
-
-        [DllImport("Core", EntryPoint = "CSharp_Solver_Solve__SWIG_1")]
-        public static extern int Solver_Solve__SWIG_1(HandleRef jarg1, HandleRef jarg2, int jarg3);
-
-        [DllImport("Core", EntryPoint = "CSharp_Solver_Solve__SWIG_2")]
-        public static extern int Solver_Solve__SWIG_2(HandleRef jarg1, HandleRef jarg2);
-
-        [DllImport("Core", EntryPoint = "CSharp_new_Solver")]
-        public static extern IntPtr new_Solver();
-
-        [DllImport("Core", EntryPoint = "CSharp_delete_Solver")]
-        public static extern void delete_Solver(HandleRef jarg1);
     }
 }

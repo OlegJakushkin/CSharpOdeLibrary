@@ -189,83 +189,83 @@ class CorePINVOKE {
   }
 
 
-  [DllImport("Core", EntryPoint="CSharp_state_type_Clear")]
-  public static extern void state_type_Clear(HandleRef jarg1);
+  [DllImport("Core", EntryPoint="CSharp_StateType_Clear")]
+  public static extern void StateType_Clear(HandleRef jarg1);
 
-  [DllImport("Core", EntryPoint="CSharp_state_type_Add")]
-  public static extern void state_type_Add(HandleRef jarg1, double jarg2);
+  [DllImport("Core", EntryPoint="CSharp_StateType_Add")]
+  public static extern void StateType_Add(HandleRef jarg1, double jarg2);
 
-  [DllImport("Core", EntryPoint="CSharp_state_type_size")]
-  public static extern uint state_type_size(HandleRef jarg1);
+  [DllImport("Core", EntryPoint="CSharp_StateType_size")]
+  public static extern uint StateType_size(HandleRef jarg1);
 
-  [DllImport("Core", EntryPoint="CSharp_state_type_capacity")]
-  public static extern uint state_type_capacity(HandleRef jarg1);
+  [DllImport("Core", EntryPoint="CSharp_StateType_capacity")]
+  public static extern uint StateType_capacity(HandleRef jarg1);
 
-  [DllImport("Core", EntryPoint="CSharp_state_type_reserve")]
-  public static extern void state_type_reserve(HandleRef jarg1, uint jarg2);
+  [DllImport("Core", EntryPoint="CSharp_StateType_reserve")]
+  public static extern void StateType_reserve(HandleRef jarg1, uint jarg2);
 
-  [DllImport("Core", EntryPoint="CSharp_new_state_type__SWIG_0")]
-  public static extern IntPtr new_state_type__SWIG_0();
+  [DllImport("Core", EntryPoint="CSharp_new_StateType__SWIG_0")]
+  public static extern IntPtr new_StateType__SWIG_0();
 
-  [DllImport("Core", EntryPoint="CSharp_new_state_type__SWIG_1")]
-  public static extern IntPtr new_state_type__SWIG_1(HandleRef jarg1);
+  [DllImport("Core", EntryPoint="CSharp_new_StateType__SWIG_1")]
+  public static extern IntPtr new_StateType__SWIG_1(HandleRef jarg1);
 
-  [DllImport("Core", EntryPoint="CSharp_new_state_type__SWIG_2")]
-  public static extern IntPtr new_state_type__SWIG_2(int jarg1);
+  [DllImport("Core", EntryPoint="CSharp_new_StateType__SWIG_2")]
+  public static extern IntPtr new_StateType__SWIG_2(int jarg1);
 
-  [DllImport("Core", EntryPoint="CSharp_state_type_getitemcopy")]
-  public static extern double state_type_getitemcopy(HandleRef jarg1, int jarg2);
+  [DllImport("Core", EntryPoint="CSharp_StateType_getitemcopy")]
+  public static extern double StateType_getitemcopy(HandleRef jarg1, int jarg2);
 
-  [DllImport("Core", EntryPoint="CSharp_state_type_getitem")]
-  public static extern double state_type_getitem(HandleRef jarg1, int jarg2);
+  [DllImport("Core", EntryPoint="CSharp_StateType_getitem")]
+  public static extern double StateType_getitem(HandleRef jarg1, int jarg2);
 
-  [DllImport("Core", EntryPoint="CSharp_state_type_setitem")]
-  public static extern void state_type_setitem(HandleRef jarg1, int jarg2, double jarg3);
+  [DllImport("Core", EntryPoint="CSharp_StateType_setitem")]
+  public static extern void StateType_setitem(HandleRef jarg1, int jarg2, double jarg3);
 
-  [DllImport("Core", EntryPoint="CSharp_state_type_AddRange")]
-  public static extern void state_type_AddRange(HandleRef jarg1, HandleRef jarg2);
+  [DllImport("Core", EntryPoint="CSharp_StateType_AddRange")]
+  public static extern void StateType_AddRange(HandleRef jarg1, HandleRef jarg2);
 
-  [DllImport("Core", EntryPoint="CSharp_state_type_GetRange")]
-  public static extern IntPtr state_type_GetRange(HandleRef jarg1, int jarg2, int jarg3);
+  [DllImport("Core", EntryPoint="CSharp_StateType_GetRange")]
+  public static extern IntPtr StateType_GetRange(HandleRef jarg1, int jarg2, int jarg3);
 
-  [DllImport("Core", EntryPoint="CSharp_state_type_Insert")]
-  public static extern void state_type_Insert(HandleRef jarg1, int jarg2, double jarg3);
+  [DllImport("Core", EntryPoint="CSharp_StateType_Insert")]
+  public static extern void StateType_Insert(HandleRef jarg1, int jarg2, double jarg3);
 
-  [DllImport("Core", EntryPoint="CSharp_state_type_InsertRange")]
-  public static extern void state_type_InsertRange(HandleRef jarg1, int jarg2, HandleRef jarg3);
+  [DllImport("Core", EntryPoint="CSharp_StateType_InsertRange")]
+  public static extern void StateType_InsertRange(HandleRef jarg1, int jarg2, HandleRef jarg3);
 
-  [DllImport("Core", EntryPoint="CSharp_state_type_RemoveAt")]
-  public static extern void state_type_RemoveAt(HandleRef jarg1, int jarg2);
+  [DllImport("Core", EntryPoint="CSharp_StateType_RemoveAt")]
+  public static extern void StateType_RemoveAt(HandleRef jarg1, int jarg2);
 
-  [DllImport("Core", EntryPoint="CSharp_state_type_RemoveRange")]
-  public static extern void state_type_RemoveRange(HandleRef jarg1, int jarg2, int jarg3);
+  [DllImport("Core", EntryPoint="CSharp_StateType_RemoveRange")]
+  public static extern void StateType_RemoveRange(HandleRef jarg1, int jarg2, int jarg3);
 
-  [DllImport("Core", EntryPoint="CSharp_state_type_Repeat")]
-  public static extern IntPtr state_type_Repeat(double jarg1, int jarg2);
+  [DllImport("Core", EntryPoint="CSharp_StateType_Repeat")]
+  public static extern IntPtr StateType_Repeat(double jarg1, int jarg2);
 
-  [DllImport("Core", EntryPoint="CSharp_state_type_Reverse__SWIG_0")]
-  public static extern void state_type_Reverse__SWIG_0(HandleRef jarg1);
+  [DllImport("Core", EntryPoint="CSharp_StateType_Reverse__SWIG_0")]
+  public static extern void StateType_Reverse__SWIG_0(HandleRef jarg1);
 
-  [DllImport("Core", EntryPoint="CSharp_state_type_Reverse__SWIG_1")]
-  public static extern void state_type_Reverse__SWIG_1(HandleRef jarg1, int jarg2, int jarg3);
+  [DllImport("Core", EntryPoint="CSharp_StateType_Reverse__SWIG_1")]
+  public static extern void StateType_Reverse__SWIG_1(HandleRef jarg1, int jarg2, int jarg3);
 
-  [DllImport("Core", EntryPoint="CSharp_state_type_SetRange")]
-  public static extern void state_type_SetRange(HandleRef jarg1, int jarg2, HandleRef jarg3);
+  [DllImport("Core", EntryPoint="CSharp_StateType_SetRange")]
+  public static extern void StateType_SetRange(HandleRef jarg1, int jarg2, HandleRef jarg3);
 
-  [DllImport("Core", EntryPoint="CSharp_state_type_Contains")]
-  public static extern bool state_type_Contains(HandleRef jarg1, double jarg2);
+  [DllImport("Core", EntryPoint="CSharp_StateType_Contains")]
+  public static extern bool StateType_Contains(HandleRef jarg1, double jarg2);
 
-  [DllImport("Core", EntryPoint="CSharp_state_type_IndexOf")]
-  public static extern int state_type_IndexOf(HandleRef jarg1, double jarg2);
+  [DllImport("Core", EntryPoint="CSharp_StateType_IndexOf")]
+  public static extern int StateType_IndexOf(HandleRef jarg1, double jarg2);
 
-  [DllImport("Core", EntryPoint="CSharp_state_type_LastIndexOf")]
-  public static extern int state_type_LastIndexOf(HandleRef jarg1, double jarg2);
+  [DllImport("Core", EntryPoint="CSharp_StateType_LastIndexOf")]
+  public static extern int StateType_LastIndexOf(HandleRef jarg1, double jarg2);
 
-  [DllImport("Core", EntryPoint="CSharp_state_type_Remove")]
-  public static extern bool state_type_Remove(HandleRef jarg1, double jarg2);
+  [DllImport("Core", EntryPoint="CSharp_StateType_Remove")]
+  public static extern bool StateType_Remove(HandleRef jarg1, double jarg2);
 
-  [DllImport("Core", EntryPoint="CSharp_delete_state_type")]
-  public static extern void delete_state_type(HandleRef jarg1);
+  [DllImport("Core", EntryPoint="CSharp_delete_StateType")]
+  public static extern void delete_StateType(HandleRef jarg1);
 
   [DllImport("Core", EntryPoint="CSharp_Ode_system")]
   public static extern void Ode_system(HandleRef jarg1, HandleRef jarg2, HandleRef jarg3, double jarg4);
@@ -279,29 +279,11 @@ class CorePINVOKE {
   [DllImport("Core", EntryPoint="CSharp_Ode_observerSwigExplicitOde")]
   public static extern void Ode_observerSwigExplicitOde(HandleRef jarg1, HandleRef jarg2, double jarg3);
 
-  [DllImport("Core", EntryPoint="CSharp_Ode_initialConditions_set")]
-  public static extern void Ode_initialConditions_set(HandleRef jarg1, HandleRef jarg2);
+  [DllImport("Core", EntryPoint="CSharp_Ode_InitialConditions_set")]
+  public static extern void Ode_InitialConditions_set(HandleRef jarg1, HandleRef jarg2);
 
-  [DllImport("Core", EntryPoint="CSharp_Ode_initialConditions_get")]
-  public static extern IntPtr Ode_initialConditions_get(HandleRef jarg1);
-
-  [DllImport("Core", EntryPoint="CSharp_Ode_from_set")]
-  public static extern void Ode_from_set(HandleRef jarg1, double jarg2);
-
-  [DllImport("Core", EntryPoint="CSharp_Ode_from_get")]
-  public static extern double Ode_from_get(HandleRef jarg1);
-
-  [DllImport("Core", EntryPoint="CSharp_Ode_to_set")]
-  public static extern void Ode_to_set(HandleRef jarg1, double jarg2);
-
-  [DllImport("Core", EntryPoint="CSharp_Ode_to_get")]
-  public static extern double Ode_to_get(HandleRef jarg1);
-
-  [DllImport("Core", EntryPoint="CSharp_Ode_step_set")]
-  public static extern void Ode_step_set(HandleRef jarg1, double jarg2);
-
-  [DllImport("Core", EntryPoint="CSharp_Ode_step_get")]
-  public static extern double Ode_step_get(HandleRef jarg1);
+  [DllImport("Core", EntryPoint="CSharp_Ode_InitialConditions_get")]
+  public static extern IntPtr Ode_InitialConditions_get(HandleRef jarg1);
 
   [DllImport("Core", EntryPoint="CSharp_delete_Ode")]
   public static extern void delete_Ode(HandleRef jarg1);
@@ -312,14 +294,26 @@ class CorePINVOKE {
   [DllImport("Core", EntryPoint="CSharp_Ode_director_connect")]
   public static extern void Ode_director_connect(HandleRef jarg1, Ode.SwigDelegateOde_0 delegate0, Ode.SwigDelegateOde_1 delegate1);
 
+  [DllImport("Core", EntryPoint="CSharp_Solver_StepperCode_set")]
+  public static extern void Solver_StepperCode_set(HandleRef jarg1, int jarg2);
+
+  [DllImport("Core", EntryPoint="CSharp_Solver_StepperCode_get")]
+  public static extern int Solver_StepperCode_get(HandleRef jarg1);
+
+  [DllImport("Core", EntryPoint="CSharp_Solver_ConvenienceSolve")]
+  public static extern int Solver_ConvenienceSolve(HandleRef jarg1, HandleRef jarg2, double jarg3, double jarg4, double jarg5);
+
   [DllImport("Core", EntryPoint="CSharp_Solver_Solve__SWIG_0")]
-  public static extern int Solver_Solve__SWIG_0(HandleRef jarg1, HandleRef jarg2, int jarg3, int jarg4);
+  public static extern int Solver_Solve__SWIG_0(HandleRef jarg1, HandleRef jarg2, double jarg3, double jarg4, double jarg5, int jarg6);
 
   [DllImport("Core", EntryPoint="CSharp_Solver_Solve__SWIG_1")]
-  public static extern int Solver_Solve__SWIG_1(HandleRef jarg1, HandleRef jarg2, int jarg3);
+  public static extern int Solver_Solve__SWIG_1(HandleRef jarg1, HandleRef jarg2, double jarg3, double jarg4, double jarg5);
 
   [DllImport("Core", EntryPoint="CSharp_Solver_Solve__SWIG_2")]
-  public static extern int Solver_Solve__SWIG_2(HandleRef jarg1, HandleRef jarg2);
+  public static extern int Solver_Solve__SWIG_2(HandleRef jarg1, HandleRef jarg2, double jarg3, double jarg4, int jarg5);
+
+  [DllImport("Core", EntryPoint="CSharp_Solver_Solve__SWIG_3")]
+  public static extern int Solver_Solve__SWIG_3(HandleRef jarg1, HandleRef jarg2, HandleRef jarg3, double jarg4);
 
   [DllImport("Core", EntryPoint="CSharp_new_Solver")]
   public static extern IntPtr new_Solver();

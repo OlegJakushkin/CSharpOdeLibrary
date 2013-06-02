@@ -8,13 +8,16 @@
 
 namespace OdeLibrary
 {
-
-    public enum IntegrateFunction
+    public enum StepperTypeCode
     {
-        Default,
-        Const,
-        NSteps,
-        Adaptive
+        RungeKuttaDopri5,
+        Euler,
+        ModifiedMidpoint,
+        RungeKutta4,
+        RungeKuttaCashKarp54,
+        RungeKuttaFehlberg78,
+        ControlledRungeKutta,
+        BulirschStoer,
+        BulirschStoerDenseOut
     }
-
 }
