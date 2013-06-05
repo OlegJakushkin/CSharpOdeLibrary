@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Csharpodelibrary by OlegJakushkin</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Csharpodelibrary</h1>
+        <h2>Simple C# ODE Solver Library (Wrapper around Boost.OdeInt)</h2>
+        <a href="https://github.com/OlegJakushkin/CSharpOdeLibrary" class="button"><small>View project on</small>GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
+<a name="csharp-ode-library" class="anchor" href="#csharp-ode-library"><span class="octicon octicon-link"></span></a>CSharp Ode Library</h1>
+
+<p>CSharpOdeLibrary (LGPL, Boost license)</p>
+
+<p>Simple C# ODE Solver Library (Wrapper around Boost.OdeInt). </p>
+
+<p>Say you want to define ODE system like that:</p>
+
+<div class="highlight"><pre>           <span class="kt">var</span> <span class="n">lorenz</span> <span class="p">=</span> <span class="k">new</span> <span class="n">LambdaOde</span>
+            <span class="p">{</span>
+                <span class="n">From</span> <span class="p">=</span> <span class="m">0</span><span class="p">,</span>
+                <span class="n">To</span> <span class="p">=</span> <span class="m">25</span><span class="p">,</span>
+                <span class="n">Step</span> <span class="p">=</span> <span class="m">0.1</span><span class="p">,</span>
+                <span class="n">InitialConditions</span> <span class="p">=</span> <span class="k">new</span> <span class="n">StateType</span><span class="p">(</span><span class="k">new</span><span class="p">[]</span> <span class="p">{</span> <span class="m">10</span><span class="p">,</span> <span class="m">1.0</span><span class="p">,</span> <span class="m">1.0</span> <span class="p">}),</span>
+                <span class="n">OdeObserver</span> <span class="p">=</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">"{0} : {1} : {2}"</span><span class="p">,</span> <span class="n">x</span><span class="p">[</span><span class="m">0</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="m">1</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="m">2</span><span class="p">]),</span>
+                <span class="n">OdeSystem</span> <span class="p">=</span>
+                <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dxdt</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+                    <span class="k">const</span> <span class="kt">double</span> <span class="n">sigma</span> <span class="p">=</span> <span class="m">10.0</span><span class="p">;</span>
+                    <span class="k">const</span> <span class="kt">double</span> <span class="n">r</span> <span class="p">=</span> <span class="m">28.0</span><span class="p">;</span>
+                    <span class="k">const</span> <span class="kt">double</span> <span class="n">b</span> <span class="p">=</span> <span class="m">8.0</span> <span class="p">/</span> <span class="m">3.0</span><span class="p">;</span>
+                    <span class="n">dxdt</span><span class="p">[</span><span class="m">0</span><span class="p">]</span> <span class="p">=</span> <span class="n">sigma</span> <span class="p">*</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="p">-</span> <span class="n">x</span><span class="p">[</span><span class="m">0</span><span class="p">]);</span>
+                    <span class="n">dxdt</span><span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="p">=</span> <span class="n">r</span> <span class="p">*</span> <span class="n">x</span><span class="p">[</span><span class="m">0</span><span class="p">]</span> <span class="p">-</span> <span class="n">x</span><span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="p">-</span> <span class="n">x</span><span class="p">[</span><span class="m">0</span><span class="p">]</span> <span class="p">*</span> <span class="n">x</span><span class="p">[</span><span class="m">2</span><span class="p">];</span>
+                    <span class="n">dxdt</span><span class="p">[</span><span class="m">2</span><span class="p">]</span> <span class="p">=</span> <span class="p">-</span><span class="n">b</span> <span class="p">*</span> <span class="n">x</span><span class="p">[</span><span class="m">2</span><span class="p">]</span> <span class="p">+</span> <span class="n">x</span><span class="p">[</span><span class="m">0</span><span class="p">]</span> <span class="p">*</span> <span class="n">x</span><span class="p">[</span><span class="m">1</span><span class="p">];</span>
+                <span class="p">}</span>
+            <span class="p">};</span>
+</pre></div>
+
+<p>Or as Your Own Class:</p>
+
+<div class="highlight"><pre><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">OdeLibrary</span><span class="p">;</span>
+
+<span class="k">namespace</span> <span class="nn">OdeTest</span>
+<span class="p">{</span>
+    <span class="k">class</span> <span class="nc">LorenzOde</span> <span class="p">:</span> <span class="n">Ode</span>
+    <span class="p">{</span>
+        <span class="k">protected</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">observer</span><span class="p">(</span><span class="n">StateType</span> <span class="n">x</span><span class="p">,</span> <span class="kt">double</span> <span class="n">t</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="n">Capacity</span> <span class="p">!=</span> <span class="m">0</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">"{0} : {1} : {2}"</span><span class="p">,</span> <span class="n">x</span><span class="p">[</span><span class="m">0</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="m">1</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="m">2</span><span class="p">]);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="k">protected</span> <span class="k">override</span> <span class="k">void</span> <span class="nf">system</span><span class="p">(</span><span class="n">StateType</span> <span class="n">x</span><span class="p">,</span> <span class="n">StateType</span> <span class="n">dxdt</span><span class="p">,</span> <span class="kt">double</span> <span class="n">t</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">const</span> <span class="kt">double</span> <span class="n">sigma</span> <span class="p">=</span> <span class="m">10.0</span><span class="p">;</span>
+            <span class="k">const</span> <span class="kt">double</span> <span class="n">r</span> <span class="p">=</span> <span class="m">28.0</span><span class="p">;</span>
+            <span class="k">const</span> <span class="kt">double</span> <span class="n">b</span> <span class="p">=</span> <span class="m">8.0</span><span class="p">/</span><span class="m">3.0</span><span class="p">;</span>
+            <span class="n">dxdt</span><span class="p">[</span><span class="m">0</span><span class="p">]</span> <span class="p">=</span> <span class="n">sigma</span> <span class="p">*</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="p">-</span> <span class="n">x</span><span class="p">[</span><span class="m">0</span><span class="p">]);</span>
+            <span class="n">dxdt</span><span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="p">=</span> <span class="n">r</span> <span class="p">*</span> <span class="n">x</span><span class="p">[</span><span class="m">0</span><span class="p">]</span> <span class="p">-</span> <span class="n">x</span><span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="p">-</span> <span class="n">x</span><span class="p">[</span><span class="m">0</span><span class="p">]</span> <span class="p">*</span> <span class="n">x</span><span class="p">[</span><span class="m">2</span><span class="p">];</span>
+            <span class="n">dxdt</span><span class="p">[</span><span class="m">2</span><span class="p">]</span> <span class="p">=</span> <span class="p">-</span><span class="n">b</span> <span class="p">*</span> <span class="n">x</span><span class="p">[</span><span class="m">2</span><span class="p">]</span> <span class="p">+</span> <span class="n">x</span><span class="p">[</span><span class="m">0</span><span class="p">]</span> <span class="p">*</span> <span class="n">x</span><span class="p">[</span><span class="m">1</span><span class="p">];</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>You can do it with our library assistance.</p>
+
+<h1>
+<a name="simple-fast-modern-c-ode-solver" class="anchor" href="#simple-fast-modern-c-ode-solver"><span class="octicon octicon-link"></span></a>Simple, Fast, Modern, C# ODE Solver</h1>
+
+<p>We use Boost.OdeInt as C++ code base. Provide simple C++ wrapper around it. Use SWIG to generate bride between C++ and C#. And provide simple modern interface for its use.</p>
+
+<p>Motivation Exaple (Console sample):</p>
+
+<div class="highlight"><pre><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">OdeLibrary</span><span class="p">;</span>
+
+<span class="k">namespace</span> <span class="nn">OdeTest</span>
+<span class="p">{</span>
+    <span class="k">class</span> <span class="nc">Program</span>
+    <span class="p">{</span>
+        <span class="k">static</span> <span class="k">void</span> <span class="nf">Main</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="c1">//library uses one solver type (more will come if there will be demand): dense output stepper based on runge_kutta_dopri5 with standard error bounds 10^(-6) for the steps.</span>
+            <span class="kt">var</span> <span class="n">solver</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Solver</span><span class="p">();</span>
+
+            <span class="k">const</span> <span class="kt">double</span> <span class="n">@from</span> <span class="p">=</span> <span class="m">0.0</span><span class="p">;</span>
+            <span class="k">const</span> <span class="kt">double</span> <span class="n">to</span> <span class="p">=</span> <span class="m">25.0</span><span class="p">;</span>
+            <span class="k">const</span> <span class="kt">double</span> <span class="n">step</span> <span class="p">=</span> <span class="m">0.1</span><span class="p">;</span>
+            <span class="c1">//Say we have a class describing our system:</span>
+            <span class="kt">var</span> <span class="n">myLorenz</span> <span class="p">=</span> <span class="k">new</span> <span class="n">LorenzOde</span>
+                <span class="p">{</span>
+                    <span class="n">InitialConditions</span> <span class="p">=</span> <span class="k">new</span> <span class="n">StateType</span><span class="p">(</span><span class="k">new</span><span class="p">[]</span> <span class="p">{</span> <span class="m">10</span><span class="p">,</span> <span class="m">1.0</span><span class="p">,</span> <span class="m">1.0</span> <span class="p">})</span>
+                <span class="p">};</span>
+
+            <span class="c1">// All we need to solve it:</span>
+            <span class="n">solver</span><span class="p">.</span><span class="n">ConvenienceSolve</span><span class="p">(</span><span class="n">myLorenz</span><span class="p">,</span> <span class="k">from</span><span class="p">,</span> <span class="n">to</span><span class="p">,</span> <span class="n">step</span><span class="p">);</span>
+
+
+            <span class="c1">//library class provides a simple to use Lambda API for ODE system defenition (example of lorenz, 50 steps)</span>
+            <span class="kt">var</span> <span class="n">lorenz</span> <span class="p">=</span> <span class="k">new</span> <span class="n">LambdaOde</span>
+            <span class="p">{</span>
+                <span class="n">InitialConditions</span> <span class="p">=</span> <span class="k">new</span> <span class="n">StateType</span><span class="p">(</span><span class="k">new</span><span class="p">[]</span> <span class="p">{</span> <span class="m">10</span><span class="p">,</span> <span class="m">1.0</span><span class="p">,</span> <span class="m">1.0</span> <span class="p">}),</span>
+                <span class="n">OdeObserver</span> <span class="p">=</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">"{0} : {1} : {2}"</span><span class="p">,</span> <span class="n">x</span><span class="p">[</span><span class="m">0</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="m">1</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="m">2</span><span class="p">]),</span>
+                <span class="n">OdeSystem</span> <span class="p">=</span>
+                <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dxdt</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+                    <span class="k">const</span> <span class="kt">double</span> <span class="n">sigma</span> <span class="p">=</span> <span class="m">10.0</span><span class="p">;</span>
+                    <span class="k">const</span> <span class="kt">double</span> <span class="n">r</span> <span class="p">=</span> <span class="m">28.0</span><span class="p">;</span>
+                    <span class="k">const</span> <span class="kt">double</span> <span class="n">b</span> <span class="p">=</span> <span class="m">8.0</span> <span class="p">/</span> <span class="m">3.0</span><span class="p">;</span>
+                    <span class="n">dxdt</span><span class="p">[</span><span class="m">0</span><span class="p">]</span> <span class="p">=</span> <span class="n">sigma</span> <span class="p">*</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="p">-</span> <span class="n">x</span><span class="p">[</span><span class="m">0</span><span class="p">]);</span>
+                    <span class="n">dxdt</span><span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="p">=</span> <span class="n">r</span> <span class="p">*</span> <span class="n">x</span><span class="p">[</span><span class="m">0</span><span class="p">]</span> <span class="p">-</span> <span class="n">x</span><span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="p">-</span> <span class="n">x</span><span class="p">[</span><span class="m">0</span><span class="p">]</span> <span class="p">*</span> <span class="n">x</span><span class="p">[</span><span class="m">2</span><span class="p">];</span>
+                    <span class="n">dxdt</span><span class="p">[</span><span class="m">2</span><span class="p">]</span> <span class="p">=</span> <span class="p">-</span><span class="n">b</span> <span class="p">*</span> <span class="n">x</span><span class="p">[</span><span class="m">2</span><span class="p">]</span> <span class="p">+</span> <span class="n">x</span><span class="p">[</span><span class="m">0</span><span class="p">]</span> <span class="p">*</span> <span class="n">x</span><span class="p">[</span><span class="m">1</span><span class="p">];</span>
+                <span class="p">}</span>
+
+            <span class="p">};</span>
+
+            <span class="c1">// And all we need to solve it:</span>
+            <span class="n">solver</span><span class="p">.</span><span class="n">ConvenienceSolve</span><span class="p">(</span><span class="n">lorenz</span><span class="p">,</span> <span class="k">from</span><span class="p">,</span> <span class="n">to</span><span class="p">,</span> <span class="n">step</span><span class="p">);</span>
+
+            <span class="c1">// We can select stepper that our stepper would use</span>
+            <span class="n">solver</span><span class="p">.</span><span class="n">StepperCode</span> <span class="p">=</span> <span class="n">StepperTypeCode</span><span class="p">.</span><span class="n">RungeKutta4</span><span class="p">;</span>
+
+            <span class="c1">// We can select how our IntegrateFunction will work: </span>
+            <span class="n">solver</span><span class="p">.</span><span class="n">Solve</span><span class="p">(</span><span class="n">lorenz</span><span class="p">,</span> <span class="k">from</span><span class="p">,</span> <span class="n">step</span><span class="p">,</span> <span class="n">to</span><span class="p">,</span> <span class="n">IntegrateFunctionTypeCode</span><span class="p">.</span><span class="n">Adaptive</span><span class="p">);</span>
+
+            <span class="c1">// We can integrate for first N steps</span>
+            <span class="n">solver</span><span class="p">.</span><span class="n">Solve</span><span class="p">(</span><span class="n">lorenz</span><span class="p">,</span> <span class="k">from</span><span class="p">,</span> <span class="n">step</span><span class="p">,</span> <span class="m">5</span> <span class="p">);</span>
+
+            <span class="c1">// Or at given time periods</span>
+            <span class="n">solver</span><span class="p">.</span><span class="n">Solve</span><span class="p">(</span><span class="n">lorenz</span><span class="p">,</span> <span class="k">new</span> <span class="n">StateType</span><span class="p">(</span><span class="k">new</span><span class="p">[]</span> <span class="p">{</span> <span class="m">0</span><span class="p">,</span> <span class="m">10.0</span><span class="p">,</span> <span class="m">100.0</span><span class="p">,</span> <span class="m">1000.0</span> <span class="p">}),</span> <span class="n">step</span><span class="p">);</span>
+
+            <span class="n">Console</span><span class="p">.</span><span class="n">ReadLine</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>Or Windows Forms application example:
+<img src="/WinFormsODEGraphDemo.PNG" alt="Windows Forms using ZedGraph   ODE solver Demo application"></p>
+
+<div class="highlight"><pre><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Drawing</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Windows.Forms</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">OdeLibrary</span><span class="p">;</span>
+
+<span class="k">namespace</span> <span class="nn">OdeTestWF</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">partial</span> <span class="k">class</span> <span class="nc">Form1</span> <span class="p">:</span> <span class="n">Form</span>
+    <span class="p">{</span>
+        <span class="k">public</span> <span class="nf">Form1</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="n">InitializeComponent</span><span class="p">();</span>
+        <span class="p">}</span>
+
+        <span class="k">private</span> <span class="k">void</span> <span class="nf">Form1_Load</span><span class="p">(</span><span class="kt">object</span> <span class="n">sender</span><span class="p">,</span> <span class="n">EventArgs</span> <span class="n">e</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="c1">//library uses one solver type (more will come if there will be demand): dense output stepper based on runge_kutta_dopri5 with standard error bounds 10^(-6) for the steps.</span>
+            <span class="kt">var</span> <span class="n">solver</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Solver</span><span class="p">();</span>
+
+            <span class="kt">var</span> <span class="n">columns</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="kt">double</span><span class="p">&gt;();</span>
+            <span class="kt">var</span> <span class="n">rows</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="kt">double</span><span class="p">&gt;();</span>
+
+            <span class="c1">//library class provides a simple to use Lambda API for ODE system defenition (example of lorenz, 50 steps)</span>
+            <span class="kt">var</span> <span class="n">lorenz</span> <span class="p">=</span> <span class="k">new</span> <span class="n">LambdaOde</span>
+            <span class="p">{</span>
+                <span class="n">From</span> <span class="p">=</span> <span class="m">0</span><span class="p">,</span>
+                <span class="n">To</span> <span class="p">=</span> <span class="m">25</span><span class="p">,</span>
+                <span class="n">Step</span> <span class="p">=</span> <span class="m">0.1</span><span class="p">,</span>
+                <span class="n">InitialConditions</span> <span class="p">=</span> <span class="k">new</span> <span class="n">StateType</span><span class="p">(</span><span class="k">new</span><span class="p">[]</span> <span class="p">{</span> <span class="m">10</span><span class="p">,</span> <span class="m">1.0</span><span class="p">,</span> <span class="m">1.0</span> <span class="p">}),</span>
+                <span class="n">OdeObserver</span> <span class="p">=</span> 
+                <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+                    <span class="n">columns</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="m">0</span><span class="p">]);</span>
+                    <span class="n">rows</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="m">2</span><span class="p">]);</span>
+                <span class="p">},</span>
+                <span class="n">OdeSystem</span> <span class="p">=</span> 
+                <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dxdt</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+                    <span class="k">const</span> <span class="kt">double</span> <span class="n">sigma</span> <span class="p">=</span> <span class="m">10.0</span><span class="p">;</span>
+                    <span class="k">const</span> <span class="kt">double</span> <span class="n">r</span> <span class="p">=</span> <span class="m">28.0</span><span class="p">;</span>
+                    <span class="k">const</span> <span class="kt">double</span> <span class="n">b</span> <span class="p">=</span> <span class="m">8.0</span> <span class="p">/</span> <span class="m">3.0</span><span class="p">;</span>
+                    <span class="n">dxdt</span><span class="p">[</span><span class="m">0</span><span class="p">]</span> <span class="p">=</span> <span class="n">sigma</span> <span class="p">*</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="p">-</span> <span class="n">x</span><span class="p">[</span><span class="m">0</span><span class="p">]);</span>
+                    <span class="n">dxdt</span><span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="p">=</span> <span class="n">r</span> <span class="p">*</span> <span class="n">x</span><span class="p">[</span><span class="m">0</span><span class="p">]</span> <span class="p">-</span> <span class="n">x</span><span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="p">-</span> <span class="n">x</span><span class="p">[</span><span class="m">0</span><span class="p">]</span> <span class="p">*</span> <span class="n">x</span><span class="p">[</span><span class="m">2</span><span class="p">];</span>
+                    <span class="n">dxdt</span><span class="p">[</span><span class="m">2</span><span class="p">]</span> <span class="p">=</span> <span class="p">-</span><span class="n">b</span> <span class="p">*</span> <span class="n">x</span><span class="p">[</span><span class="m">2</span><span class="p">]</span> <span class="p">+</span> <span class="n">x</span><span class="p">[</span><span class="m">0</span><span class="p">]</span> <span class="p">*</span> <span class="n">x</span><span class="p">[</span><span class="m">1</span><span class="p">];</span>
+                <span class="p">}</span>
+
+            <span class="p">};</span>
+
+            <span class="c1">// And all we need to solve it:</span>
+            <span class="n">solver</span><span class="p">.</span><span class="n">ConvenienceSolve</span><span class="p">(</span><span class="n">lorenz</span><span class="p">);</span>
+
+            <span class="c1">//Draw ZedGraph</span>
+            <span class="kt">var</span> <span class="n">graph</span> <span class="p">=</span> <span class="n">zg1</span><span class="p">;</span>
+            <span class="kt">var</span> <span class="n">graphPane</span> <span class="p">=</span> <span class="n">zg1</span><span class="p">.</span><span class="n">GraphPane</span><span class="p">;</span>
+            <span class="n">graphPane</span><span class="p">.</span><span class="n">Title</span><span class="p">.</span><span class="n">Text</span> <span class="p">=</span> <span class="s">"Graph"</span><span class="p">;</span>
+            <span class="n">graphPane</span><span class="p">.</span><span class="n">XAxis</span><span class="p">.</span><span class="n">Title</span><span class="p">.</span><span class="n">Text</span> <span class="p">=</span> <span class="s">"x2"</span><span class="p">;</span>
+            <span class="n">graphPane</span><span class="p">.</span><span class="n">YAxis</span><span class="p">.</span><span class="n">Title</span><span class="p">.</span><span class="n">Text</span> <span class="p">=</span> <span class="s">"x0"</span><span class="p">;</span>
+            <span class="n">graph</span><span class="p">.</span><span class="n">IsShowPointValues</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
+
+            <span class="n">graphPane</span><span class="p">.</span><span class="n">AddCurve</span><span class="p">(</span>
+                                     <span class="s">"Lorenz"</span><span class="p">,</span>
+                                     <span class="n">rows</span><span class="p">.</span><span class="n">ToArray</span><span class="p">(),</span>
+                                     <span class="n">columns</span><span class="p">.</span><span class="n">ToArray</span><span class="p">(),</span>
+                                     <span class="n">Color</span><span class="p">.</span><span class="n">CornflowerBlue</span><span class="p">);</span>
+
+            <span class="n">graph</span><span class="p">.</span><span class="n">AxisChange</span><span class="p">();</span>
+            <span class="n">graph</span><span class="p">.</span><span class="n">Invalidate</span><span class="p">();</span>
+            <span class="n">graph</span><span class="p">.</span><span class="n">Refresh</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<h1>
+<a name="how-to-use-odelibrary" class="anchor" href="#how-to-use-odelibrary"><span class="octicon octicon-link"></span></a>How to use OdeLibrary</h1>
+
+<ul>
+<li>Download latest repo.</li>
+<li>Open folder Libraries</li>
+<li>Add Project refrence to OdeLibrary.dll</li>
+<li>Copy Core.dll into folder with your application</li>
+</ul><p>This is Utilety library because we do not support new Numeric Steppers or Integrate Functions Creation or any other type of OdeInt library extension.</p>
+
+<h2>
+<a name="what-parts-of-boostodeint-we-do-provide" class="anchor" href="#what-parts-of-boostodeint-we-do-provide"><span class="octicon octicon-link"></span></a>What parts of Boost.OdeInt we do provide:</h2>
+
+<p>Steppers (description of all Steppers in C++ OdeInt)[<a href="http://www.boost.org/doc/libs/1_53_0/libs/numeric/odeint/doc/html/boost_numeric_odeint/odeint_in_detail/steppers.html%5D:">http://www.boost.org/doc/libs/1_53_0/libs/numeric/odeint/doc/html/boost_numeric_odeint/odeint_in_detail/steppers.html]:</a></p>
+
+<ul>
+<li>Euler,</li>
+<li>ModifiedMidpoint,</li>
+<li>RungeKutta4,</li>
+<li>RungeKuttaCashKarp54,</li>
+<li>RungeKuttaDopri5,</li>
+<li>RungeKuttaFehlberg78,</li>
+<li>ControlledRungeKutta,</li>
+<li>BulirschStoer,</li>
+<li>BulirschStoerDenseOut,</li>
+</ul><p>And Integrate Functions (description of all Integrate Functions in C++ OdeInt)[<a href="http://www.boost.org/doc/libs/1_53_0/libs/numeric/odeint/doc/html/boost_numeric_odeint/odeint_in_detail/integrate_functions.html%5D:">http://www.boost.org/doc/libs/1_53_0/libs/numeric/odeint/doc/html/boost_numeric_odeint/odeint_in_detail/integrate_functions.html]:</a></p>
+
+<ul>
+<li>Const,</li>
+<li>Adaptive</li>
+</ul><p>We also support N first steps integration:</p>
+
+<div class="highlight"><pre>    <span class="n">solver</span><span class="p">.</span><span class="n">Solve</span><span class="p">(</span><span class="n">ode</span><span class="p">,</span> <span class="k">from</span><span class="p">,</span> <span class="n">step</span><span class="p">,</span> <span class="n">constStepsAmmount</span> <span class="p">);</span>
+</pre></div>
+
+<p>As wall as integration at given time points:</p>
+
+<div class="highlight"><pre>    <span class="n">solver</span><span class="p">.</span><span class="n">Solve</span><span class="p">(</span><span class="n">ode</span><span class="p">,</span> <span class="k">new</span> <span class="n">StateType</span><span class="p">(</span><span class="k">new</span><span class="p">[]</span> <span class="p">{</span> <span class="m">0</span><span class="p">,</span> <span class="m">10.0</span><span class="p">,</span> <span class="m">100.0</span><span class="p">,</span> <span class="m">1000.0</span> <span class="p">}),</span> <span class="n">step</span><span class="p">);</span>
+</pre></div>
+
+<p><em>Demonstration Windows Forms Solution (OdeTestWS project, build can be found at /DemonstrationApplication.zip ):</em></p>
+
+<p><img src="/WinFormsODEGraphDemoDefaultNSteps.PNG" alt="Windows Forms using ZedGraph   ODE solver Demo application"><img src="/WinFormsODEGraphDemoDefaultSolver.PNG" alt="Windows Forms using ZedGraph   ODE solver Demo application"></p>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/OlegJakushkin/CSharpOdeLibrary/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/OlegJakushkin/CSharpOdeLibrary/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/OlegJakushkin/CSharpOdeLibrary"></a> is maintained by <a href="https://github.com/OlegJakushkin">OlegJakushkin</a>.</p>
+
+          <p>This page was generated by <a href="pages.github.com">GitHub Pages</a> using the Architect theme by <a href="http://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
