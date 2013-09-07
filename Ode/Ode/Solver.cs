@@ -17,49 +17,18 @@ namespace OdeLibrary
 {
     public class Solver : IDisposable
     {
-        protected bool SwigcMemOwn;
-        private HandleRef _swigCPtr;
+        private HandleRef swigCPtr;
+        protected bool swigCMemOwn;
 
         internal Solver(IntPtr cPtr, bool cMemoryOwn)
         {
-            SwigcMemOwn = cMemoryOwn;
-            _swigCPtr = new HandleRef(this, cPtr);
+            swigCMemOwn = cMemoryOwn;
+            swigCPtr = new HandleRef(this, cPtr);
         }
 
-        public Solver() : this(CorePinvoke.new_Solver(), true)
+        internal static HandleRef getCPtr(Solver obj)
         {
-        }
-
-        public StepperTypeCode StepperCode
-        {
-            set { CorePinvoke.Solver_StepperCode_set(_swigCPtr, (int) value); }
-            get
-            {
-                var ret = (StepperTypeCode) CorePinvoke.Solver_StepperCode_get(_swigCPtr);
-                return ret;
-            }
-        }
-
-        public virtual void Dispose()
-        {
-            lock (this)
-            {
-                if (_swigCPtr.Handle != IntPtr.Zero)
-                {
-                    if (SwigcMemOwn)
-                    {
-                        SwigcMemOwn = false;
-                        CorePinvoke.delete_Solver(_swigCPtr);
-                    }
-                    _swigCPtr = new HandleRef(null, IntPtr.Zero);
-                }
-                GC.SuppressFinalize(this);
-            }
-        }
-
-        internal static HandleRef GetCPtr(Solver obj)
-        {
-            return (obj == null) ? new HandleRef(null, IntPtr.Zero) : obj._swigCPtr;
+            return (obj == null) ? new HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
         }
 
         ~Solver()
@@ -67,37 +36,68 @@ namespace OdeLibrary
             Dispose();
         }
 
+        public virtual void Dispose()
+        {
+            lock (this)
+            {
+                if (swigCPtr.Handle != IntPtr.Zero)
+                {
+                    if (swigCMemOwn)
+                    {
+                        swigCMemOwn = false;
+                        CorePINVOKE.delete_Solver(swigCPtr);
+                    }
+                    swigCPtr = new HandleRef(null, IntPtr.Zero);
+                }
+                GC.SuppressFinalize(this);
+            }
+        }
+
+        public StepperTypeCode StepperCode
+        {
+            set { CorePINVOKE.Solver_StepperCode_set(swigCPtr, (int) value); }
+            get
+            {
+                var ret = (StepperTypeCode) CorePINVOKE.Solver_StepperCode_get(swigCPtr);
+                return ret;
+            }
+        }
+
         public int ConvenienceSolve(Ode od, double from, double step, double to)
         {
-            var ret = CorePinvoke.Solver_ConvenienceSolve(_swigCPtr, Ode.GetCPtr(od), from, step, to);
+            var ret = CorePINVOKE.Solver_ConvenienceSolve(swigCPtr, Ode.getCPtr(od), from, step, to);
             return ret;
         }
 
         public int Solve(Ode ode, double from, double step, double to,
                          IntegrateFunctionTypeCode integrateFunctionTypeCode)
         {
-            var ret = CorePinvoke.Solver_Solve__SWIG_0(_swigCPtr, Ode.GetCPtr(ode), from, step, to,
+            var ret = CorePINVOKE.Solver_Solve__SWIG_0(swigCPtr, Ode.getCPtr(ode), from, step, to,
                                                        (int) integrateFunctionTypeCode);
             return ret;
         }
 
         public int Solve(Ode ode, double from, double step, double to)
         {
-            var ret = CorePinvoke.Solver_Solve__SWIG_1(_swigCPtr, Ode.GetCPtr(ode), from, step, to);
+            var ret = CorePINVOKE.Solver_Solve__SWIG_1(swigCPtr, Ode.getCPtr(ode), from, step, to);
             return ret;
         }
 
         public int Solve(Ode ode, double from, double step, int stepsCount)
         {
-            var ret = CorePinvoke.Solver_Solve__SWIG_2(_swigCPtr, Ode.GetCPtr(ode), from, step, stepsCount);
+            var ret = CorePINVOKE.Solver_Solve__SWIG_2(swigCPtr, Ode.getCPtr(ode), from, step, stepsCount);
             return ret;
         }
 
         public int Solve(Ode ode, StateType timePoints, double step)
         {
-            var ret = CorePinvoke.Solver_Solve__SWIG_3(_swigCPtr, Ode.GetCPtr(ode), StateType.GetCPtr(timePoints), step);
-            if (CorePinvoke.SWIGPendingException.Pending) throw CorePinvoke.SWIGPendingException.Retrieve();
+            var ret = CorePINVOKE.Solver_Solve__SWIG_3(swigCPtr, Ode.getCPtr(ode), StateType.getCPtr(timePoints), step);
+            if (CorePINVOKE.SWIGPendingException.Pending) throw CorePINVOKE.SWIGPendingException.Retrieve();
             return ret;
+        }
+
+        public Solver() : this(CorePINVOKE.new_Solver(), true)
+        {
         }
     }
 }

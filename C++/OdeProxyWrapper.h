@@ -11,12 +11,12 @@
 #ifndef SWIG_Core_WRAP_H_
 #define SWIG_Core_WRAP_H_
 
-class SwigDirector_Ode : public OdeProxy::Ode, public Swig::Director {
+class SwigDirector_Ode : public OdeProxy::OdeTemplate< double >, public Swig::Director {
 
 public:
     SwigDirector_Ode();
-    virtual void system(OdeProxy::StateType const &x, OdeProxy::StateType &dxdt, double t);
-    virtual void observer(OdeProxy::StateType const &x, double t);
+    virtual void system(OdeProxy::OdeTemplate< double >::StateType const &x, OdeProxy::OdeTemplate< double >::StateType &dxdt, double t);
+    virtual void observer(OdeProxy::OdeTemplate< double >::StateType const &x, double t);
     virtual ~SwigDirector_Ode();
 
     typedef void (SWIGSTDCALL* SWIG_Callback0_t)(void *, void *, double);

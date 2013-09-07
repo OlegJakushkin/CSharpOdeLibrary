@@ -9,6 +9,7 @@
 #region
 
 using System;
+using System.Reflection;
 using System.Runtime.InteropServices;
 
 #endregion
@@ -17,62 +18,18 @@ namespace OdeLibrary
 {
     public class Ode : IDisposable
     {
-        public delegate void SwigDelegateOde0(IntPtr x, IntPtr dxdt, double t);
-
-        public delegate void SwigDelegateOde1(IntPtr x, double t);
-
-        private static readonly Type[] SWIGMethodTypes0 = new[]
-            {typeof (StateType), typeof (StateType), typeof (double)};
-
-        private static readonly Type[] SWIGMethodTypes1 = new[] {typeof (StateType), typeof (double)};
-
-        protected bool SwigcMemOwn;
-        private HandleRef _swigCPtr;
-        private SwigDelegateOde0 _swigDelegate0;
-        private SwigDelegateOde1 _swigDelegate1;
+        private HandleRef swigCPtr;
+        protected bool swigCMemOwn;
 
         internal Ode(IntPtr cPtr, bool cMemoryOwn)
         {
-            SwigcMemOwn = cMemoryOwn;
-            _swigCPtr = new HandleRef(this, cPtr);
+            swigCMemOwn = cMemoryOwn;
+            swigCPtr = new HandleRef(this, cPtr);
         }
 
-        public Ode() : this(CorePinvoke.new_Ode(), true)
+        internal static HandleRef getCPtr(Ode obj)
         {
-            SwigDirectorConnect();
-        }
-
-        public StateType InitialConditions
-        {
-            set { CorePinvoke.Ode_InitialConditions_set(_swigCPtr, StateType.GetCPtr(value)); }
-            get
-            {
-                var cPtr = CorePinvoke.Ode_InitialConditions_get(_swigCPtr);
-                var ret = (cPtr == IntPtr.Zero) ? null : new StateType(cPtr, false);
-                return ret;
-            }
-        }
-
-        public virtual void Dispose()
-        {
-            lock (this)
-            {
-                if (_swigCPtr.Handle != IntPtr.Zero)
-                {
-                    if (SwigcMemOwn)
-                    {
-                        SwigcMemOwn = false;
-                        CorePinvoke.delete_Ode(_swigCPtr);
-                    }
-                    _swigCPtr = new HandleRef(null, IntPtr.Zero);
-                }
-                GC.SuppressFinalize(this);
-            }
-        }
-
-        internal static HandleRef GetCPtr(Ode obj)
-        {
-            return (obj == null) ? new HandleRef(null, IntPtr.Zero) : obj._swigCPtr;
+            return (obj == null) ? new HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
         }
 
         ~Ode()
@@ -80,43 +37,71 @@ namespace OdeLibrary
             Dispose();
         }
 
-// ReSharper disable InconsistentNaming
-        protected virtual void system(StateType x, StateType dxdt, double t)
-// ReSharper restore InconsistentNaming
+        public virtual void Dispose()
         {
-            if (SwigDerivedClassHasMethod("system", SWIGMethodTypes0))
-                CorePinvoke.Ode_systemSwigExplicitOde(_swigCPtr, StateType.GetCPtr(x), StateType.GetCPtr(dxdt), t);
-            else CorePinvoke.Ode_system(_swigCPtr, StateType.GetCPtr(x), StateType.GetCPtr(dxdt), t);
-            if (CorePinvoke.SWIGPendingException.Pending) throw CorePinvoke.SWIGPendingException.Retrieve();
+            lock (this)
+            {
+                if (swigCPtr.Handle != IntPtr.Zero)
+                {
+                    if (swigCMemOwn)
+                    {
+                        swigCMemOwn = false;
+                        CorePINVOKE.delete_Ode(swigCPtr);
+                    }
+                    swigCPtr = new HandleRef(null, IntPtr.Zero);
+                }
+                GC.SuppressFinalize(this);
+            }
         }
 
-// ReSharper disable InconsistentNaming
-        protected virtual void observer(StateType x, double t)
-// ReSharper restore InconsistentNaming
+        protected virtual void system(StateType x, StateType dxdt, double t)
         {
-            if (SwigDerivedClassHasMethod("observer", SWIGMethodTypes1))
-                CorePinvoke.Ode_observerSwigExplicitOde(_swigCPtr, StateType.GetCPtr(x), t);
-            else CorePinvoke.Ode_observer(_swigCPtr, StateType.GetCPtr(x), t);
-            if (CorePinvoke.SWIGPendingException.Pending) throw CorePinvoke.SWIGPendingException.Retrieve();
+            if (SwigDerivedClassHasMethod("system", swigMethodTypes0))
+                CorePINVOKE.Ode_systemSwigExplicitOde(swigCPtr, StateType.getCPtr(x), StateType.getCPtr(dxdt), t);
+            else CorePINVOKE.Ode_system(swigCPtr, StateType.getCPtr(x), StateType.getCPtr(dxdt), t);
+            if (CorePINVOKE.SWIGPendingException.Pending) throw CorePINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        protected virtual void observer(StateType x, double t)
+        {
+            if (SwigDerivedClassHasMethod("observer", swigMethodTypes1))
+                CorePINVOKE.Ode_observerSwigExplicitOde(swigCPtr, StateType.getCPtr(x), t);
+            else CorePINVOKE.Ode_observer(swigCPtr, StateType.getCPtr(x), t);
+            if (CorePINVOKE.SWIGPendingException.Pending) throw CorePINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public StateType InitialConditions
+        {
+            set { CorePINVOKE.Ode_InitialConditions_set(swigCPtr, StateType.getCPtr(value)); }
+            get
+            {
+                var cPtr = CorePINVOKE.Ode_InitialConditions_get(swigCPtr);
+                var ret = (cPtr == IntPtr.Zero) ? null : new StateType(cPtr, false);
+                return ret;
+            }
+        }
+
+        public Ode() : this(CorePINVOKE.new_Ode(), true)
+        {
+            SwigDirectorConnect();
         }
 
         private void SwigDirectorConnect()
         {
-            if (SwigDerivedClassHasMethod("system", SWIGMethodTypes0))
-                _swigDelegate0 = SwigDirectorsystem;
-            if (SwigDerivedClassHasMethod("observer", SWIGMethodTypes1))
-                _swigDelegate1 = SwigDirectorobserver;
-            CorePinvoke.Ode_director_connect(_swigCPtr, _swigDelegate0, _swigDelegate1);
+            if (SwigDerivedClassHasMethod("system", swigMethodTypes0))
+                swigDelegate0 = SwigDirectorsystem;
+            if (SwigDerivedClassHasMethod("observer", swigMethodTypes1))
+                swigDelegate1 = SwigDirectorobserver;
+            CorePINVOKE.Ode_director_connect(swigCPtr, swigDelegate0, swigDelegate1);
         }
 
         private bool SwigDerivedClassHasMethod(string methodName, Type[] methodTypes)
         {
-            var methodInfo = GetType()
+            var methodInfo = this.GetType()
                                  .GetMethod(methodName,
-                                            System.Reflection.BindingFlags.Public |
-                                            System.Reflection.BindingFlags.NonPublic |
-                                            System.Reflection.BindingFlags.Instance, null, methodTypes, null);
-            var hasDerivedMethod = methodInfo.DeclaringType != null && methodInfo.DeclaringType.IsSubclassOf(typeof (Ode));
+                                            BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance, null,
+                                            methodTypes, null);
+            var hasDerivedMethod = methodInfo.DeclaringType.IsSubclassOf(typeof (Ode));
             return hasDerivedMethod;
         }
 
@@ -129,5 +114,17 @@ namespace OdeLibrary
         {
             observer(new StateType(x, false), t);
         }
+
+        public delegate void SwigDelegateOde_0(IntPtr x, IntPtr dxdt, double t);
+
+        public delegate void SwigDelegateOde_1(IntPtr x, double t);
+
+        private SwigDelegateOde_0 swigDelegate0;
+        private SwigDelegateOde_1 swigDelegate1;
+
+        private static readonly Type[] swigMethodTypes0 = new[]
+            {typeof (StateType), typeof (StateType), typeof (double)};
+
+        private static readonly Type[] swigMethodTypes1 = new[] {typeof (StateType), typeof (double)};
     }
 }

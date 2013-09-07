@@ -9,29 +9,31 @@
 #region
 
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
 #endregion
 
 namespace OdeLibrary
 {
-    public class StateType : IDisposable
+    public class StateType : IDisposable, IEnumerable
 #if !SWIG_DOTNET_1
-                             , System.Collections.Generic.IList<double>
+                             , IList<double>
 #endif
     {
-        private HandleRef _swigCPtr;
-        protected bool SwigcMemOwn;
+        private HandleRef swigCPtr;
+        protected bool swigCMemOwn;
 
         internal StateType(IntPtr cPtr, bool cMemoryOwn)
         {
-            SwigcMemOwn = cMemoryOwn;
-            _swigCPtr = new HandleRef(this, cPtr);
+            swigCMemOwn = cMemoryOwn;
+            swigCPtr = new HandleRef(this, cPtr);
         }
 
-        internal static HandleRef GetCPtr(StateType obj)
+        internal static HandleRef getCPtr(StateType obj)
         {
-            return (obj == null) ? new HandleRef(null, IntPtr.Zero) : obj._swigCPtr;
+            return (obj == null) ? new HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
         }
 
         ~StateType()
@@ -43,26 +45,26 @@ namespace OdeLibrary
         {
             lock (this)
             {
-                if (_swigCPtr.Handle != IntPtr.Zero)
+                if (swigCPtr.Handle != IntPtr.Zero)
                 {
-                    if (SwigcMemOwn)
+                    if (swigCMemOwn)
                     {
-                        SwigcMemOwn = false;
-                        CorePinvoke.delete_StateType(_swigCPtr);
+                        swigCMemOwn = false;
+                        CorePINVOKE.delete_StateType(swigCPtr);
                     }
-                    _swigCPtr = new HandleRef(null, IntPtr.Zero);
+                    swigCPtr = new HandleRef(null, IntPtr.Zero);
                 }
                 GC.SuppressFinalize(this);
             }
         }
 
-        public StateType(System.Collections.ICollection c) : this()
+        public StateType(ICollection c) : this()
         {
             if (c == null)
                 throw new ArgumentNullException("c");
             foreach (double element in c)
             {
-                Add(element);
+                this.Add(element);
             }
         }
 
@@ -78,8 +80,8 @@ namespace OdeLibrary
 
         public double this[int index]
         {
-            get { return Getitem(index); }
-            set { Setitem(index, value); }
+            get { return getitem(index); }
+            set { setitem(index, value); }
         }
 
         public int Capacity
@@ -87,17 +89,15 @@ namespace OdeLibrary
             get { return (int) capacity(); }
             set
             {
-                if (value < Size())
-// ReSharper disable NotResolvedInText
+                if (value < size())
                     throw new ArgumentOutOfRangeException("Capacity");
-// ReSharper restore NotResolvedInText
-                Reserve((uint) value);
+                reserve((uint) value);
             }
         }
 
         public int Count
         {
-            get { return (int) Size(); }
+            get { return (int) size(); }
         }
 
         public bool IsSynchronized
@@ -111,7 +111,7 @@ namespace OdeLibrary
         public void CopyTo(double[] array)
 #endif
         {
-            CopyTo(0, array, 0, Count);
+            CopyTo(0, array, 0, this.Count);
         }
 
 #if SWIG_DOTNET_1
@@ -120,7 +120,7 @@ namespace OdeLibrary
         public void CopyTo(double[] array, int arrayIndex)
 #endif
         {
-            CopyTo(0, array, arrayIndex, Count);
+            CopyTo(0, array, arrayIndex, this.Count);
         }
 
 #if SWIG_DOTNET_1
@@ -139,20 +139,20 @@ namespace OdeLibrary
                 throw new ArgumentOutOfRangeException("count", "Value is less than zero");
             if (array.Rank > 1)
                 throw new ArgumentException("Multi dimensional array.", "array");
-            if (index + count > Count || arrayIndex + count > array.Length)
+            if (index + count > this.Count || arrayIndex + count > array.Length)
                 throw new ArgumentException("Number of elements to copy is too large.");
             for (var i = 0; i < count; i++)
-                array.SetValue(Getitemcopy(index + i), arrayIndex + i);
+                array.SetValue(getitemcopy(index + i), arrayIndex + i);
         }
 
 #if !SWIG_DOTNET_1
-        System.Collections.Generic.IEnumerator<double> System.Collections.Generic.IEnumerable<double>.GetEnumerator()
+        IEnumerator<double> IEnumerable<double>.GetEnumerator()
         {
             return new StateTypeEnumerator(this);
         }
 #endif
 
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+        IEnumerator IEnumerable.GetEnumerator()
         {
             return new StateTypeEnumerator(this);
         }
@@ -167,22 +167,22 @@ namespace OdeLibrary
         /// whenever the collection is modified. This has been done for changes in the size of the
         /// collection but not when one of the elements of the collection is modified as it is a bit
         /// tricky to detect unmanaged code that modifies the collection under our feet.
-        public sealed class StateTypeEnumerator : 
+        public sealed class StateTypeEnumerator : IEnumerator
 #if !SWIG_DOTNET_1
-                                                  System.Collections.Generic.IEnumerator<double>
+                                                  , IEnumerator<double>
 #endif
         {
-            private readonly StateType _collectionRef;
-            private int _currentIndex;
-            private object _currentObject;
-            private readonly int _currentSize;
+            private readonly StateType collectionRef;
+            private int currentIndex;
+            private object currentObject;
+            private readonly int currentSize;
 
             public StateTypeEnumerator(StateType collection)
             {
-                _collectionRef = collection;
-                _currentIndex = -1;
-                _currentObject = null;
-                _currentSize = _collectionRef.Count;
+                collectionRef = collection;
+                currentIndex = -1;
+                currentObject = null;
+                currentSize = collectionRef.Count;
             }
 
             // Type-safe iterator Current
@@ -190,43 +190,43 @@ namespace OdeLibrary
             {
                 get
                 {
-                    if (_currentIndex == -1)
+                    if (currentIndex == -1)
                         throw new InvalidOperationException("Enumeration not started.");
-                    if (_currentIndex > _currentSize - 1)
+                    if (currentIndex > currentSize - 1)
                         throw new InvalidOperationException("Enumeration finished.");
-                    if (_currentObject == null)
+                    if (currentObject == null)
                         throw new InvalidOperationException("Collection modified.");
-                    return (double) _currentObject;
+                    return (double) currentObject;
                 }
             }
 
             // Type-unsafe IEnumerator.Current
-            object System.Collections.IEnumerator.Current
+            object IEnumerator.Current
             {
                 get { return Current; }
             }
 
             public bool MoveNext()
             {
-                var size = _collectionRef.Count;
-                var moveOkay = (_currentIndex + 1 < size) && (size == _currentSize);
+                var size = collectionRef.Count;
+                var moveOkay = (currentIndex + 1 < size) && (size == currentSize);
                 if (moveOkay)
                 {
-                    _currentIndex++;
-                    _currentObject = _collectionRef[_currentIndex];
+                    currentIndex++;
+                    currentObject = collectionRef[currentIndex];
                 }
                 else
                 {
-                    _currentObject = null;
+                    currentObject = null;
                 }
                 return moveOkay;
             }
 
             public void Reset()
             {
-                _currentIndex = -1;
-                _currentObject = null;
-                if (_collectionRef.Count != _currentSize)
+                currentIndex = -1;
+                currentObject = null;
+                if (collectionRef.Count != currentSize)
                 {
                     throw new InvalidOperationException("Collection modified.");
                 }
@@ -235,159 +235,157 @@ namespace OdeLibrary
 #if !SWIG_DOTNET_1
             public void Dispose()
             {
-                _currentIndex = -1;
-                _currentObject = null;
+                currentIndex = -1;
+                currentObject = null;
             }
 #endif
         }
 
         public void Clear()
         {
-            CorePinvoke.StateType_Clear(_swigCPtr);
+            CorePINVOKE.StateType_Clear(swigCPtr);
         }
 
         public void Add(double x)
         {
-            CorePinvoke.StateType_Add(_swigCPtr, x);
+            CorePINVOKE.StateType_Add(swigCPtr, x);
         }
 
-        private uint Size()
+        private uint size()
         {
-            var ret = CorePinvoke.StateType_size(_swigCPtr);
+            var ret = CorePINVOKE.StateType_size(swigCPtr);
             return ret;
         }
 
-// ReSharper disable InconsistentNaming
         private uint capacity()
-// ReSharper restore InconsistentNaming
         {
-            var ret = CorePinvoke.StateType_capacity(_swigCPtr);
+            var ret = CorePINVOKE.StateType_capacity(swigCPtr);
             return ret;
         }
 
-        private void Reserve(uint n)
+        private void reserve(uint n)
         {
-            CorePinvoke.StateType_reserve(_swigCPtr, n);
+            CorePINVOKE.StateType_reserve(swigCPtr, n);
         }
 
-        public StateType() : this(CorePinvoke.new_StateType__SWIG_0(), true)
+        public StateType() : this(CorePINVOKE.new_StateType__SWIG_0(), true)
         {
         }
 
-        public StateType(StateType other) : this(CorePinvoke.new_StateType__SWIG_1(GetCPtr(other)), true)
+        public StateType(StateType other) : this(CorePINVOKE.new_StateType__SWIG_1(getCPtr(other)), true)
         {
-            if (CorePinvoke.SWIGPendingException.Pending) throw CorePinvoke.SWIGPendingException.Retrieve();
+            if (CorePINVOKE.SWIGPendingException.Pending) throw CorePINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public StateType(int capacity) : this(CorePinvoke.new_StateType__SWIG_2(capacity), true)
+        public StateType(int capacity) : this(CorePINVOKE.new_StateType__SWIG_2(capacity), true)
         {
-            if (CorePinvoke.SWIGPendingException.Pending) throw CorePinvoke.SWIGPendingException.Retrieve();
+            if (CorePINVOKE.SWIGPendingException.Pending) throw CorePINVOKE.SWIGPendingException.Retrieve();
         }
 
-        private double Getitemcopy(int index)
+        private double getitemcopy(int index)
         {
-            var ret = CorePinvoke.StateType_getitemcopy(_swigCPtr, index);
-            if (CorePinvoke.SWIGPendingException.Pending) throw CorePinvoke.SWIGPendingException.Retrieve();
+            var ret = CorePINVOKE.StateType_getitemcopy(swigCPtr, index);
+            if (CorePINVOKE.SWIGPendingException.Pending) throw CorePINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        private double Getitem(int index)
+        private double getitem(int index)
         {
-            var ret = CorePinvoke.StateType_getitem(_swigCPtr, index);
-            if (CorePinvoke.SWIGPendingException.Pending) throw CorePinvoke.SWIGPendingException.Retrieve();
+            var ret = CorePINVOKE.StateType_getitem(swigCPtr, index);
+            if (CorePINVOKE.SWIGPendingException.Pending) throw CorePINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        private void Setitem(int index, double val)
+        private void setitem(int index, double val)
         {
-            CorePinvoke.StateType_setitem(_swigCPtr, index, val);
-            if (CorePinvoke.SWIGPendingException.Pending) throw CorePinvoke.SWIGPendingException.Retrieve();
+            CorePINVOKE.StateType_setitem(swigCPtr, index, val);
+            if (CorePINVOKE.SWIGPendingException.Pending) throw CorePINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void AddRange(StateType values)
         {
-            CorePinvoke.StateType_AddRange(_swigCPtr, GetCPtr(values));
-            if (CorePinvoke.SWIGPendingException.Pending) throw CorePinvoke.SWIGPendingException.Retrieve();
+            CorePINVOKE.StateType_AddRange(swigCPtr, getCPtr(values));
+            if (CorePINVOKE.SWIGPendingException.Pending) throw CorePINVOKE.SWIGPendingException.Retrieve();
         }
 
         public StateType GetRange(int index, int count)
         {
-            var cPtr = CorePinvoke.StateType_GetRange(_swigCPtr, index, count);
+            var cPtr = CorePINVOKE.StateType_GetRange(swigCPtr, index, count);
             var ret = (cPtr == IntPtr.Zero) ? null : new StateType(cPtr, true);
-            if (CorePinvoke.SWIGPendingException.Pending) throw CorePinvoke.SWIGPendingException.Retrieve();
+            if (CorePINVOKE.SWIGPendingException.Pending) throw CorePINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void Insert(int index, double x)
         {
-            CorePinvoke.StateType_Insert(_swigCPtr, index, x);
-            if (CorePinvoke.SWIGPendingException.Pending) throw CorePinvoke.SWIGPendingException.Retrieve();
+            CorePINVOKE.StateType_Insert(swigCPtr, index, x);
+            if (CorePINVOKE.SWIGPendingException.Pending) throw CorePINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void InsertRange(int index, StateType values)
         {
-            CorePinvoke.StateType_InsertRange(_swigCPtr, index, GetCPtr(values));
-            if (CorePinvoke.SWIGPendingException.Pending) throw CorePinvoke.SWIGPendingException.Retrieve();
+            CorePINVOKE.StateType_InsertRange(swigCPtr, index, getCPtr(values));
+            if (CorePINVOKE.SWIGPendingException.Pending) throw CorePINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void RemoveAt(int index)
         {
-            CorePinvoke.StateType_RemoveAt(_swigCPtr, index);
-            if (CorePinvoke.SWIGPendingException.Pending) throw CorePinvoke.SWIGPendingException.Retrieve();
+            CorePINVOKE.StateType_RemoveAt(swigCPtr, index);
+            if (CorePINVOKE.SWIGPendingException.Pending) throw CorePINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void RemoveRange(int index, int count)
         {
-            CorePinvoke.StateType_RemoveRange(_swigCPtr, index, count);
-            if (CorePinvoke.SWIGPendingException.Pending) throw CorePinvoke.SWIGPendingException.Retrieve();
+            CorePINVOKE.StateType_RemoveRange(swigCPtr, index, count);
+            if (CorePINVOKE.SWIGPendingException.Pending) throw CorePINVOKE.SWIGPendingException.Retrieve();
         }
 
         public static StateType Repeat(double value, int count)
         {
-            var cPtr = CorePinvoke.StateType_Repeat(value, count);
+            var cPtr = CorePINVOKE.StateType_Repeat(value, count);
             var ret = (cPtr == IntPtr.Zero) ? null : new StateType(cPtr, true);
-            if (CorePinvoke.SWIGPendingException.Pending) throw CorePinvoke.SWIGPendingException.Retrieve();
+            if (CorePINVOKE.SWIGPendingException.Pending) throw CorePINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void Reverse()
         {
-            CorePinvoke.StateType_Reverse__SWIG_0(_swigCPtr);
+            CorePINVOKE.StateType_Reverse__SWIG_0(swigCPtr);
         }
 
         public void Reverse(int index, int count)
         {
-            CorePinvoke.StateType_Reverse__SWIG_1(_swigCPtr, index, count);
-            if (CorePinvoke.SWIGPendingException.Pending) throw CorePinvoke.SWIGPendingException.Retrieve();
+            CorePINVOKE.StateType_Reverse__SWIG_1(swigCPtr, index, count);
+            if (CorePINVOKE.SWIGPendingException.Pending) throw CorePINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void SetRange(int index, StateType values)
         {
-            CorePinvoke.StateType_SetRange(_swigCPtr, index, GetCPtr(values));
-            if (CorePinvoke.SWIGPendingException.Pending) throw CorePinvoke.SWIGPendingException.Retrieve();
+            CorePINVOKE.StateType_SetRange(swigCPtr, index, getCPtr(values));
+            if (CorePINVOKE.SWIGPendingException.Pending) throw CorePINVOKE.SWIGPendingException.Retrieve();
         }
 
         public bool Contains(double value)
         {
-            var ret = CorePinvoke.StateType_Contains(_swigCPtr, value);
+            var ret = CorePINVOKE.StateType_Contains(swigCPtr, value);
             return ret;
         }
 
         public int IndexOf(double value)
         {
-            var ret = CorePinvoke.StateType_IndexOf(_swigCPtr, value);
+            var ret = CorePINVOKE.StateType_IndexOf(swigCPtr, value);
             return ret;
         }
 
         public int LastIndexOf(double value)
         {
-            var ret = CorePinvoke.StateType_LastIndexOf(_swigCPtr, value);
+            var ret = CorePINVOKE.StateType_LastIndexOf(swigCPtr, value);
             return ret;
         }
 
         public bool Remove(double value)
         {
-            var ret = CorePinvoke.StateType_Remove(_swigCPtr, value);
+            var ret = CorePINVOKE.StateType_Remove(swigCPtr, value);
             return ret;
         }
     }

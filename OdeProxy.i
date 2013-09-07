@@ -2,16 +2,23 @@
 swig.exe -c++ -csharp -namespace OdeLibrary -outdir ./C#/ -o ./C++/OdeProxyWrapper.cxx OdeProxy.i
 */
 
-%module(directors="1") Core
-
 %{
-#include "C++/OdeProxy.h"
+#include "OdeProxy.h"
 %}
+
+%module(directors="1") Core
 
 %include "std_vector.i"
 
 %template(StateType) std::vector<double>;
 
-%feature("director") OdeProxy::Ode;
-
 %include "C++/OdeProxy.h"
+
+%feature("director") OdeProxy::OdeTemplate<double>;
+
+
+%template(Ode) OdeProxy::OdeTemplate<double>;
+%template(Solver) OdeProxy::SolverTemplate<double>;
+
+%feature("director") OdeProxy::OdeTemplate<double>;
+
