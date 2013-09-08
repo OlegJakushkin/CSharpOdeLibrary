@@ -1,17 +1,17 @@
 #define PP_Ode_Specialization(TypeName) \
 	template <> \
-	void OdeTemplate<TypeName>::system(const std::vector<TypeName> &x, std::vector<TypeName> &dxdt, double t); \
+	void OdeProxy::OdeTemplate<TypeName>::system(const std::vector<TypeName> &x, std::vector<TypeName> &dxdt, double t); \
 	template <> \
-	void OdeTemplate<TypeName>::observer(const std::vector<TypeName> &x, double t);
+	void OdeProxy::OdeTemplate<TypeName>::observer(const std::vector<TypeName> &x, double t);
 
 #define PP_Solver_Specialization(TypeName) \
 	template <> \
-	int SolverTemplate<TypeName>::ConvenienceSolve(OdeTemplate<TypeName> *od, TypeName from, TypeName step, TypeName to); \
+	int OdeProxy::SolverTemplate<TypeName>::ConvenienceSolve(OdeProxy::OdeTemplate<TypeName> *od, double from, double step, double to); \
 	template <> \
-	int SolverTemplate<TypeName>::Solve(OdeTemplate<TypeName> *ode, TypeName from, TypeName step, TypeName to, \
-	IntegrateFunctionTypeCode integrateFunctionTypeCode); \
+	int OdeProxy::SolverTemplate<TypeName>::Solve(OdeProxy::OdeTemplate<TypeName> *ode, double from, double step, double to, \
+	OdeProxy::IntegrateFunctionTypeCode integrateFunctionTypeCode); \
 	template <> \
-	int SolverTemplate<TypeName>::Solve(OdeTemplate<TypeName> *ode, TypeName from, TypeName step, int stepsCount); \
+	int OdeProxy::SolverTemplate<TypeName>::Solve(OdeProxy::OdeTemplate<TypeName> *ode, double from, double step, int stepsCount); \
 	template <> \
-	int SolverTemplate<TypeName>::Solve(OdeTemplate<TypeName> *ode, std::vector<double> &timePoints, TypeName step); 
+	int OdeProxy::SolverTemplate<TypeName>::Solve(OdeProxy::OdeTemplate<TypeName> *ode, std::vector<double> &timePoints, double step); 
 

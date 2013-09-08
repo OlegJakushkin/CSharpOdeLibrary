@@ -11,8 +11,8 @@ struct IntegrateCountedSteps
 	typedef std::vector< T > StateType;
 
 	int StepsCount;
-	T From;
-	T Step;
+	double From;
+	double Step;
 
 	template<class Stepper>
 	size_t operator()(OdeTemplate<T> * ode, const Stepper & stepper) {
@@ -107,9 +107,9 @@ struct IntegrateAdaptiveConst
 	typedef std::vector< T > StateType;
 
 	IntegrateFunctionTypeCode integrateFunction;
-	T From;
-	T Step;
-	T To;
+	double From;
+	double Step;
+	double To;
 
 	template<class Stepper>
 	size_t operator()(OdeTemplate<T> * ode, const Stepper & stepper) {

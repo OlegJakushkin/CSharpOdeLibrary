@@ -41,11 +41,6 @@ namespace OdeProxy {
 		virtual void observer(const StateType &x, double t);
 		StateType InitialConditions;
 		virtual ~OdeTemplate() {}
-
-		#ifndef SWIG
-		// Ode<double>
-		PP_Ode_Specialization(double)
-		#endif
 	};
 
 	template <class T>
@@ -55,18 +50,23 @@ namespace OdeProxy {
 
 		StepperTypeCode StepperCode;
 
-		int ConvenienceSolve(OdeTemplate<T> *od, T from, T step, T to);
+		int ConvenienceSolve(OdeTemplate<T> *od, double from, double step, double to);
 
-		int Solve(OdeTemplate<T> *ode, T from, T step, T to,
+		int Solve(OdeTemplate<T> *ode, double from, double step, double to,
 				  IntegrateFunctionTypeCode integrateFunctionTypeCode = IntegrateFunctionTypeCode::Adaptive);
-		int Solve(OdeTemplate<T> *ode, T from, T step, int stepsCount);
-		int Solve(OdeTemplate<T> *ode, std::vector<double> &timePoints, T step);
-
-		#ifndef SWIG
-		// Solver<double>
-		PP_Solver_Specialization(double)
-		#endif
+		int Solve(OdeTemplate<T> *ode, double from, double step, int stepsCount);
+		int Solve(OdeTemplate<T> *ode, std::vector<double> &timePoints, double step);
 	};
-};
+}
+
+#ifndef SWIG
+	PP_Ode_Specialization(double)
+	PP_Ode_Specialization(std::complex<double>)
+#endif
+
+#ifndef SWIG
+	PP_Solver_Specialization(double)
+	PP_Solver_Specialization(std::complex<double>)
+#endif
 
 #endif // ODEPROXY_H

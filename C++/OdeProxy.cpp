@@ -6,6 +6,8 @@
 
 using namespace std;
 using namespace OdeProxy;
+typedef std::complex<double> complexNumber;
+
 
 #define PP_Ode_Specialization_Implementation(TypeName) \
 template <> \
@@ -13,13 +15,13 @@ void OdeTemplate<TypeName>::system(const vector<TypeName> &x, vector<TypeName> &
     cout << "native system" << endl; \
 } \
 template <> \
-void OdeTemplate<double>::observer(const vector<TypeName> &x, double t) { \
+void OdeTemplate<TypeName>::observer(const vector<TypeName> &x, double t) { \
 	cout << "native system" << endl; \
 }
 
 #define PP_Solver_Specialization_Implementation(TypeName) \
 template <> \
-int SolverTemplate<TypeName>::ConvenienceSolve(OdeTemplate<TypeName> *ode, TypeName from, TypeName step, TypeName to) { \
+int SolverTemplate<TypeName>::ConvenienceSolve(OdeTemplate<TypeName> *ode, double from, double step, double to) { \
     using namespace boost::numeric::odeint; \
 	\
     boost::function<void(const vector<TypeName> & x, vector<TypeName> & dxdt, double t)> action = \
@@ -29,9 +31,9 @@ int SolverTemplate<TypeName>::ConvenienceSolve(OdeTemplate<TypeName> *ode, TypeN
 } \
 template <> \
 int SolverTemplate<TypeName>::Solve(OdeTemplate<TypeName> *ode, \
-                                  TypeName from, \
-                                  TypeName step, \
-                                  TypeName to, \
+                                  double from, \
+                                  double step, \
+                                  double to, \
                                   IntegrateFunctionTypeCode integrateFunctionTypeCode) { \
     IntegrateAdaptiveConst<TypeName> integrate; \
     integrate.From = from; \
@@ -42,7 +44,7 @@ int SolverTemplate<TypeName>::Solve(OdeTemplate<TypeName> *ode, \
     return stepper(ode, StepperCode, integrate); \
 } \
 template <> \
-int SolverTemplate<TypeName>::Solve(OdeTemplate<TypeName> *ode, TypeName from, TypeName step, int stepsCount) { \
+int SolverTemplate<TypeName>::Solve(OdeTemplate<TypeName> *ode, double from, double step, int stepsCount) { \
     IntegrateCountedSteps<TypeName> integrate; \
     integrate.From = from; \
     integrate.Step = step; \
@@ -50,7 +52,7 @@ int SolverTemplate<TypeName>::Solve(OdeTemplate<TypeName> *ode, TypeName from, T
     SelectStepper<TypeName> stepper; \
     return stepper(ode, StepperCode, integrate); \
 } \
-int SolverTemplate<TypeName>::Solve(OdeTemplate<TypeName> *ode, StateType &timePoints, TypeName step) { \
+int SolverTemplate<TypeName>::Solve(OdeTemplate<TypeName> *ode, vector<double> &timePoints, double step) { \
     IntegrateTimed<TypeName> integrate(timePoints); \
     integrate.Step = step; \
     SelectStepper<TypeName> steper; \
@@ -60,3 +62,5 @@ int SolverTemplate<TypeName>::Solve(OdeTemplate<TypeName> *ode, StateType &timeP
 PP_Ode_Specialization_Implementation(double)
 PP_Solver_Specialization_Implementation(double)
 
+PP_Ode_Specialization_Implementation(complexNumber)
+PP_Solver_Specialization_Implementation(complexNumber)
