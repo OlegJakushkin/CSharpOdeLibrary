@@ -55,6 +55,22 @@ namespace OdeTest
 }
 ```
 
+or with **Complex Numbers**:
+```
+var stuartLandauOscillator = new ComplexLambdaOde
+{
+    InitialConditions =  new ComplexStateType {new Complex(1, 0)},
+    OdeObserver = (x, t) => Console.WriteLine("{0}", x[0]),
+    OdeSystem =
+    (x, dxdt, t) =>
+    {
+        dxdt[0] = complexEta * x[0] - (complexAlpha *  x[0].Norm()) * x[0];
+    }
+
+};
+```
+
+
 You can do it with our library assistance.
 
 Simple, Fast, Modern, C# ODE Solver
