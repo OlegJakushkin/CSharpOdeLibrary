@@ -38,10 +38,17 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="System" />
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Complex.cs" />
+    <Compile Include="ComplexOde.cs" />
+    <Compile Include="ComplexSolver.cs" />
+    <Compile Include="ComplexStateType.cs" />
+    <Compile Include="Core.cs" />
     <Compile Include="CorePINVOKE.cs" />
+    <Compile Include="Extensions\ComplexLambdaOde.cs" />
     <Compile Include="Extensions\LambdaOde.cs" />
     <Compile Include="GenerationFunctionTypeCode.cs" />
     <Compile Include="IntegrateFunctionTypeCode.cs" />
@@ -53,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <Compile Include="Extensions\Complex.Extensions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -37,10 +37,11 @@ namespace OdeProxy {
 	  public:
 		typedef std::vector<T> StateType;
 
-		virtual void system(const StateType &x, StateType &dxdt, double t);
-		virtual void observer(const StateType &x, double t);
 		StateType InitialConditions;
 		virtual ~OdeTemplate() {}
+
+		virtual void system(const StateType &x, StateType &dxdt, double t);
+		virtual void observer(const StateType &x, double t);
 	};
 
 	template <class T>
@@ -62,9 +63,7 @@ namespace OdeProxy {
 #ifndef SWIG
 	PP_Ode_Specialization(double)
 	PP_Ode_Specialization(std::complex<double>)
-#endif
 
-#ifndef SWIG
 	PP_Solver_Specialization(double)
 	PP_Solver_Specialization(std::complex<double>)
 #endif

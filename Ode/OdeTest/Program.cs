@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using OdeLibrary;
 
 namespace OdeTest
@@ -54,6 +55,44 @@ namespace OdeTest
 
             // Or at given time periods
             solver.Solve(lorenz, new StateType(new[] { 0, 10.0, 100.0, 1000.0 }), step);
+
+            Console.ReadLine();
+            Console.WriteLine("Complex Test");
+
+            var complexSolver = new ComplexSolver(); 
+
+            const double eta = 2;
+            const double alpha = 1;
+
+            var complexEta = new Complex(1, eta);
+            var complexAlpha = new Complex(1,alpha);
+
+            var stuartLandauOscillator = new ComplexLambdaOde
+            {
+                InitialConditions =  new ComplexStateType {new Complex(1, 0)},
+                OdeObserver = (x, t) => Console.WriteLine("{0}", x[0]),
+                OdeSystem =
+                (x, dxdt, t) =>
+                {
+                    dxdt[0] = complexEta * x[0] - (complexAlpha *  x[0].Norm()) * x[0];
+                }
+
+            };
+
+            // And all we need to solve it:
+            complexSolver.ConvenienceSolve(stuartLandauOscillator, from, to, step);
+
+            // We can select stepper that our stepper would use
+            complexSolver.StepperCode = StepperTypeCode.RungeKutta4;
+
+            // We can select how our IntegrateFunction will work: 
+            complexSolver.Solve(stuartLandauOscillator, from, step, to, IntegrateFunctionTypeCode.Adaptive);
+
+            // We can integrate for first N steps
+            complexSolver.Solve(stuartLandauOscillator, from, step, 5);
+
+            // Or at given time periods
+            complexSolver.Solve(stuartLandauOscillator, new StateType(new[] { 0, 10.0, 100.0, 1000.0 }), step);
 
             Console.ReadLine();
         }

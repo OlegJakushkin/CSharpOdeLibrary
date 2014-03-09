@@ -74,15 +74,20 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Core.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Ode\OdeLibrary.csproj">
-      <Project>{434B23D4-C778-4CBC-8949-B496940E9CBA}</Project>
+      <Project>{434b23d4-c778-4cbc-8949-b496940e9cba}</Project>
       <Name>OdeLibrary</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Core.dll">
+    <None Include="Core.pdb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
