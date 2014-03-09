@@ -74,18 +74,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Core.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Ode\OdeLibrary.csproj">
       <Project>{434b23d4-c778-4cbc-8949-b496940e9cba}</Project>
       <Name>OdeLibrary</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Core.pdb">
+    <None Include="Core.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

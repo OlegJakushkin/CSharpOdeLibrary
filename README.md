@@ -241,7 +241,7 @@ As wall as integration at given time points:
     solver.Solve(ode, new StateType(new[] { 0, 10.0, 100.0, 1000.0 }), step);
 ```
 
-*Demonstration Windows Forms Solution (OdeTestWS project, build can be found at /DemonstrationApplication.zip ):*
+*(Demonstration Windows Forms Solution)[https://github.com/OlegJakushkin/CSharpOdeLibrary/releases/tag/v1.0]:*
 
 ![Windows Forms using ZedGraph   ODE solver Demo application](/WinFormsODEGraphDemoDefaultNSteps.PNG)
 ![Windows Forms using ZedGraph   ODE solver Demo application](/WinFormsODEGraphDemoDefaultSolver.PNG)
