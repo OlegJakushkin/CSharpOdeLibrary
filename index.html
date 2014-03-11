@@ -13,14 +13,14 @@
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
-    <title>Csharpodelibrary by OlegJakushkin</title>
+    <title>CSharp ODE Library by OlegJakushkin</title>
   </head>
 
   <body>
     <header>
       <div class="inner">
-        <h1>Csharpodelibrary</h1>
-        <h2>Simple C# ODE Solver Library (Wrapper around Boost.OdeInt)</h2>
+        <h1>CSharp ODE Library</h1>
+        <h2>Simple C# ODE Solver Library</h2>
         <a href="https://github.com/OlegJakushkin/CSharpOdeLibrary" class="button"><small>View project on</small>GitHub</a>
       </div>
     </header>
@@ -31,13 +31,13 @@
           <h1>
 <a name="csharp-ode-library" class="anchor" href="#csharp-ode-library"><span class="octicon octicon-link"></span></a>CSharp Ode Library</h1>
 
-<p>CSharpOdeLibrary (LGPL, Boost license)</p>
+<p>CSharpOdeLibrary</p>
 
-<p>Simple C# ODE Solver Library (Wrapper around Boost.OdeInt). </p>
+<p>Simple C# ODE Solver Library (based on Boost.OdeInt). </p>
 
 <p>Say you want to define ODE system like that:</p>
 
-<div class="highlight"><pre>           <span class="kt">var</span> <span class="n">lorenz</span> <span class="p">=</span> <span class="k">new</span> <span class="n">LambdaOde</span>
+<div class="highlight highlight-CSharp"><pre>           <span class="kt">var</span> <span class="n">lorenz</span> <span class="p">=</span> <span class="k">new</span> <span class="n">LambdaOde</span>
             <span class="p">{</span>
                 <span class="n">From</span> <span class="p">=</span> <span class="m">0</span><span class="p">,</span>
                 <span class="n">To</span> <span class="p">=</span> <span class="m">25</span><span class="p">,</span>
@@ -58,7 +58,7 @@
 
 <p>Or as Your Own Class:</p>
 
-<div class="highlight"><pre><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<div class="highlight highlight-CSharp"><pre><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">OdeLibrary</span><span class="p">;</span>
 
 <span class="k">namespace</span> <span class="nn">OdeTest</span>
@@ -86,6 +86,21 @@
 <span class="p">}</span>
 </pre></div>
 
+<p>or with <strong>Complex Numbers</strong>:</p>
+
+<pre><code>var stuartLandauOscillator = new ComplexLambdaOde
+{
+    InitialConditions =  new ComplexStateType {new Complex(1, 0)},
+    OdeObserver = (x, t) =&gt; Console.WriteLine("{0}", x[0]),
+    OdeSystem =
+    (x, dxdt, t) =&gt;
+    {
+        dxdt[0] = complexEta * x[0] - (complexAlpha *  x[0].Norm()) * x[0];
+    }
+
+};
+</code></pre>
+
 <p>You can do it with our library assistance.</p>
 
 <h1>
@@ -95,7 +110,7 @@
 
 <p>Motivation Exaple (Console sample):</p>
 
-<div class="highlight"><pre><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<div class="highlight highlight-CSharp"><pre><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">OdeLibrary</span><span class="p">;</span>
 
 <span class="k">namespace</span> <span class="nn">OdeTest</span>
@@ -161,7 +176,7 @@
 <p>Or Windows Forms application example:
 <img src="/WinFormsODEGraphDemo.PNG" alt="Windows Forms using ZedGraph   ODE solver Demo application"></p>
 
-<div class="highlight"><pre><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<div class="highlight highlight-CSharp"><pre><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System.Drawing</span><span class="p">;</span>
 <span class="k">using</span> <span class="nn">System.Windows.Forms</span><span class="p">;</span>
@@ -246,7 +261,7 @@
 <h2>
 <a name="what-parts-of-boostodeint-we-do-provide" class="anchor" href="#what-parts-of-boostodeint-we-do-provide"><span class="octicon octicon-link"></span></a>What parts of Boost.OdeInt we do provide:</h2>
 
-<p>Steppers (description of all Steppers in C++ OdeInt)[<a href="http://www.boost.org/doc/libs/1_53_0/libs/numeric/odeint/doc/html/boost_numeric_odeint/odeint_in_detail/steppers.html%5D:">http://www.boost.org/doc/libs/1_53_0/libs/numeric/odeint/doc/html/boost_numeric_odeint/odeint_in_detail/steppers.html]:</a></p>
+<p>Steppers <a href="http://www.boost.org/doc/libs/1_53_0/libs/numeric/odeint/doc/html/boost_numeric_odeint/odeint_in_detail/steppers.html">description of all Steppers in C++ OdeInt</a>:</p>
 
 <ul>
 <li>Euler,</li>
@@ -258,22 +273,22 @@
 <li>ControlledRungeKutta,</li>
 <li>BulirschStoer,</li>
 <li>BulirschStoerDenseOut,</li>
-</ul><p>And Integrate Functions (description of all Integrate Functions in C++ OdeInt)[<a href="http://www.boost.org/doc/libs/1_53_0/libs/numeric/odeint/doc/html/boost_numeric_odeint/odeint_in_detail/integrate_functions.html%5D:">http://www.boost.org/doc/libs/1_53_0/libs/numeric/odeint/doc/html/boost_numeric_odeint/odeint_in_detail/integrate_functions.html]:</a></p>
+</ul><p>And Integrate Functions <a href="http://www.boost.org/doc/libs/1_53_0/libs/numeric/odeint/doc/html/boost_numeric_odeint/odeint_in_detail/integrate_functions.html">description of all Integrate Functions in C++ OdeInt</a>:</p>
 
 <ul>
 <li>Const,</li>
 <li>Adaptive</li>
 </ul><p>We also support N first steps integration:</p>
 
-<div class="highlight"><pre>    <span class="n">solver</span><span class="p">.</span><span class="n">Solve</span><span class="p">(</span><span class="n">ode</span><span class="p">,</span> <span class="k">from</span><span class="p">,</span> <span class="n">step</span><span class="p">,</span> <span class="n">constStepsAmmount</span> <span class="p">);</span>
+<div class="highlight highlight-CSharp"><pre>    <span class="n">solver</span><span class="p">.</span><span class="n">Solve</span><span class="p">(</span><span class="n">ode</span><span class="p">,</span> <span class="k">from</span><span class="p">,</span> <span class="n">step</span><span class="p">,</span> <span class="n">constStepsAmmount</span> <span class="p">);</span>
 </pre></div>
 
 <p>As wall as integration at given time points:</p>
 
-<div class="highlight"><pre>    <span class="n">solver</span><span class="p">.</span><span class="n">Solve</span><span class="p">(</span><span class="n">ode</span><span class="p">,</span> <span class="k">new</span> <span class="n">StateType</span><span class="p">(</span><span class="k">new</span><span class="p">[]</span> <span class="p">{</span> <span class="m">0</span><span class="p">,</span> <span class="m">10.0</span><span class="p">,</span> <span class="m">100.0</span><span class="p">,</span> <span class="m">1000.0</span> <span class="p">}),</span> <span class="n">step</span><span class="p">);</span>
+<div class="highlight highlight-CSharp"><pre>    <span class="n">solver</span><span class="p">.</span><span class="n">Solve</span><span class="p">(</span><span class="n">ode</span><span class="p">,</span> <span class="k">new</span> <span class="n">StateType</span><span class="p">(</span><span class="k">new</span><span class="p">[]</span> <span class="p">{</span> <span class="m">0</span><span class="p">,</span> <span class="m">10.0</span><span class="p">,</span> <span class="m">100.0</span><span class="p">,</span> <span class="m">1000.0</span> <span class="p">}),</span> <span class="n">step</span><span class="p">);</span>
 </pre></div>
 
-<p><em>Demonstration Windows Forms Solution (OdeTestWS project, build can be found at /DemonstrationApplication.zip ):</em></p>
+<p><em><a href="https://github.com/OlegJakushkin/CSharpOdeLibrary/releases/tag/v1.0">Demonstration Windows Forms Solution</a>:</em></p>
 
 <p><img src="/WinFormsODEGraphDemoDefaultNSteps.PNG" alt="Windows Forms using ZedGraph   ODE solver Demo application"><img src="/WinFormsODEGraphDemoDefaultSolver.PNG" alt="Windows Forms using ZedGraph   ODE solver Demo application"></p>
         </section>
@@ -290,7 +305,7 @@
 
           <p class="repo-owner"><a href="https://github.com/OlegJakushkin/CSharpOdeLibrary"></a> is maintained by <a href="https://github.com/OlegJakushkin">OlegJakushkin</a>.</p>
 
-          <p>This page was generated by <a href="pages.github.com">GitHub Pages</a> using the Architect theme by <a href="http://twitter.com/jasonlong">Jason Long</a>.</p>
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
         </aside>
       </div>
     </div>
