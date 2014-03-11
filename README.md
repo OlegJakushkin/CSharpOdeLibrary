@@ -143,7 +143,7 @@ namespace OdeTest
 ```
 
 Or Windows Forms application example:
-![Windows Forms using ZedGraph   ODE solver Demo application](/WinFormsODEGraphDemo.PNG)
+![Windows Forms using ZedGraph   ODE solver Demo application](https://github.com/OlegJakushkin/CSharpOdeLibrary/blob/master/WinFormsODEGraphDemo.PNG?raw=true)
 
 ```CSharp
 using System;
@@ -259,8 +259,8 @@ As wall as integration at given time points:
 
 *[Demonstration Windows Forms Solution][3]:*
 
-![Windows Forms using ZedGraph   ODE solver Demo application](/WinFormsODEGraphDemoDefaultNSteps.PNG)
-![Windows Forms using ZedGraph   ODE solver Demo application](/WinFormsODEGraphDemoDefaultSolver.PNG)
+![Windows Forms using ZedGraph   ODE solver Demo application](https://github.com/OlegJakushkin/CSharpOdeLibrary/blob/master/WinFormsODEGraphDemo.PNG?raw=true)
+![Windows Forms using ZedGraph   ODE solver Demo application](https://github.com/OlegJakushkin/CSharpOdeLibrary/blob/master/WinFormsODEGraphDemoDefaultSolver.PNG?raw=true)
 
 
   [1]: http://www.boost.org/doc/libs/1_53_0/libs/numeric/odeint/doc/html/boost_numeric_odeint/odeint_in_detail/steppers.html
