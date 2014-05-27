@@ -145,7 +145,7 @@ namespace OdeTest
 ```
 
 Or Windows Forms application example:
-![Windows Forms using ZedGraph   ODE solver Demo application](/WinFormsODEGraphDemo.PNG)
+![Windows Forms using ZedGraph   ODE solver Demo application](https://github.com/OlegJakushkin/CSharpOdeLibrary/blob/master/WinFormsODEGraphDemo.PNG?raw=true)
 
 ```CSharp
 using System;
@@ -234,7 +234,7 @@ This is Utilety library because we do not support new Numeric Steppers or Integr
 What parts of Boost.OdeInt we do provide:
 -----------------------------------------
 
-Steppers (description of all Steppers in C++ OdeInt)[http://www.boost.org/doc/libs/1_53_0/libs/numeric/odeint/doc/html/boost_numeric_odeint/odeint_in_detail/steppers.html]:
+Steppers [description of all Steppers in C++ OdeInt][1]:
  - Euler,
  - ModifiedMidpoint,
  - RungeKutta4,
@@ -245,7 +245,7 @@ Steppers (description of all Steppers in C++ OdeInt)[http://www.boost.org/doc/li
  - BulirschStoer,
  - BulirschStoerDenseOut,
 
-And Integrate Functions (description of all Integrate Functions in C++ OdeInt)[http://www.boost.org/doc/libs/1_53_0/libs/numeric/odeint/doc/html/boost_numeric_odeint/odeint_in_detail/integrate_functions.html]:
+And Integrate Functions [description of all Integrate Functions in C++ OdeInt][2]:
  - Const,
  - Adaptive
 
@@ -259,10 +259,12 @@ As wall as integration at given time points:
     solver.Solve(ode, new StateType(new[] { 0, 10.0, 100.0, 1000.0 }), step);
 ```
 
-*(Demonstration Windows Forms Solution)[https://github.com/OlegJakushkin/CSharpOdeLibrary/releases/tag/v1.0]:*
+*[Demonstration Windows Forms Solution][3]:*
 
-![Windows Forms using ZedGraph   ODE solver Demo application](/WinFormsODEGraphDemoDefaultNSteps.PNG)
-![Windows Forms using ZedGraph   ODE solver Demo application](/WinFormsODEGraphDemoDefaultSolver.PNG)
+![Windows Forms using ZedGraph   ODE solver Demo application](https://github.com/OlegJakushkin/CSharpOdeLibrary/blob/master/WinFormsODEGraphDemo.PNG?raw=true)
+![Windows Forms using ZedGraph   ODE solver Demo application](https://github.com/OlegJakushkin/CSharpOdeLibrary/blob/master/WinFormsODEGraphDemoDefaultSolver.PNG?raw=true)
 
 
-  [1]: http://olegjakushkin.github.io/CSharpOdeLibrary/
+  [1]: http://www.boost.org/doc/libs/1_53_0/libs/numeric/odeint/doc/html/boost_numeric_odeint/odeint_in_detail/steppers.html
+  [2]: http://www.boost.org/doc/libs/1_53_0/libs/numeric/odeint/doc/html/boost_numeric_odeint/odeint_in_detail/integrate_functions.html
+  [3]: https://github.com/OlegJakushkin/CSharpOdeLibrary/releases/tag/v1.0
