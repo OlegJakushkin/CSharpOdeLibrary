@@ -1,6 +1,8 @@
 CSharp Ode Library
 ================
-CSharpOdeLibrary
+[CSharpOdeLibrary][1] by Oleg Jakushkin and Olga Sedova.
+
+Free use of this software is granted under the terms of the GNU Lesser General Public License (LGPL). For details see the files LICENSE.LESSER.md and LICENSE.md 
 
 Simple C# ODE Solver Library (Wrapper around Boost.OdeInt). 
 
@@ -261,3 +263,6 @@ As wall as integration at given time points:
 
 ![Windows Forms using ZedGraph   ODE solver Demo application](/WinFormsODEGraphDemoDefaultNSteps.PNG)
 ![Windows Forms using ZedGraph   ODE solver Demo application](/WinFormsODEGraphDemoDefaultSolver.PNG)
+
+
+  [1]: http://olegjakushkin.github.io/CSharpOdeLibrary/
